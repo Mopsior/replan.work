@@ -4,7 +4,9 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { shadcn } from '@clerk/themes'
 import { ThemeProvider } from '@/components/theme-provider'
-import { NextIntlClientProvider } from 'next-intl'
+import { NextIntlClientProvider, useLocale } from 'next-intl'
+import { Language } from '@/types/enums'
+import { plPL, enUS } from '@clerk/localizations'
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -26,8 +28,10 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
+    const locale = useLocale()
+
     return (
-        <ClerkProvider appearance={{ theme: shadcn }} waitlistUrl='/waitlist'>
+        <ClerkProvider appearance={{ theme: shadcn }} waitlistUrl='/waitlist' localization={locale === Language.PL ? plPL : enUS}>
             <html suppressHydrationWarning>
                 <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
                     <ThemeProvider
@@ -40,6 +44,6 @@ export default function RootLayout({
                     </ThemeProvider>
                 </body>
             </html>
-        </ClerkProvider>
+        </ClerkProvider >
     )
 }

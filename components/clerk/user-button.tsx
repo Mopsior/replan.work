@@ -3,9 +3,11 @@
 import { UserButton as ClerkUserButton } from '@clerk/nextjs'
 import { useTheme } from 'next-themes'
 import { Laptop, Moon, Sun } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 export const UserButton = () => {
     const { theme, setTheme } = useTheme()
+    const t = useTranslations()
 
     const handleChange = () => {
         switch (theme) {
@@ -25,7 +27,7 @@ export const UserButton = () => {
         <ClerkUserButton>
             <ClerkUserButton.MenuItems>
                 <ClerkUserButton.Action
-                    label='Switch theme'
+                    label={t('switchTheme')}
                     labelIcon={
                         theme === 'light' ? (
                             <Sun size={16} />
