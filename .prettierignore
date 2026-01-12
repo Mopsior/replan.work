@@ -5,3 +5,4 @@ yarn.lock
 pnpm-workspace.yaml
 .husky
 .tsbuildinfo
+.output

@@ -7,7 +7,6 @@
         "build": "vite build",
         "preview": "vite preview",
         "test": "vitest run",
-        "lint": "eslint",
         "format": "git diff --name-only --cached | xargs -r -I {} pnpm dlx prettier --write \"{}\"",
         "check": "prettier --write . && eslint --fix",
         "db:generate": "drizzle-kit generate",

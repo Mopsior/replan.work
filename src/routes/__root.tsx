@@ -8,8 +8,8 @@ import { enUS, plPL } from '@clerk/localizations'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
 import appCss from '../styles.css?url'
-import { ThemeProvider } from '@/utils/theme-provider'
 import { Language } from '@/types/enums'
+import { ThemeProvider } from '@/lib/theme-provider'
 
 export const Route = createRootRoute({
     head: () => ({
