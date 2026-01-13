@@ -19,7 +19,7 @@ const config = defineConfig({
         viteReact(),
     ],
     server: {
-        allowedHosts: ['*.local'],
+        allowedHosts: ['*.local', ...(process.env.VITE_ALLOWED_HOSTS?.split(',') ?? [])],
     },
 })
 
