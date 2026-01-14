@@ -2,12 +2,25 @@ import { Trans, useTranslation } from 'react-i18next'
 import { InlineCode } from './inline-code'
 import { ExternalLink } from './external-link'
 import { env } from '@/env'
+import { cn } from '@/lib/utils'
 
-export const Footer = () => {
+export const Footer = ({
+    withoutFixed = false,
+    visibleOnMobile = false,
+}: {
+    withoutFixed?: boolean
+    visibleOnMobile?: boolean
+}) => {
     const { t } = useTranslation()
 
     return (
-        <div className='text-muted-foreground fixed bottom-4 left-1/2 -translate-x-1/2 transform text-center text-sm'>
+        <div
+            className={cn([
+                'text-muted-foreground bottom-4 text-center text-sm',
+                !withoutFixed && 'fixed left-1/2 -translate-x-1/2 transform',
+                !visibleOnMobile && 'not-md:hidden',
+            ])}
+        >
             <Trans
                 i18nKey={'footer.build'}
                 components={{

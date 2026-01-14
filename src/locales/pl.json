@@ -7,8 +7,11 @@
             "prod": "produkcyjna"
         }
     },
+    "goto": "Przejdź do {{name}}",
+    "gotoDestination": {
+        "app": "aplikacji"
+    },
     "": "",
-    "nowe": "nowe sytgdasuhd",
     "hello": "hej",
     "openDrawer": "Otwórz szufladę",
     "mainDrawer": "Główna szuflada",

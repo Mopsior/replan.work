@@ -1,9 +1,10 @@
 import { Outlet, createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import { Menu } from 'lucide-react'
-import Drawer from '@/components/vaul'
+import Drawer from '@/components/drawer'
 import { authStateFn } from '@/functions/auth-state'
 import { Button } from '@/components/ui/button'
+import { Footer } from '@/components/footer'
 
 export const Route = createFileRoute('/app')({
     component: RouteComponent,
@@ -25,7 +26,7 @@ function RouteComponent() {
             <Drawer
                 trigger={
                     <div className='fixed bottom-4 left-0 w-full px-4 md:hidden'>
-                        <Button className='w-full'>
+                        <Button suppressHydrationWarning className='w-full'>
                             <Menu />
                             {t('menu')}
                         </Button>
@@ -33,6 +34,7 @@ function RouteComponent() {
                 }
             >
                 <Outlet />
+                <Footer withoutFixed visibleOnMobile />
             </Drawer>
         </>
     )
