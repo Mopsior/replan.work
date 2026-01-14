@@ -29,7 +29,8 @@
             "@db/*": ["./src/db/*"],
             "@functions/*": ["./src/functions/*"],
             "@lib/*": ["./src/lib/*"],
-            "@locales/*": ["./src/locales/*"]
+            "@locales/*": ["./src/locales/*"],
+            "@public/*": ["./public/*"]
         }
     }
 }

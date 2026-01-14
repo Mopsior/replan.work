@@ -29,7 +29,7 @@ export const Footer = ({
                     repoUrl: <ExternalLink to={env.VITE_REPO} withUnderline />,
                     commitUrl: import.meta.env.SOURCE_COMMIT ? (
                         <ExternalLink
-                            to={`${env.VITE_REPO}/commit/${import.meta.env.SOURCE_COMMIT}`}
+                            to={`${env.VITE_REPO}/commit/${import.meta.env.SOURCE_COMMIT.slice(0, 7)}`}
                             withUnderline
                         />
                     ) : (
