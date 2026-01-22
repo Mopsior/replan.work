@@ -40,8 +40,9 @@ export const Footer = ({
                     buildType: import.meta.env.PROD
                         ? t('footer.buildType.prod')
                         : t('footer.buildType.dev'),
-                    buildHash:
-                        import.meta.env.SOURCE_COMMIT.slice(0, 7) ?? t('footer.buildType.dev'),
+                    buildHash: import.meta.env.SOURCE_COMMIT
+                        ? import.meta.env.SOURCE_COMMIT.slice(0, 7)
+                        : t('footer.buildType.dev'),
                 }}
             />
         </div>
