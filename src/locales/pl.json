@@ -34,9 +34,19 @@
             "5": "Piątek",
             "6": "Sobota",
             "7": "Niedziela"
+        },
+        "event": {
+            "variant": {
+                "stationary": "Stacjonarne",
+                "remote": "Zdalne",
+                "hybrid": "Hybrydowe",
+                "custom": "Niestandardowe"
+            },
+            "more": "Więcej"
         }
     },
     "": "",
+    "exampleDuration": "4h 25min",
     "summaryDrawer": "Podsumowanie szuflady",
     "summaryDrawerContent": "To jest zawartość podsumowania szuflady."
 }

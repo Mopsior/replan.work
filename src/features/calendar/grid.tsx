@@ -1,6 +1,6 @@
 import { useSearch } from '@tanstack/react-router'
 import { CalendarItem } from './item'
-import { getPosition } from './getCellPosition'
+import { getPosition } from './get-position'
 import { useCalendar } from '@/hooks/use-calendar'
 import { Route } from '@/routes/app/route'
 
@@ -13,6 +13,8 @@ export const CalendarGrid = () => {
         month,
         year,
     })
+
+    const today = new Date().getDate()
 
     return days.map((day, index) => {
         const key = `calendar-item-${day?.day}-${month}-${year}-${index}`
@@ -32,6 +34,7 @@ export const CalendarGrid = () => {
                 )}
                 isWeekday={index % 7 === 5 || index % 7 === 6}
                 isFreeDay={day.isFree}
+                isToday={day.day === today}
             />
         )
     })

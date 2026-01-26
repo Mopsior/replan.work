@@ -1,8 +1,18 @@
+import type { EventType } from '@/types/enums'
+
 export interface ItemProps {
     day: string
     position: Cell
     isWeekday?: boolean
     isFreeDay?: boolean
+    isToday?: boolean
+}
+
+export interface EventProps {
+    title: string
+    time?: string
+    eventType: EventType
+    isOneLiner?: boolean
 }
 
 export enum Cell {
