@@ -34,6 +34,7 @@
         "@tanstack/react-router-ssr-query": "^1.147.1",
         "@tanstack/react-start": "^1.147.1",
         "@tanstack/router-plugin": "^1.147.1",
+        "@tanstack/zod-adapter": "^1.154.7",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "drizzle-kit": "^0.31.8",
@@ -48,6 +49,7 @@
         "react": "^19.2.3",
         "react-dom": "^19.2.3",
         "react-i18next": "^16.5.1",
+        "react-scan": "^0.4.3",
         "shadcn": "^3.6.3",
         "tailwind-merge": "^3.4.0",
         "tailwindcss": "^4.1.18",
@@ -82,7 +84,7 @@
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [
             "prettier --write",
-            "eslint --fix --max-warnings=0"
+            "eslint --fix"
         ],
         "*.{css,json,md}": "prettier --write"
     },

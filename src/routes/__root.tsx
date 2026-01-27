@@ -1,3 +1,6 @@
+// must be imported before anything else
+import { scan } from 'react-scan'
+
 import { HeadContent, Scripts, createRootRoute, useRouter } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -10,7 +13,7 @@ import { useEffect } from 'react'
 import appCss from '../styles.css?url'
 import { Language } from '@/types/enums'
 import { ThemeProvider } from '@/lib/theme-provider'
-import { Footer } from '@/components/footer'
+import { Footer } from '@/features/footer'
 
 export const Route = createRootRoute({
     head: () => ({
@@ -38,6 +41,12 @@ export const Route = createRootRoute({
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+    useEffect(() => {
+        scan({
+            enabled: true,
+        })
+    }, [])
+
     const { i18n } = useTranslation()
     const router = useRouter()
 

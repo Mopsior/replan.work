@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ChevronRight } from 'lucide-react'
 import { Trans, useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/features/ui/button'
 
 export const Route = createFileRoute('/')({ component: App })
 

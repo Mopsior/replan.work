@@ -1,21 +1,23 @@
-Welcome to your new TanStack app!
+# zlecly
 
-# Getting Started
+> This project is **not** vibecoded.
 
-To run this application:
+## 📂 Structure
 
-```bash
-pnpm install
-pnpm dev
+```md
+- `db` - Drizzle schemas
+- `features` - project-wise components
+    - `{segment}` - components, types and local functions for each app segments
+      if anything (component, type or function) is used in any other segment,
+      it needs to be moved to corresponding folder
+- `hooks` - all hooks
+- `functions` - all (mostly serverside) "functions" from tanstack
+- `lib` - utils for specific libs
+- `utils` - non lib-specific utils
+- `types` - all project-wise types
 ```
 
-# Building For Production
-
-To build this application for production:
-
-```bash
-pnpm build
-```
+---
 
 ## Testing
 
