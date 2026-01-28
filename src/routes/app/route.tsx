@@ -8,6 +8,7 @@ import { authStateFn } from '@/functions/auth-state'
 import { Button } from '@/features/ui/button'
 import { Footer } from '@/features/footer'
 import { Calendar } from '@/features/calendar'
+import { SidebarWrapper } from '@/features/routing/sidebar-wrapper'
 
 const searchParams = z.object({
     month: z.number().default(new Date().getMonth() + 1),
@@ -25,13 +26,11 @@ function RouteComponent() {
 
     return (
         <>
-            <div className='h-full w-full md:grid md:grid-cols-[70%_30%]'>
+            <div className='h-full w-full md:grid md:grid-cols-[auto_450px]'>
                 <Calendar />
-                <div className='pt-20 pr-6 pb-16'>
-                    <div className='bg-secondary h-full w-full rounded-md shadow'>
-                        <Outlet />
-                    </div>
-                </div>
+                <SidebarWrapper>
+                    <Outlet />
+                </SidebarWrapper>
             </div>
             <Drawer
                 trigger={

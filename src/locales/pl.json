@@ -7,6 +7,11 @@
             "prod": "produkcyjna"
         }
     },
+    "tabs": {
+        "summary": "Podsumowanie",
+        "share": "Udostępnianie",
+        "settings": "Ustawienia"
+    },
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {
         "app": "aplikacji"
@@ -44,6 +49,12 @@
             },
             "more": "Więcej"
         }
+    },
+    "themes": {
+        "switch": "Zmień motyw na {{theme}}",
+        "light": "jasny",
+        "dark": "ciemny",
+        "system": "systemowy"
     },
     "": "",
     "exampleDuration": "4h 25min",

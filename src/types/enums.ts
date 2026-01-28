@@ -8,3 +8,9 @@ export enum EventType {
     HYBRID = 'hybrid',
     CUSTOM = 'custom',
 }
+
+export enum Theme {
+    LIGHT = 'light',
+    DARK = 'dark',
+    SYSTEM = 'system',
+}

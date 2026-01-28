@@ -17,6 +17,44 @@
 - `types` - all project-wise types
 ```
 
+## ⛅ Themes
+
+`ThemeProvider` is configured in [src/lib/theme-provider.tsx](src/lib/theme-provider.tsx)
+
+- **Three theme modes:**
+    - `light` (`Theme.LIGHT`) - Forces light theme
+    - `dark` (`Theme.DARK`) - Forces dark theme
+    - `system` (`Theme.SYSTEM`) - Uses OS preference (default)
+
+- User preference is saved in **localStorage**
+- **Flash prevention** - A script injected at startup prevents flash of unstyled content (FOUC)
+- Automatically switches theme if OS preference changes
+
+### Usage
+
+```tsx
+import { Theme } from '@/types/enums'
+// ...
+const { userTheme, appTheme, setTheme } = useTheme()
+// userTheme - prefered method. It combines user chocie and auto-detecting
+// appTheme - auto-detected  theme
+
+return (
+    <div>
+        <p>Current theme: {userTheme}</p>
+        <button onClick={() => setTheme(Theme.LIGHT)}>Light</button>
+        <button onClick={() => setTheme(Theme.DARK)}>Dark</button>
+        <button onClick={() => setTheme(Theme.SYSTEM)}>System</button>
+    </div>
+)
+```
+
+The theme is applied as a CSS class (`light` or `dark`) on the `<html>` element. You can style based on it using Tailwind's `dark:` prefix:
+
+```tsx
+<div className='bg-white dark:bg-black'>This switches colors based on theme</div>
+```
+
 ---
 
 ## Testing
