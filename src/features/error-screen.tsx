@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { H3 } from './typograpghy'
+import { H3 } from './typography'
 
 export const ErrorScreen = ({ error }: { error: Error }) => {
     const { t } = useTranslation()

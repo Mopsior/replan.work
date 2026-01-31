@@ -2,7 +2,7 @@ import { ScriptOnce } from '@tanstack/react-router'
 import { createContext, use, useEffect, useState } from 'react'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import { z } from 'zod'
-import type { ReactNode} from 'react';
+import type { ReactNode } from 'react'
 
 const UserThemeSchema = z.enum(['light', 'dark', 'system']).catch('system')
 const AppThemeSchema = z.enum(['light', 'dark']).catch('light')
@@ -20,7 +20,7 @@ const getStoredUserTheme = createIsomorphicFn()
     })
 
 const setStoredTheme = (theme: UserTheme) => {
-    if (typeof window !== 'undefined') return
+    if (typeof window === 'undefined') return
     const validatedTheme = UserThemeSchema.parse(theme)
     localStorage.setItem(themeStorageKey, validatedTheme)
 }

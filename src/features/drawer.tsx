@@ -1,4 +1,5 @@
 import { Drawer as Vaul } from 'vaul'
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import type { ComponentProps, ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 
@@ -13,6 +14,22 @@ const Drawer = ({
     ...props
 }: DrawerProps & ComponentProps<typeof Vaul.Root>) => (
     <Vaul.Root {...props}>
+        <DrawerContent trigger={trigger}>{children}</DrawerContent>
+    </Vaul.Root>
+)
+
+const NestedDrawer = ({
+    children,
+    trigger,
+    ...props
+}: DrawerProps & ComponentProps<typeof Vaul.NestedRoot>) => (
+    <Vaul.NestedRoot {...props}>
+        <DrawerContent trigger={trigger}>{children}</DrawerContent>
+    </Vaul.NestedRoot>
+)
+
+const DrawerContent = ({ children, trigger }: DrawerProps) => (
+    <>
         <Vaul.Trigger asChild>{trigger}</Vaul.Trigger>
         <Vaul.Portal>
             <Vaul.Overlay className='fixed inset-0 bg-black/40' />
@@ -20,14 +37,14 @@ const Drawer = ({
                 className={cn([
                     'fixed right-0 bottom-0 left-0 flex h-fit flex-col rounded-t-[10px] outline-none',
                     'light:bg-gray-100',
-                    'dark:bg-card',
+                    'bg-card',
                 ])}
             >
                 <div aria-hidden className='mx-auto my-4 h-1.5 w-12 rounded-full bg-gray-300' />
                 {children}
             </Vaul.Content>
         </Vaul.Portal>
-    </Vaul.Root>
+    </>
 )
 
 const DrawerTitle = ({
@@ -42,5 +59,13 @@ const DrawerTitle = ({
     </Vaul.Title>
 )
 
+const DrawerHiddenDescription = ({ children }: { children: string }) => (
+    <VisuallyHidden>
+        <Vaul.Description>{children}</Vaul.Description>
+    </VisuallyHidden>
+)
+
 Drawer.Title = DrawerTitle
+Drawer.Nested = NestedDrawer
+Drawer.HiddenDescription = DrawerHiddenDescription
 export default Drawer

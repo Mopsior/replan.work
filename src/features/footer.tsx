@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { ExternalLink } from './external-link'
-import { InlineCode } from './typograpghy'
+import { InlineCode } from './typography'
 import { env } from '@/env'
 import { cn } from '@/lib/utils'
 

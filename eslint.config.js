@@ -12,5 +12,5 @@ export default [
             '@typescript-eslint/require-await': 'off',
         },
     },
-    globalIgnores(['/.output/**', '/.tanstack/**']),
+    globalIgnores(['/.output/**', '/.tanstack/**', 'src/components/ui/**']),
 ]

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { UserButton as ClerkUserButton } from '@clerk/tanstack-react-start'
 import { Settings2 } from 'lucide-react'
 import { useNavigate } from '@tanstack/react-router'
-import { getNextTheme, themeIcons, themeTranslations } from './get-next-theme'
+import { getNextTheme, themeIcons, themeTranslations } from '../settings/get-next-theme'
 import type { Theme } from '@/types/enums'
 import { useTheme } from '@/lib/theme-provider'
 
@@ -32,7 +32,7 @@ export const UserButton = () => {
                     }
                 />
                 <ClerkUserButton.Action
-                    label={t('themes.switch', { theme: nextThemeTranslation })}
+                    label={t('appSettings.themes.switch', { theme: nextThemeTranslation })}
                     labelIcon={themeIcons[nextTheme]}
                     onClick={() => handleChange()}
                 />

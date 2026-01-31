@@ -23,6 +23,7 @@
         "@clerk/tanstack-react-start": "^0.27.14",
         "@clerk/themes": "^2.4.47",
         "@fontsource-variable/geist": "^5.2.8",
+        "@radix-ui/react-visually-hidden": "^1.2.4",
         "@t3-oss/env-core": "^0.13.10",
         "@tailwindcss/vite": "^4.1.18",
         "@tanstack/react-devtools": "^0.7.11",

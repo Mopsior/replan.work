@@ -15,9 +15,9 @@ export const getNextTheme = (currentTheme: Theme): Theme => {
 }
 
 export const themeTranslations: Record<Theme, string> = {
-    [Theme.LIGHT]: t('themes.light'),
-    [Theme.DARK]: t('themes.dark'),
-    [Theme.SYSTEM]: t('themes.system'),
+    [Theme.LIGHT]: t('appSettings.themes.light'),
+    [Theme.DARK]: t('appSettings.themes.dark'),
+    [Theme.SYSTEM]: t('appSettings.themes.system'),
 }
 
 const iconsProps = { size: 16 }
