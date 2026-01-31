@@ -22,7 +22,7 @@ export const UserButton = () => {
         <ClerkUserButton>
             <ClerkUserButton.MenuItems>
                 <ClerkUserButton.Action
-                    label={t('settings')}
+                    label={t('settings.title')}
                     labelIcon={<Settings2 size={16} />}
                     onClick={() =>
                         navigate({

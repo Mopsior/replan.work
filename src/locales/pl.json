@@ -1,7 +1,10 @@
 {
     "return": "Powrót",
     "menu": "Menu",
-    "settings": "Ustawienia aplikacji",
+    "settings": {
+        "short": "Ustawienia",
+        "title": "Ustawienia aplikacji"
+    },
     "error": "Oopsie, coś poszło nie tak!",
     "errorSentInfo": "Informacje o błędzie powinny zostać wysłane do twórcy automatycznie",
     "footer": {

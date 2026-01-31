@@ -41,13 +41,13 @@ export const MonthPicker = () => {
     const handleNextMonth = () => {
         const newMonth = month + 1 > 12 ? 1 : month + 1
         const newYear = month + 1 > 12 ? year + 1 : year
-        navigate({ to: '/app', search: { month: newMonth, year: newYear } })
+        navigate({ to: '.', search: { month: newMonth, year: newYear } })
     }
 
     const handlePrevMonth = () => {
         const newMonth = month - 1 < 1 ? 12 : month - 1
         const newYear = month - 1 < 1 ? year - 1 : year
-        navigate({ to: '/app', search: { month: newMonth, year: newYear } })
+        navigate({ to: '.', search: { month: newMonth, year: newYear } })
     }
 
     useKeyPress('ArrowRight', handleNextMonth)
@@ -59,9 +59,7 @@ export const MonthPicker = () => {
                 <ChevronLeft size={16} className='size-4' />
             </Button>
             <Select
-                onValueChange={(value) =>
-                    navigate({ to: '/app', search: { month: Number(value) } })
-                }
+                onValueChange={(value) => navigate({ to: '.', search: { month: Number(value) } })}
                 value={month}
             >
                 <SelectTrigger withInputStyles={false}>
@@ -83,7 +81,7 @@ export const MonthPicker = () => {
                 </SelectContent>
             </Select>
             <Select
-                onValueChange={(value) => navigate({ to: '/app', search: { year: Number(value) } })}
+                onValueChange={(value) => navigate({ to: '.', search: { year: Number(value) } })}
                 value={year}
             >
                 <SelectTrigger withInputStyles={false}>
