@@ -1,10 +1,10 @@
 # replan.work
 
-_replan (that) work_
+> _replan (that) work_
 
 Plan your contract or volunteer job, sync with calendars and know your wages before end of the month
 
-> This project is **not** vibecoded.
+This project is **not** vibecoded
 
 ## 📂 Structure
 
@@ -93,6 +93,28 @@ Handling error should be done through `<ErrorScreen />` component (and added lat
 - [ ] Move to Biome
 - [ ] Handle months that aren't provided in dataset
 - [ ] **Production**: add PostHog
+
+## ☁️ Deployment
+
+App is primarly deployed by me on Coolify, so it's easy to deploy yourself.
+
+Settings to care when uploading: (everything else can be in default state)
+
+```
+General
+    Build pack: Nixpacks
+    Is a static site: NO
+    Install/Build command: empty (default)
+    Start command: node .output/server/index.mjs
+    Base/Publish directory: / (default)
+    Port exposes: 3000
+
+Advanced
+    Include Source Commit in Build: true
+
+ENV:
+    NIXPACKS_NODE_VERSION = 22 (for both types)
+```
 
 ---
 
