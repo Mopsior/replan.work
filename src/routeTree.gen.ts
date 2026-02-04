@@ -9,262 +9,261 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as authSignInSplatRouteImport } from './routes/(auth)/sign-in.$'
+import { Route as authSignUpSplatRouteImport } from './routes/(auth)/sign-up.$'
+import { Route as authWaitlistRouteImport } from './routes/(auth)/waitlist'
+import { Route as AppIndexRouteImport } from './routes/app/index'
 import { Route as AppRouteRouteImport } from './routes/app/route'
+import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
+import { Route as AppShareIndexRouteImport } from './routes/app/share/index'
+import { Route as AppSummaryIndexRouteImport } from './routes/app/summary/index'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TestIndexRouteImport } from './routes/test/index'
-import { Route as AppIndexRouteImport } from './routes/app/index'
-import { Route as authWaitlistRouteImport } from './routes/(auth)/waitlist'
-import { Route as AppSummaryIndexRouteImport } from './routes/app/summary/index'
-import { Route as AppShareIndexRouteImport } from './routes/app/share/index'
-import { Route as AppSettingsIndexRouteImport } from './routes/app/settings/index'
-import { Route as authSignUpSplatRouteImport } from './routes/(auth)/sign-up.$'
-import { Route as authSignInSplatRouteImport } from './routes/(auth)/sign-in.$'
 
 const AppRouteRoute = AppRouteRouteImport.update({
-  id: '/app',
-  path: '/app',
-  getParentRoute: () => rootRouteImport,
+    id: '/app',
+    path: '/app',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
+    id: '/',
+    path: '/',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const TestIndexRoute = TestIndexRouteImport.update({
-  id: '/test/',
-  path: '/test/',
-  getParentRoute: () => rootRouteImport,
+    id: '/test/',
+    path: '/test/',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const AppIndexRoute = AppIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppRouteRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => AppRouteRoute,
 } as any)
 const authWaitlistRoute = authWaitlistRouteImport.update({
-  id: '/(auth)/waitlist',
-  path: '/waitlist',
-  getParentRoute: () => rootRouteImport,
+    id: '/(auth)/waitlist',
+    path: '/waitlist',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const AppSummaryIndexRoute = AppSummaryIndexRouteImport.update({
-  id: '/summary/',
-  path: '/summary/',
-  getParentRoute: () => AppRouteRoute,
+    id: '/summary/',
+    path: '/summary/',
+    getParentRoute: () => AppRouteRoute,
 } as any)
 const AppShareIndexRoute = AppShareIndexRouteImport.update({
-  id: '/share/',
-  path: '/share/',
-  getParentRoute: () => AppRouteRoute,
+    id: '/share/',
+    path: '/share/',
+    getParentRoute: () => AppRouteRoute,
 } as any)
 const AppSettingsIndexRoute = AppSettingsIndexRouteImport.update({
-  id: '/settings/',
-  path: '/settings/',
-  getParentRoute: () => AppRouteRoute,
+    id: '/settings/',
+    path: '/settings/',
+    getParentRoute: () => AppRouteRoute,
 } as any)
 const authSignUpSplatRoute = authSignUpSplatRouteImport.update({
-  id: '/(auth)/sign-up/$',
-  path: '/sign-up/$',
-  getParentRoute: () => rootRouteImport,
+    id: '/(auth)/sign-up/$',
+    path: '/sign-up/$',
+    getParentRoute: () => rootRouteImport,
 } as any)
 const authSignInSplatRoute = authSignInSplatRouteImport.update({
-  id: '/(auth)/sign-in/$',
-  path: '/sign-in/$',
-  getParentRoute: () => rootRouteImport,
+    id: '/(auth)/sign-in/$',
+    path: '/sign-in/$',
+    getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/app': typeof AppRouteRouteWithChildren
-  '/waitlist': typeof authWaitlistRoute
-  '/app/': typeof AppIndexRoute
-  '/test': typeof TestIndexRoute
-  '/sign-in/$': typeof authSignInSplatRoute
-  '/sign-up/$': typeof authSignUpSplatRoute
-  '/app/settings': typeof AppSettingsIndexRoute
-  '/app/share': typeof AppShareIndexRoute
-  '/app/summary': typeof AppSummaryIndexRoute
+    '/': typeof IndexRoute
+    '/app': typeof AppRouteRouteWithChildren
+    '/waitlist': typeof authWaitlistRoute
+    '/app/': typeof AppIndexRoute
+    '/test': typeof TestIndexRoute
+    '/sign-in/$': typeof authSignInSplatRoute
+    '/sign-up/$': typeof authSignUpSplatRoute
+    '/app/settings': typeof AppSettingsIndexRoute
+    '/app/share': typeof AppShareIndexRoute
+    '/app/summary': typeof AppSummaryIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/waitlist': typeof authWaitlistRoute
-  '/app': typeof AppIndexRoute
-  '/test': typeof TestIndexRoute
-  '/sign-in/$': typeof authSignInSplatRoute
-  '/sign-up/$': typeof authSignUpSplatRoute
-  '/app/settings': typeof AppSettingsIndexRoute
-  '/app/share': typeof AppShareIndexRoute
-  '/app/summary': typeof AppSummaryIndexRoute
+    '/': typeof IndexRoute
+    '/waitlist': typeof authWaitlistRoute
+    '/app': typeof AppIndexRoute
+    '/test': typeof TestIndexRoute
+    '/sign-in/$': typeof authSignInSplatRoute
+    '/sign-up/$': typeof authSignUpSplatRoute
+    '/app/settings': typeof AppSettingsIndexRoute
+    '/app/share': typeof AppShareIndexRoute
+    '/app/summary': typeof AppSummaryIndexRoute
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/app': typeof AppRouteRouteWithChildren
-  '/(auth)/waitlist': typeof authWaitlistRoute
-  '/app/': typeof AppIndexRoute
-  '/test/': typeof TestIndexRoute
-  '/(auth)/sign-in/$': typeof authSignInSplatRoute
-  '/(auth)/sign-up/$': typeof authSignUpSplatRoute
-  '/app/settings/': typeof AppSettingsIndexRoute
-  '/app/share/': typeof AppShareIndexRoute
-  '/app/summary/': typeof AppSummaryIndexRoute
+    __root__: typeof rootRouteImport
+    '/': typeof IndexRoute
+    '/app': typeof AppRouteRouteWithChildren
+    '/(auth)/waitlist': typeof authWaitlistRoute
+    '/app/': typeof AppIndexRoute
+    '/test/': typeof TestIndexRoute
+    '/(auth)/sign-in/$': typeof authSignInSplatRoute
+    '/(auth)/sign-up/$': typeof authSignUpSplatRoute
+    '/app/settings/': typeof AppSettingsIndexRoute
+    '/app/share/': typeof AppShareIndexRoute
+    '/app/summary/': typeof AppSummaryIndexRoute
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/app'
-    | '/waitlist'
-    | '/app/'
-    | '/test'
-    | '/sign-in/$'
-    | '/sign-up/$'
-    | '/app/settings'
-    | '/app/share'
-    | '/app/summary'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/waitlist'
-    | '/app'
-    | '/test'
-    | '/sign-in/$'
-    | '/sign-up/$'
-    | '/app/settings'
-    | '/app/share'
-    | '/app/summary'
-  id:
-    | '__root__'
-    | '/'
-    | '/app'
-    | '/(auth)/waitlist'
-    | '/app/'
-    | '/test/'
-    | '/(auth)/sign-in/$'
-    | '/(auth)/sign-up/$'
-    | '/app/settings/'
-    | '/app/share/'
-    | '/app/summary/'
-  fileRoutesById: FileRoutesById
+    fileRoutesByFullPath: FileRoutesByFullPath
+    fullPaths:
+        | '/'
+        | '/app'
+        | '/waitlist'
+        | '/app/'
+        | '/test'
+        | '/sign-in/$'
+        | '/sign-up/$'
+        | '/app/settings'
+        | '/app/share'
+        | '/app/summary'
+    fileRoutesByTo: FileRoutesByTo
+    to:
+        | '/'
+        | '/waitlist'
+        | '/app'
+        | '/test'
+        | '/sign-in/$'
+        | '/sign-up/$'
+        | '/app/settings'
+        | '/app/share'
+        | '/app/summary'
+    id:
+        | '__root__'
+        | '/'
+        | '/app'
+        | '/(auth)/waitlist'
+        | '/app/'
+        | '/test/'
+        | '/(auth)/sign-in/$'
+        | '/(auth)/sign-up/$'
+        | '/app/settings/'
+        | '/app/share/'
+        | '/app/summary/'
+    fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AppRouteRoute: typeof AppRouteRouteWithChildren
-  authWaitlistRoute: typeof authWaitlistRoute
-  TestIndexRoute: typeof TestIndexRoute
-  authSignInSplatRoute: typeof authSignInSplatRoute
-  authSignUpSplatRoute: typeof authSignUpSplatRoute
+    IndexRoute: typeof IndexRoute
+    AppRouteRoute: typeof AppRouteRouteWithChildren
+    authWaitlistRoute: typeof authWaitlistRoute
+    TestIndexRoute: typeof TestIndexRoute
+    authSignInSplatRoute: typeof authSignInSplatRoute
+    authSignUpSplatRoute: typeof authSignUpSplatRoute
 }
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/app': {
-      id: '/app'
-      path: '/app'
-      fullPath: '/app'
-      preLoaderRoute: typeof AppRouteRouteImport
-      parentRoute: typeof rootRouteImport
+    interface FileRoutesByPath {
+        '/app': {
+            id: '/app'
+            path: '/app'
+            fullPath: '/app'
+            preLoaderRoute: typeof AppRouteRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/': {
+            id: '/'
+            path: '/'
+            fullPath: '/'
+            preLoaderRoute: typeof IndexRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/test/': {
+            id: '/test/'
+            path: '/test'
+            fullPath: '/test'
+            preLoaderRoute: typeof TestIndexRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/app/': {
+            id: '/app/'
+            path: '/'
+            fullPath: '/app/'
+            preLoaderRoute: typeof AppIndexRouteImport
+            parentRoute: typeof AppRouteRoute
+        }
+        '/(auth)/waitlist': {
+            id: '/(auth)/waitlist'
+            path: '/waitlist'
+            fullPath: '/waitlist'
+            preLoaderRoute: typeof authWaitlistRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/app/summary/': {
+            id: '/app/summary/'
+            path: '/summary'
+            fullPath: '/app/summary'
+            preLoaderRoute: typeof AppSummaryIndexRouteImport
+            parentRoute: typeof AppRouteRoute
+        }
+        '/app/share/': {
+            id: '/app/share/'
+            path: '/share'
+            fullPath: '/app/share'
+            preLoaderRoute: typeof AppShareIndexRouteImport
+            parentRoute: typeof AppRouteRoute
+        }
+        '/app/settings/': {
+            id: '/app/settings/'
+            path: '/settings'
+            fullPath: '/app/settings'
+            preLoaderRoute: typeof AppSettingsIndexRouteImport
+            parentRoute: typeof AppRouteRoute
+        }
+        '/(auth)/sign-up/$': {
+            id: '/(auth)/sign-up/$'
+            path: '/sign-up/$'
+            fullPath: '/sign-up/$'
+            preLoaderRoute: typeof authSignUpSplatRouteImport
+            parentRoute: typeof rootRouteImport
+        }
+        '/(auth)/sign-in/$': {
+            id: '/(auth)/sign-in/$'
+            path: '/sign-in/$'
+            fullPath: '/sign-in/$'
+            preLoaderRoute: typeof authSignInSplatRouteImport
+            parentRoute: typeof rootRouteImport
+        }
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/test/': {
-      id: '/test/'
-      path: '/test'
-      fullPath: '/test'
-      preLoaderRoute: typeof TestIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/': {
-      id: '/app/'
-      path: '/'
-      fullPath: '/app/'
-      preLoaderRoute: typeof AppIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/(auth)/waitlist': {
-      id: '/(auth)/waitlist'
-      path: '/waitlist'
-      fullPath: '/waitlist'
-      preLoaderRoute: typeof authWaitlistRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/summary/': {
-      id: '/app/summary/'
-      path: '/summary'
-      fullPath: '/app/summary'
-      preLoaderRoute: typeof AppSummaryIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/app/share/': {
-      id: '/app/share/'
-      path: '/share'
-      fullPath: '/app/share'
-      preLoaderRoute: typeof AppShareIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/app/settings/': {
-      id: '/app/settings/'
-      path: '/settings'
-      fullPath: '/app/settings'
-      preLoaderRoute: typeof AppSettingsIndexRouteImport
-      parentRoute: typeof AppRouteRoute
-    }
-    '/(auth)/sign-up/$': {
-      id: '/(auth)/sign-up/$'
-      path: '/sign-up/$'
-      fullPath: '/sign-up/$'
-      preLoaderRoute: typeof authSignUpSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth)/sign-in/$': {
-      id: '/(auth)/sign-in/$'
-      path: '/sign-in/$'
-      fullPath: '/sign-in/$'
-      preLoaderRoute: typeof authSignInSplatRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
 }
 
 interface AppRouteRouteChildren {
-  AppIndexRoute: typeof AppIndexRoute
-  AppSettingsIndexRoute: typeof AppSettingsIndexRoute
-  AppShareIndexRoute: typeof AppShareIndexRoute
-  AppSummaryIndexRoute: typeof AppSummaryIndexRoute
+    AppIndexRoute: typeof AppIndexRoute
+    AppSettingsIndexRoute: typeof AppSettingsIndexRoute
+    AppShareIndexRoute: typeof AppShareIndexRoute
+    AppSummaryIndexRoute: typeof AppSummaryIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppIndexRoute: AppIndexRoute,
-  AppSettingsIndexRoute: AppSettingsIndexRoute,
-  AppShareIndexRoute: AppShareIndexRoute,
-  AppSummaryIndexRoute: AppSummaryIndexRoute,
+    AppIndexRoute: AppIndexRoute,
+    AppSettingsIndexRoute: AppSettingsIndexRoute,
+    AppShareIndexRoute: AppShareIndexRoute,
+    AppSummaryIndexRoute: AppSummaryIndexRoute,
 }
 
-const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-  AppRouteRouteChildren,
-)
+const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(AppRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AppRouteRoute: AppRouteRouteWithChildren,
-  authWaitlistRoute: authWaitlistRoute,
-  TestIndexRoute: TestIndexRoute,
-  authSignInSplatRoute: authSignInSplatRoute,
-  authSignUpSplatRoute: authSignUpSplatRoute,
+    IndexRoute: IndexRoute,
+    AppRouteRoute: AppRouteRouteWithChildren,
+    authWaitlistRoute: authWaitlistRoute,
+    TestIndexRoute: TestIndexRoute,
+    authSignInSplatRoute: authSignInSplatRoute,
+    authSignUpSplatRoute: authSignUpSplatRoute,
 }
 export const routeTree = rootRouteImport
-  ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+    ._addFileChildren(rootRouteChildren)
+    ._addFileTypes<FileRouteTypes>()
 
 import type { getRouter } from './router.tsx'
 import type { startInstance } from './start.ts'
+
 declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
+    interface Register {
+        ssr: true
+        router: Awaited<ReturnType<typeof getRouter>>
+        config: Awaited<ReturnType<typeof startInstance.getOptions>>
+    }
 }

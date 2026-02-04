@@ -1,11 +1,11 @@
-import { Drawer as Vaul } from 'vaul'
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { X } from 'lucide-react'
-import { Button } from './ui/button'
 import type { ComponentProps, ReactNode } from 'react'
+import { Drawer as Vaul } from 'vaul'
 import { cn } from '@/lib/utils'
-import { useMediaQuery } from '@/utils/use-media-query'
 import { IS_MOBILE } from '@/types/constants'
+import { useMediaQuery } from '@/utils/use-media-query'
+import { Button } from './ui/button'
 
 interface DrawerProps {
     children: ReactNode

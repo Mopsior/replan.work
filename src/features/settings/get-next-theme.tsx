@@ -1,5 +1,5 @@
-import { Laptop, Moon, Sun } from 'lucide-react'
 import { t } from 'i18next'
+import { Laptop, Moon, Sun } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { Theme } from '@/types/enums'
 

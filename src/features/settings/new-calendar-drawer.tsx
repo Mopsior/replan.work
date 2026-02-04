@@ -1,14 +1,11 @@
-import { Plus } from 'lucide-react'
-import { useTranslation } from 'react-i18next'
-import { useForm } from '@tanstack/react-form'
 import { Radio, RadioGroup } from '@base-ui/react'
-import { useServerFn } from '@tanstack/react-start'
-import { toast } from 'sonner'
-import { useState } from 'react'
+import { useForm } from '@tanstack/react-form'
 import { useQueryClient } from '@tanstack/react-query'
-import Drawer from '../drawer'
-import { Button } from '../ui/button'
-import { COLOR_PALETTE, formSchema } from './types'
+import { useServerFn } from '@tanstack/react-start'
+import { Plus } from 'lucide-react'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { toast } from 'sonner'
 import type z from 'zod'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
@@ -18,11 +15,14 @@ import {
     InputGroupInput,
     InputGroupText,
 } from '@/components/ui/input-group'
-import { cn } from '@/lib/utils'
 import { createCalendar } from '@/functions/calendar/create-calendar'
+import { cn } from '@/lib/utils'
 import { Route } from '@/routes/app/route'
-import { catchError } from '@/utils/catch-error'
 import { QueryKeys } from '@/types/constants'
+import { catchError } from '@/utils/catch-error'
+import Drawer from '../drawer'
+import { Button } from '../ui/button'
+import { COLOR_PALETTE, formSchema } from './types'
 
 export const NewCalendarDrawer = () => {
     const { t } = useTranslation()

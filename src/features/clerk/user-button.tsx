@@ -1,10 +1,10 @@
-import { useTranslation } from 'react-i18next'
 import { UserButton as ClerkUserButton } from '@clerk/tanstack-react-start'
-import { Settings2 } from 'lucide-react'
 import { useNavigate } from '@tanstack/react-router'
-import { getNextTheme, themeIcons, themeTranslations } from '../settings/get-next-theme'
-import type { Theme } from '@/types/enums'
+import { Settings2 } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
 import { useTheme } from '@/lib/theme-provider'
+import type { Theme } from '@/types/enums'
+import { getNextTheme, themeIcons, themeTranslations } from '../settings/get-next-theme'
 
 export const UserButton = () => {
     const { t } = useTranslation()

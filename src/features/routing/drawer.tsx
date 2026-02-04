@@ -1,16 +1,16 @@
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
-import { useTranslation } from 'react-i18next'
 import { Menu } from 'lucide-react'
-import { useState } from 'react'
 import type { ReactNode } from 'react'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Drawer from '@/features/drawer'
-import { Button } from '@/features/ui/button'
 import { Footer } from '@/features/footer'
-import { RouteTabs, selectedRouteTab } from '@/features/routing/types'
 import { Return } from '@/features/return'
 import { Tabs } from '@/features/routing/tabs'
-import { useMediaQuery } from '@/utils/use-media-query'
+import { RouteTabs, selectedRouteTab } from '@/features/routing/types'
+import { Button } from '@/features/ui/button'
 import { IS_MOBILE } from '@/types/constants'
+import { useMediaQuery } from '@/utils/use-media-query'
 
 export const MobileDrawer = ({
     title,

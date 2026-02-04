@@ -1,20 +1,20 @@
 // must be imported before anything else
-import { scan } from 'react-scan'
 
-import { HeadContent, Scripts, createRootRoute, useRouter } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import { enUS, plPL } from '@clerk/localizations'
 import { ClerkProvider } from '@clerk/tanstack-react-start'
 import { shadcn } from '@clerk/themes'
-import { enUS, plPL } from '@clerk/localizations'
+import { TanStackDevtools } from '@tanstack/react-devtools'
+import { createRootRoute, HeadContent, Scripts, useRouter } from '@tanstack/react-router'
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { useEffect } from 'react'
 
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
-import appCss from '../styles.css?url'
-import { Language } from '@/types/enums'
-import { ThemeProvider } from '@/lib/theme-provider'
+import { scan } from 'react-scan'
 import { Footer } from '@/features/footer'
+import { ThemeProvider } from '@/lib/theme-provider'
 import { ToasterWrapper } from '@/lib/toaster-wrapper'
+import { Language } from '@/types/enums'
+import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
     head: () => ({

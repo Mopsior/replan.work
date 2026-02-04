@@ -1,5 +1,5 @@
-import { useTheme } from './theme-provider'
 import { Toaster } from '@/components/ui/sonner'
+import { useTheme } from './theme-provider'
 
 export const ToasterWrapper = () => {
     const { userTheme } = useTheme()

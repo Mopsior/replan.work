@@ -1,8 +1,11 @@
 import { pgEnum, pgTable, text, time, timestamp, uuid } from 'drizzle-orm/pg-core'
-import { calendars } from './calendars'
 import { EventType } from '@/types/enums'
+import { calendars } from './calendars'
 
-export const eventTypeEnum = pgEnum('event_type', Object.values(EventType) as [string, ...Array<string>])
+export const eventTypeEnum = pgEnum(
+    'event_type',
+    Object.values(EventType) as [string, ...Array<string>],
+)
 
 export const events = pgTable('events', {
     id: uuid('id').primaryKey().defaultRandom().notNull(),

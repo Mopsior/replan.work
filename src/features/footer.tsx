@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { ExternalLink } from './external-link'
-import { InlineCode } from './typography'
 import { env } from '@/env'
 import { cn } from '@/lib/utils'
+import { ExternalLink } from './external-link'
+import { InlineCode } from './typography'
 
 export const Footer = ({
     withoutFixed = false,

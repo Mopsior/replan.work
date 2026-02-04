@@ -1,5 +1,5 @@
-import type { ClassNameValue } from 'tailwind-merge'
 import type { ComponentPropsWithoutRef } from 'react'
+import type { ClassNameValue } from 'tailwind-merge'
 import { cn } from '@/lib/utils'
 
 export const H1 = ({
