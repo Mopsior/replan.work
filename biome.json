@@ -55,6 +55,11 @@
             "bracketSpacing": true
         }
     },
+    "json": {
+        "formatter": {
+            "trailingCommas": "none"
+        }
+    },
     "html": {
         "formatter": {
             "indentScriptAndStyle": false,
