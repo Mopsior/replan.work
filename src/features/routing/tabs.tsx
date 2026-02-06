@@ -1,11 +1,11 @@
+import { Link, useLocation, useNavigate } from '@tanstack/react-router'
 import { ChartNoAxesColumn, Settings2, Share2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Link, useLocation, useNavigate } from '@tanstack/react-router'
-import { Return } from '../return'
+import { Tabs as ShadTabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UserButton } from '../clerk/user-button'
+import { Return } from '../return'
 import { Button } from '../ui/button'
 import { selectedRouteTab } from './types'
-import { Tabs as ShadTabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 
 export const Tabs = () => {
     const { t } = useTranslation()

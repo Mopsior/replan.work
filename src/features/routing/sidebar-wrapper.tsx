@@ -1,5 +1,5 @@
-import { Tabs } from './tabs'
 import type { ReactNode } from 'react'
+import { Tabs } from './tabs'
 
 export const SidebarWrapper = ({ children }: { children: ReactNode }) => {
     return (

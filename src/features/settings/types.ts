@@ -1,5 +1,5 @@
-import z from 'zod'
 import { t } from 'i18next'
+import z from 'zod'
 
 export const COLOR_PALETTE = [
     { hex: 'FF0000', tailwind: 'bg-red-600' },

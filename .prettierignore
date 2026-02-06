@@ -1,8 +1,0 @@
-package-lock.json
-pnpm-lock.yaml
-yarn.lock
-.clerk
-pnpm-workspace.yaml
-.husky
-.tsbuildinfo
-.output

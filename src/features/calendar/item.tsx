@@ -1,11 +1,11 @@
 import { cva } from 'class-variance-authority'
 import { ChevronDown, CircleAlert } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Cell } from './types'
+import { cn } from '@/lib/utils'
+import { EventType } from '@/types/enums'
 import { Event } from './event'
 import type { ItemProps } from './types'
-import { EventType } from '@/types/enums'
-import { cn } from '@/lib/utils'
+import { Cell } from './types'
 
 const cellVariants = cva(
     'border-border p-1 min-h-28 h-full relative flex flex-col items-center gap-y-1 justify-between',

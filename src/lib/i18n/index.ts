@@ -1,9 +1,9 @@
+import plTranslations from '@locales/pl.json'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import { getCookie } from '@tanstack/react-start/server'
 import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
-import plTranslations from '@locales/pl.json'
 
 enum LANGUAGES {
     PL = 'pl',

@@ -1,8 +1,8 @@
 import { createServerFn } from '@tanstack/react-start'
-import z from 'zod'
 import { eq } from 'drizzle-orm'
-import { calendars as calendarsSchema } from '@/db/schema'
+import z from 'zod'
 import { db } from '@/db'
+import { calendars as calendarsSchema } from '@/db/schema'
 
 const GetCalendarSchema = z.object({
     userId: z.string(),

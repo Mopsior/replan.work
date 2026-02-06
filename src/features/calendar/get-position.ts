@@ -1,5 +1,5 @@
-import { Cell } from './types'
 import type { CalendarDay } from './types'
+import { Cell } from './types'
 
 export const getPosition = (
     day: CalendarDay,

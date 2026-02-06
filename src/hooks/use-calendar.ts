@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
+import holidaysData from '@/dataset.json'
 import type {
     CalendarDay,
     HolidayData,
     UseCalendarParams,
     UseCalendarReturn,
 } from '@/features/calendar/types'
-import holidaysData from '@/dataset.json'
 
 /**
  * Generate calendar days

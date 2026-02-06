@@ -1,7 +1,7 @@
 import { t } from 'i18next'
+import { cn } from '@/lib/utils'
 import { CalendarGrid } from './grid'
 import { MonthPicker } from './month-picker'
-import { cn } from '@/lib/utils'
 
 const weekdays = {
     1: t('calendar.weekdays.1'),

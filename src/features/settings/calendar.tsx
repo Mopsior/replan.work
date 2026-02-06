@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import { ListItem } from '../calendar/list-item'
-import { ListItemSkeleton } from '../skeletons/list-item'
-import { ErrorScreen } from '../error-screen'
-import { NewCalendarDrawer } from './new-calendar-drawer'
 import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
 import { DEFAULT_CALENDAR_COLORS } from '@/types/constants'
+import { ListItem } from '../calendar/list-item'
+import { ErrorScreen } from '../error-screen'
+import { ListItemSkeleton } from '../skeletons/list-item'
+import { NewCalendarDrawer } from './new-calendar-drawer'
 
 export const CalendarSettings = () => {
     const { t } = useTranslation()

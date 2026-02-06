@@ -1,10 +1,10 @@
+import { auth } from '@clerk/tanstack-react-start/server'
 import { createServerFn } from '@tanstack/react-start'
 import { t } from 'i18next'
 import z from 'zod'
-import { auth } from '@clerk/tanstack-react-start/server'
-import { catchError } from '@/utils/catch-error'
-import { calendars } from '@/db/schema'
 import { db } from '@/db'
+import { calendars } from '@/db/schema'
+import { catchError } from '@/utils/catch-error'
 
 const calendarSchema = z.object({
     name: z
