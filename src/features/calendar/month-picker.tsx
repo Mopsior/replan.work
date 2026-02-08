@@ -2,11 +2,11 @@ import { useNavigate, useSearch } from '@tanstack/react-router'
 import { t } from 'i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useMemo } from 'react'
+import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { useKeyPress } from '@/hooks/use-key-press'
 import { Route } from '@/routes/app/route'
 import { H2 } from '../typography'
-import { Button } from '../ui/button'
 
 const monthsItems = {
     1: t('calendar.months.1'),

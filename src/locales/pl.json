@@ -1,6 +1,7 @@
 {
     "return": "Powrót",
     "menu": "Menu",
+    "delete": "Usuń",
     "settings": {
         "short": "Ustawienia",
         "title": "Ustawienia aplikacji",
@@ -96,6 +97,10 @@
             "edit": {
                 "label": "Edytuj kalendarz",
                 "error": "Nie udało się zaktualizować kalendarza."
+            },
+            "remove": {
+                "success": "Kalendarz został pomyślnie usunięty",
+                "error": "Nie udało się usunąć kalendarza."
             }
         },
         "themes": {

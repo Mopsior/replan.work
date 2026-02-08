@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button } from '@/components/ui/button'
 import { useTheme } from '@/lib/theme-provider'
 import { Theme } from '@/types/enums'
 import Drawer from '../drawer'
 import { RadioGroup } from '../radio-group'
-import { Button } from '../ui/button'
 import { getNextTheme, themeIcons, themeTranslations } from './get-next-theme'
 
 export const ThemeSettings = () => {

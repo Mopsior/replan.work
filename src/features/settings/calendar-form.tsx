@@ -6,6 +6,7 @@ import { Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
 import type z from 'zod'
+import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import {
@@ -22,10 +23,10 @@ import { FormVariant } from '@/types/enums'
 import { catchError } from '@/utils/catch-error'
 import { getRandomColor } from '@/utils/get-random-color'
 import { FormRequired } from '../form-required'
-import { Button } from '../ui/button'
+import { RemoveCalendnarButton } from './remove-button'
 import { CalendarFormProps, formSchema } from './types'
 
-export const CalendarForm = ({ setIsOpen, variant, defaultValues }: CalendarFormProps) => {
+export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: CalendarFormProps) => {
     const { t } = useTranslation()
     const { userId } = Route.useLoaderData()
     const createCalendarFn = useServerFn(createCalendar)
@@ -218,12 +219,17 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues }: CalendarForm
                     }}
                 />
             </FieldGroup>
-            <Button type='submit' className='mt-4 w-full'>
-                <Plus size={16} />
-                {variant === FormVariant.CREATE
-                    ? t('appSettings.calendars.form.submit.create')
-                    : t('appSettings.calendars.form.submit.edit')}
-            </Button>
+            <div className='space-y-2'>
+                {variant === FormVariant.EDIT && id && (
+                    <RemoveCalendnarButton id={id} setIsOpen={setIsOpen} />
+                )}
+                <Button type='submit' className='w-full'>
+                    <Plus size={16} />
+                    {variant === FormVariant.CREATE
+                        ? t('appSettings.calendars.form.submit.create')
+                        : t('appSettings.calendars.form.submit.edit')}
+                </Button>
+            </div>
         </form>
     )
 }

@@ -23,6 +23,7 @@ export const CalendarSettings = () => {
                     name={calendar.name}
                     color={calendar.color ?? getRandomColor()}
                     salary={calendar.salary ?? undefined}
+                    id={calendar.id}
                 />
             ))}
             {!isLoading && !isError && <NewCalendarDrawer />}

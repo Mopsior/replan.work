@@ -62,4 +62,5 @@ export interface ListItemProps {
     name: string
     color: string
     salary?: number
+    id: string
 }

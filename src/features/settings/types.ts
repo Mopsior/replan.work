@@ -30,4 +30,10 @@ export interface CalendarFormProps {
         color: string
         salary?: number
     }
+    id?: string
+}
+
+export interface RemoveCalendarProps {
+    id: string
+    setIsOpen: (isOpen: boolean) => void
 }

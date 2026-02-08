@@ -1,9 +1,9 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Button } from '@/components/ui/button'
 import { FormVariant } from '@/types/enums'
 import Drawer from '../drawer'
-import { Button } from '../ui/button'
 import { CalendarForm } from './calendar-form'
 
 export const NewCalendarDrawer = () => {
