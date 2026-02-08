@@ -9,20 +9,20 @@ import { catchError } from '@/utils/catch-error'
 const calendarSchema = z.object({
     name: z
         .string()
-        .min(1, t('appSettings.calendars.create.form.name.required'))
-        .max(16, t('appSettings.calendars.create.form.name.maxLength')),
+        .min(1, t('appSettings.calendars.form.name.required'))
+        .max(16, t('appSettings.calendars.form.name.maxLength')),
     color: z
         .string()
         .min(6)
         .max(6)
         .refine(
             (val) => /^([0-9A-F]{3}){1,2}$/i.test(val),
-            t('appSettings.calendars.create.form.color.invalid'),
+            t('appSettings.calendars.form.color.invalid'),
         ),
     salary: z
         .number()
-        .positive(t('appSettings.calendars.create.form.salary.invalid'))
-        .max(150, t('appSettings.calendars.create.form.salary.invalid'))
+        .positive(t('appSettings.calendars.form.salary.invalid'))
+        .max(150, t('appSettings.calendars.form.salary.invalid'))
         .optional(),
     userId: z.string(),
 })

@@ -14,3 +14,8 @@ export enum Theme {
     DARK = 'dark',
     SYSTEM = 'system',
 }
+
+export enum FormVariant {
+    CREATE = 'create',
+    EDIT = 'edit',
+}

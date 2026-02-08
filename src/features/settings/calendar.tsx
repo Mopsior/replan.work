@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
-import { COLOR_PALETTE } from '@/types/constants'
+import { getRandomColor } from '@/utils/get-random-color'
 import { ListItem } from '../calendar/list-item'
 import { ErrorScreen } from '../error-screen'
 import { ListItemSkeleton } from '../skeletons/list-item'
@@ -21,11 +21,9 @@ export const CalendarSettings = () => {
                 <ListItem
                     key={`calendar-item-${calendar.id}`}
                     name={calendar.name}
-                    color={
-                        calendar.color ??
-                        (COLOR_PALETTE[Math.floor(Math.random() * COLOR_PALETTE.length)]
-                            .hex as string)
-                    }
+                    color={calendar.color ?? getRandomColor()}
+                    salary={calendar.salary ?? undefined}
+                    id={calendar.id}
                 />
             ))}
             {!isLoading && !isError && <NewCalendarDrawer />}

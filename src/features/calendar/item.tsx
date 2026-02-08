@@ -43,7 +43,7 @@ const cellVariants = cva(
 
 export const CalendarItem = ({ day, position, isWeekday, isFreeDay, isToday }: ItemProps) => {
     const { t } = useTranslation()
-    const eventsLength = 3 // TODO: replace with real logic
+    const eventsLength = 1 // TODO: replace with real logic
 
     return (
         <div className={cellVariants({ position, isWeekday, isFreeDay })}>
