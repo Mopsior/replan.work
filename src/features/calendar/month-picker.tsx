@@ -8,25 +8,28 @@ import { useKeyPress } from '@/hooks/use-key-press'
 import { Route } from '@/routes/app/route'
 import { H2 } from '../typography'
 
-const monthsItems = {
-    1: t('calendar.months.1'),
-    2: t('calendar.months.2'),
-    3: t('calendar.months.3'),
-    4: t('calendar.months.4'),
-    5: t('calendar.months.5'),
-    6: t('calendar.months.6'),
-    7: t('calendar.months.7'),
-    8: t('calendar.months.8'),
-    9: t('calendar.months.9'),
-    10: t('calendar.months.10'),
-    11: t('calendar.months.11'),
-    12: t('calendar.months.12'),
-}
-
 export const MonthPicker = () => {
     const { month, year } = useSearch({
         from: Route.fullPath,
     })
+
+    const monthsItems = useMemo(
+        () => ({
+            1: t('calendar.months.1'),
+            2: t('calendar.months.2'),
+            3: t('calendar.months.3'),
+            4: t('calendar.months.4'),
+            5: t('calendar.months.5'),
+            6: t('calendar.months.6'),
+            7: t('calendar.months.7'),
+            8: t('calendar.months.8'),
+            9: t('calendar.months.9'),
+            10: t('calendar.months.10'),
+            11: t('calendar.months.11'),
+            12: t('calendar.months.12'),
+        }),
+        [],
+    )
 
     const navigate = useNavigate()
 
