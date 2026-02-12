@@ -15,6 +15,7 @@ export const getCalendars = createServerFn({ method: 'GET' })
             .select()
             .from(calendarsSchema)
             .where(eq(calendarsSchema.userId, data.userId))
+            .orderBy(calendarsSchema.createdAt)
 
         return calendars
     })

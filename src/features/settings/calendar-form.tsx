@@ -16,6 +16,7 @@ import {
     InputGroupText,
 } from '@/components/ui/input-group'
 import { createCalendar } from '@/functions/calendar/create-calendar'
+import { editCalendar } from '@/functions/calendar/edit-calendar'
 import { cn } from '@/lib/utils'
 import { Route } from '@/routes/app/route'
 import { COLOR_PALETTE, QueryKeys } from '@/types/constants'
@@ -30,6 +31,7 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
     const { t } = useTranslation()
     const { userId } = Route.useLoaderData()
     const createCalendarFn = useServerFn(createCalendar)
+    const editCalendarFn = useServerFn(editCalendar)
     const queryClient = useQueryClient()
 
     const form = useForm({
@@ -45,24 +47,32 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
         },
         onSubmit: async ({ value }) => {
             const [error] = await catchError(
-                createCalendarFn({
-                    data: {
-                        name: value.name,
-                        color: value.color,
-                        salary: value.salary,
-                        userId: userId,
-                    },
-                }),
+                variant === FormVariant.CREATE
+                    ? createCalendarFn({
+                          data: {
+                              name: value.name,
+                              color: value.color,
+                              salary: value.salary,
+                              userId: userId,
+                          },
+                      })
+                    : editCalendarFn({
+                          data: {
+                              name: value.name,
+                              color: value.color,
+                              salary: value.salary,
+                              userId: userId,
+                              calendarId: id!,
+                          },
+                      }),
             )
 
             if (error) {
                 console.error(error)
                 toast.error(
-                    t(
-                        variant === FormVariant.CREATE
-                            ? 'appSettings.calendars.create.error'
-                            : 'appSettings.calendars.edit.error',
-                    ),
+                    variant === FormVariant.CREATE
+                        ? t('appSettings.calendars.create.error')
+                        : t('appSettings.calendars.edit.error'),
                     { description: error.message },
                 )
                 return
