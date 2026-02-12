@@ -39,3 +39,13 @@ export const useDrawerData = ({
         setIsDescriptionVisible,
     ])
 }
+
+export const useDrawerControl = () => {
+    const { isDrawerOpen, setIsDrawerOpen } = useContext(DrawerDataContext)
+
+    return {
+        isDrawerOpen,
+        openDrawer: () => setIsDrawerOpen(true),
+        closeDrawer: () => setIsDrawerOpen(false),
+    }
+}

@@ -10,6 +10,8 @@ export const DrawerDataContext = createContext<{
     setDescription: (description: ReactNode | null) => void
     isDescriptionVisible: boolean
     setIsDescriptionVisible: (isVisible: boolean) => void
+    isDrawerOpen: boolean
+    setIsDrawerOpen: (isOpen: boolean) => void
 }>({
     title: null,
     setTitle: () => {},
@@ -19,4 +21,6 @@ export const DrawerDataContext = createContext<{
     setDescription: () => {},
     isDescriptionVisible: false,
     setIsDescriptionVisible: () => {},
+    isDrawerOpen: false,
+    setIsDrawerOpen: () => {},
 })

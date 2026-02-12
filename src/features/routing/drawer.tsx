@@ -1,7 +1,6 @@
 import { Outlet, useLocation, useNavigate } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
 import type { ReactNode } from 'react'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import Drawer from '@/features/drawer'
@@ -17,19 +16,20 @@ export const MobileDrawer = ({
     isTitleVisible,
     description,
     isDescriptionVisible,
+    isDrawerOpen,
+    setIsDrawerOpen,
 }: {
     title: ReactNode | null
     isTitleVisible: boolean
     description: ReactNode | null
     isDescriptionVisible: boolean
+    isDrawerOpen: boolean
+    setIsDrawerOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) => {
     const { t } = useTranslation()
     const location = useLocation()
     const navigate = useNavigate()
     const isMobile = useMediaQuery(IS_MOBILE)
-    const [isDrawerOpen, setIsDrawerOpen] = useState(
-        selectedRouteTab[location.pathname] !== RouteTabs.MAIN,
-    )
 
     if (!isMobile) return null
     return (
@@ -78,7 +78,7 @@ export const MobileDrawer = ({
             </div>
             <div className='flex flex-col gap-6 p-4'>
                 <Outlet />
-                <Footer withoutFixed visibleOnMobile withoutBackground className='mt-4' />
+                <Footer withoutFixed visibleOnMobile withoutBackground />
             </div>
         </Drawer>
     )
