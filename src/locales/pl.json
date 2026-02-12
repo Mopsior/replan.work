@@ -1,6 +1,7 @@
 {
     "return": "Powrót",
     "menu": "Menu",
+    "delete": "Usuń",
     "settings": {
         "short": "Ustawienia",
         "title": "Ustawienia aplikacji",
@@ -62,29 +63,46 @@
         "calendars": {
             "label": "Kalendarze",
             "add": "Dodaj kalendarz",
+            "description": "Kalendarz odpowiada jednemu miejscu pracy. Nie jest to powiązane z zewnętrznym kalendarzami.",
+            "form": {
+                "name": {
+                    "label": "Nazwa kalendarza",
+                    "placeholder": "Moja praca",
+                    "required": "Nazwa kalendarza jest wymagana",
+                    "maxLength": "Nazwa kalendarza nie może być dłuższa niż 16 znaków"
+                },
+                "color": {
+                    "label": "Kolor",
+                    "invalid": "Nieprawidłowy kolor",
+                    "tooShort": "Kolor musi być dłuższy niż {{charCount}} znaków (bez #)",
+                    "tooLong": "Kolor musi być dłuższy niż {{charCount}} znaków (bez #)"
+                },
+                "salary": {
+                    "label": "Stawka godzinowa",
+                    "placeholder": "31.40",
+                    "helper": "Możesz ustawić stawkę godzinową dla tego kalendarza, aby obliczyć zarobki na podstawie przepracowanego czasu.",
+                    "invalid": "Nieprawidłowa stawka godzinowa"
+                },
+                "submit": {
+                    "create": "Utwórz kalendarz",
+                    "edit": "Zapisz zmiany"
+                },
+                "success": {
+                    "create": "Kalendarz został pomyślnie utworzony",
+                    "edit": "Kalendarz został pomyślnie zaktualizowany"
+                }
+            },
             "create": {
                 "label": "Utwórz nowy kalendarz",
-                "description": "Kalendarz odpowiada jednemu miejscu pracy. Nie jest to powiązane z zewnętrznym kalendarzami.",
-                "form": {
-                    "name": {
-                        "label": "Nazwa kalendarza",
-                        "placeholder": "Moja praca",
-                        "required": "Nazwa kalendarza jest wymagana",
-                        "maxLength": "Nazwa kalendarza nie może być dłuższa niż 16 znaków"
-                    },
-                    "color": {
-                        "label": "Kolor",
-                        "invalid": "Nieprawidłowy kolor"
-                    },
-                    "salary": {
-                        "label": "Stawka godzinowa",
-                        "placeholder": "31.40",
-                        "helper": "Możesz ustawić stawkę godzinową dla tego kalendarza, aby obliczyć zarobki na podstawie przepracowanego czasu.",
-                        "invalid": "Nieprawidłowa stawka godzinowa"
-                    },
-                    "submit": "Utwórz kalendarz",
-                    "success": "Kalendarz został pomyślnie utworzony"
-                }
+                "error": "Nie udało się utworzyć kalendarza."
+            },
+            "edit": {
+                "label": "Edytuj kalendarz",
+                "error": "Nie udało się zaktualizować kalendarza."
+            },
+            "remove": {
+                "success": "Kalendarz został pomyślnie usunięty",
+                "error": "Nie udało się usunąć kalendarza."
             }
         },
         "themes": {

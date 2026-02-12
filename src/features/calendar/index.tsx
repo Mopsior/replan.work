@@ -1,19 +1,25 @@
-import { t } from 'i18next'
+import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 import { CalendarGrid } from './grid'
 import { MonthPicker } from './month-picker'
 
-const weekdays = {
-    1: t('calendar.weekdays.1'),
-    2: t('calendar.weekdays.2'),
-    3: t('calendar.weekdays.3'),
-    4: t('calendar.weekdays.4'),
-    5: t('calendar.weekdays.5'),
-    6: t('calendar.weekdays.6'),
-    7: t('calendar.weekdays.7'),
-}
-
 export const Calendar = () => {
+    const { t } = useTranslation()
+
+    const weekdays = useMemo(
+        () => ({
+            1: t('calendar.weekdays.1'),
+            2: t('calendar.weekdays.2'),
+            3: t('calendar.weekdays.3'),
+            4: t('calendar.weekdays.4'),
+            5: t('calendar.weekdays.5'),
+            6: t('calendar.weekdays.6'),
+            7: t('calendar.weekdays.7'),
+        }),
+        [],
+    )
+
     return (
         <div className='flex h-dvh w-full flex-col items-center gap-8 p-8 pb-16'>
             <MonthPicker />
