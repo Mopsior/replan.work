@@ -25,6 +25,7 @@ export const getEvents = createServerFn({ method: 'GET' })
                 date: events.date,
                 createdAt: events.createdAt,
                 calendarName: calendars.name,
+                calendarColor: calendars.color,
             })
             .from(events)
             .innerJoin(calendars, eq(events.calendarId, calendars.id))

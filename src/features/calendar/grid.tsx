@@ -78,6 +78,7 @@ export const CalendarGrid = () => {
                                 title={event.title ?? event.calendarName}
                                 time={event.startTime}
                                 eventType={event.eventType as EventType}
+                                color={event.calendarColor ?? undefined}
                                 isOneLiner={eventsForDay.length > 1}
                             />
                         )

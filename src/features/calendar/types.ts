@@ -16,6 +16,7 @@ export interface ItemProps {
 export interface EventProps {
     title: string
     time?: string
+    color?: string
     eventType: EventType
     isOneLiner?: boolean
 }
