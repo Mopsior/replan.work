@@ -1,5 +1,6 @@
 {
     "return": "Powrót",
+    "go": "Przejdź",
     "menu": "Menu",
     "delete": "Usuń",
     "settings": {
@@ -113,6 +114,13 @@
             "light": "jasny",
             "dark": "ciemny",
             "system": "systemowy"
+        },
+        "account": {
+            "label": "Konto",
+            "item": {
+                "title": "Ustawienia konta",
+                "description": "Przejdź do ustawień konta"
+            }
         }
     },
     "": "",

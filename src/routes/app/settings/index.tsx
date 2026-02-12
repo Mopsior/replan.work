@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
+import { AccountSettings } from '@/features/settings/account'
 import { CalendarSettings } from '@/features/settings/calendar'
 import { ThemeSettings } from '@/features/settings/theme'
 import { useDrawerData } from '@/hooks/use-drawer-data'
@@ -21,6 +22,7 @@ function RouteComponent() {
     return (
         <>
             <ThemeSettings />
+            <AccountSettings />
             <CalendarSettings />
         </>
     )
