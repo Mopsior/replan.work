@@ -1,11 +1,11 @@
-// must be imported before anything else
+// biome-ignore assist/source/organizeImports: must be imported before anything else
+import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 
 import { enUS, plPL } from '@clerk/localizations'
 import { ClerkProvider } from '@clerk/tanstack-react-start'
 import { shadcn } from '@clerk/themes'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { createRootRoute, HeadContent, Scripts, useRouter } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { useEffect } from 'react'
 
 import { useTranslation } from 'react-i18next'
