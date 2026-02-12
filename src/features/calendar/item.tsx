@@ -2,13 +2,11 @@ import { cva } from 'class-variance-authority'
 import { ChevronDown, CircleAlert } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
-import { EventType } from '@/types/enums'
-import { Event } from './event'
 import type { ItemProps } from './types'
 import { Cell } from './types'
 
 const cellVariants = cva(
-    'border-border p-1 min-h-28 h-full relative flex flex-col items-center gap-y-1 justify-between',
+    'border-border p-1 min-h-28 h-full relative flex flex-col items-center gap-y-1 justify-between transition-colors',
     {
         variants: {
             position: {
@@ -37,16 +35,29 @@ const cellVariants = cva(
                 false: null,
                 true: 'bg-destructive/10',
             },
+            isLoading: {
+                false: null,
+                true: 'animate-pulse opacity-80',
+            },
         },
     },
 )
 
-export const CalendarItem = ({ day, position, isWeekday, isFreeDay, isToday }: ItemProps) => {
+export const CalendarItem = ({
+    day,
+    position,
+    isWeekday,
+    isFreeDay,
+    isToday,
+    isLoading,
+    eventsCount,
+    totalTime,
+    children,
+}: ItemProps) => {
     const { t } = useTranslation()
-    const eventsLength = 1 // TODO: replace with real logic
 
     return (
-        <div className={cellVariants({ position, isWeekday, isFreeDay })}>
+        <div className={cellVariants({ position, isWeekday, isFreeDay, isLoading })}>
             <div className='flex w-full flex-col items-center gap-y-1'>
                 <span
                     className={cn([
@@ -62,37 +73,22 @@ export const CalendarItem = ({ day, position, isWeekday, isFreeDay, isToday }: I
                 {isFreeDay && (
                     <CircleAlert className='text-destructive absolute top-1.5 right-1.5 size-4' />
                 )}
-                <Event
-                    title='Teatr'
-                    time='10:00'
-                    eventType={EventType.STATIONARY}
-                    /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */
-                    isOneLiner={eventsLength > 1}
-                />
-                {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-                {eventsLength > 1 && (
-                    <Event
-                        title='Teatr'
-                        time='10:00'
-                        eventType={EventType.STATIONARY}
-                        /* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */
-                        isOneLiner={eventsLength > 1}
-                    />
-                )}
+                {children}
             </div>
-            <div className='flex w-full flex-col items-center gap-y-1'>
-                {/* eslint-disable-next-line @typescript-eslint/no-unnecessary-condition */}
-                {eventsLength > 2 ? (
-                    <div className='flex flex-row items-center gap-x-1'>
-                        <span className='text-muted-foreground text-xs'>
-                            {t('calendar.event.more')}
-                        </span>
-                        <ChevronDown className='text-muted-foreground size-3' />
-                    </div>
-                ) : (
-                    <span className='text-muted-foreground text-xs'>{t('exampleDuration')}</span>
-                )}
-            </div>
+            {eventsCount ? (
+                <div className='flex w-full flex-col items-center gap-y-1'>
+                    {eventsCount > 2 ? (
+                        <div className='flex flex-row items-center gap-x-1'>
+                            <span className='text-muted-foreground text-xs'>
+                                {t('calendar.event.more')}
+                            </span>
+                            <ChevronDown className='text-muted-foreground size-3' />
+                        </div>
+                    ) : (
+                        <span className='text-muted-foreground text-xs'>{totalTime}</span>
+                    )}
+                </div>
+            ) : null}
         </div>
     )
 }

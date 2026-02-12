@@ -3,6 +3,7 @@ export const IS_DESKTOP = '(min-width: 768px)'
 
 export enum QueryKeys {
     USER_CALENDARS = 'user_calendars',
+    USER_EVENTS = 'user_events',
 }
 
 export const COLOR_PALETTE = [
