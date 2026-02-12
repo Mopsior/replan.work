@@ -21,7 +21,7 @@ export const NewCalendarDrawer = () => {
                 </Button>
             }
         >
-            <div className='flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-8'>
+            <div className='flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4'>
                 <Drawer.Title className='md:text-center'>
                     {t('appSettings.calendars.create.label')}
                 </Drawer.Title>

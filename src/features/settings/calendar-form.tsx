@@ -97,7 +97,7 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
             }}
             className='flex flex-col w-full h-full justify-between'
         >
-            <FieldGroup>
+            <FieldGroup className='gap-y-6'>
                 <form.Field
                     name='name'
                     children={(field) => {
@@ -229,7 +229,7 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
                     }}
                 />
             </FieldGroup>
-            <div className='space-y-2'>
+            <div className='space-y-2 mt-6'>
                 {variant === FormVariant.EDIT && id && (
                     <RemoveCalendnarButton id={id} setIsOpen={setIsOpen} />
                 )}
