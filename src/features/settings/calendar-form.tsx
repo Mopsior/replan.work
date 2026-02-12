@@ -84,6 +84,7 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
                     : t('appSettings.calendars.form.success.edit'),
             )
             queryClient.invalidateQueries({ queryKey: [QueryKeys.USER_CALENDARS, userId] })
+            queryClient.invalidateQueries({ queryKey: [QueryKeys.USER_EVENTS, userId] })
             setIsOpen(false)
             form.reset()
         },
