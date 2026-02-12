@@ -73,7 +73,9 @@
                 },
                 "color": {
                     "label": "Kolor",
-                    "invalid": "Nieprawidłowy kolor"
+                    "invalid": "Nieprawidłowy kolor",
+                    "tooShort": "Kolor musi być dłuższy niż {{charCount}} znaków (bez #)",
+                    "tooLong": "Kolor musi być dłuższy niż {{charCount}} znaków (bez #)"
                 },
                 "salary": {
                     "label": "Stawka godzinowa",

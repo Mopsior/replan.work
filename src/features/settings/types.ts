@@ -9,8 +9,8 @@ export const formSchema = z.object({
         .max(16, t('appSettings.calendars.form.name.maxLength')),
     color: z
         .string()
-        .min(6)
-        .max(6)
+        .min(6, t('appSettings.calendars.form.color.tooShort', { charCount: 6 }))
+        .max(6, t('appSettings.calendars.form.color.tooShort', { charCount: 6 }))
         .refine(
             (val) => /^([0-9A-F]{3}){1,2}$/i.test(val),
             t('appSettings.calendars.form.color.invalid'),
