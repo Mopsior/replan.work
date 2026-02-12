@@ -44,7 +44,7 @@ export const Route = createRootRoute({
 function RootDocument({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         scan({
-            enabled: true,
+            enabled: import.meta.env.DEV,
         })
     }, [])
 
