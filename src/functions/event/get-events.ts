@@ -34,8 +34,8 @@ export const getEvents = createServerFn({ method: 'GET' })
                     eq(events.userId, data.userId),
                     between(
                         events.date,
-                        new Date(data.year, data.month - 1, 1),
-                        new Date(data.year, data.month, 0),
+                        new Date(data.year, data.month - 1, 2, 0, 0, 0, 0),
+                        new Date(data.year, data.month, 1, 0, 0, 0, 0),
                     ),
                 ),
             )
