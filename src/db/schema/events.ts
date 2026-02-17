@@ -1,4 +1,4 @@
-import { pgEnum, pgTable, text, time, timestamp, uuid } from 'drizzle-orm/pg-core'
+import { date, pgEnum, pgTable, text, time, timestamp, uuid } from 'drizzle-orm/pg-core'
 import { EventType } from '@/types/enums'
 import { calendars } from './calendars'
 
@@ -13,9 +13,13 @@ export const events = pgTable('events', {
     calendarId: uuid('calendar_id')
         .references(() => calendars.id)
         .notNull(),
-    title: text('title').notNull(),
+    title: text('title'),
     eventType: eventTypeEnum('event_type').notNull(),
-    startTime: time('start_time').notNull(),
-    endTime: time('end_time').notNull(),
+    startTime: time('start_time'), // must be null when totalTime is provided
+    endTime: time('end_time'), // must be null when totalTime is provided
+    totalTime: time('total_time'), //must be null when startTime/endTime is provided
+    date: date('date', {
+        mode: 'date',
+    }).notNull(),
     createdAt: timestamp('created_at').defaultNow().notNull(),
 })

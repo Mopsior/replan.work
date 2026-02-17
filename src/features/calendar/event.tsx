@@ -1,12 +1,29 @@
+import { cn } from '@/lib/utils'
+import { COLOR_PALETTE } from '@/types/constants'
 import { variantIcon, variantTranslation } from './get-variants'
 import type { EventProps } from './types'
 
-export const Event = ({ title, time, eventType, isOneLiner }: EventProps) => {
+export const Event = ({ title, time, eventType, color, isOneLiner, isTotalTime }: EventProps) => {
+    const [hour, minutes] = time?.split(':') ?? []
+
     return (
         <div className='bg-secondary flex h-fit w-full flex-col rounded-md px-2 py-1'>
             <div className='flex flex-row gap-x-1'>
-                <div className={`my-auto size-2 rounded-lg bg-sky-500`} />
-                <span className='text-muted-foreground text-xs font-medium'>{time}</span>
+                {color && (
+                    <div
+                        className={cn(
+                            `my-auto size-2 rounded-lg`,
+                            COLOR_PALETTE.find(({ hex }) => hex === color)?.tailwind ?? color,
+                        )}
+                    />
+                )}
+                {time && (
+                    <span className='text-muted-foreground text-xs font-medium'>
+                        {isTotalTime
+                            ? `${Number(hour)}h ${Number(minutes) > 0 && `${minutes}m`}`
+                            : `${hour}:${minutes}`}
+                    </span>
+                )}
                 <span className='text-foreground truncate text-xs font-medium'>{title}</span>
             </div>
             {!isOneLiner && (

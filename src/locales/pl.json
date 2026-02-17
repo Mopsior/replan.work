@@ -57,7 +57,8 @@
                 "hybrid": "Hybrydowe",
                 "custom": "Niestandardowe"
             },
-            "more": "Więcej"
+            "more": "Więcej",
+            "fetchError": "Oopsie! Nie udało się pobrać wydarzeń."
         }
     },
     "appSettings": {
