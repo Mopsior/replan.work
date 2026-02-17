@@ -22,6 +22,7 @@ export const getEvents = createServerFn({ method: 'GET' })
                 eventType: events.eventType,
                 startTime: events.startTime,
                 endTime: events.endTime,
+                totalTime: events.totalTime,
                 date: events.date,
                 createdAt: events.createdAt,
                 calendarName: calendars.name,

@@ -19,6 +19,7 @@ export interface EventProps {
     color?: string
     eventType: EventType
     isOneLiner?: boolean
+    isTotalTime?: boolean
 }
 
 export enum Cell {

@@ -42,7 +42,11 @@ export const CalendarGrid = () => {
         })
 
         const totalTime = eventsForDay?.reduce(
-            (acc, event) => acc + getDuration(event.startTime, event.endTime),
+            (acc, event) =>
+                acc +
+                (event.totalTime
+                    ? getDuration(event.totalTime)
+                    : getDuration(event.startTime!, event.endTime!)),
             0,
         )
 
@@ -76,7 +80,8 @@ export const CalendarGrid = () => {
                             <Event
                                 key={`event-${event.id}`}
                                 title={event.title ?? event.calendarName}
-                                time={event.startTime}
+                                time={event.startTime ?? event.totalTime!}
+                                isTotalTime={!!event.totalTime}
                                 eventType={event.eventType as EventType}
                                 color={event.calendarColor ?? undefined}
                                 isOneLiner={eventsForDay.length > 1}

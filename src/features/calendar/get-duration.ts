@@ -1,8 +1,9 @@
-export const getDuration = (startTime: string, endTime: string) => {
-    const parseTime = (time: string) => {
-        const [h, m, s] = time.split(':').map(parseFloat)
-        return h * 3600000 + m * 60000 + s * 1000
+import { parseTime } from './parse-time'
+
+export const getDuration = (firstTime: string, secondTime?: string) => {
+    if (secondTime) {
+        return parseTime(secondTime) - parseTime(firstTime)
     }
 
-    return parseTime(endTime) - parseTime(startTime)
+    return parseTime(firstTime)
 }

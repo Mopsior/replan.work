@@ -3,7 +3,7 @@ import { COLOR_PALETTE } from '@/types/constants'
 import { variantIcon, variantTranslation } from './get-variants'
 import type { EventProps } from './types'
 
-export const Event = ({ title, time, eventType, color, isOneLiner }: EventProps) => {
+export const Event = ({ title, time, eventType, color, isOneLiner, isTotalTime }: EventProps) => {
     const [hour, minutes] = time?.split(':') ?? []
 
     return (
@@ -19,7 +19,9 @@ export const Event = ({ title, time, eventType, color, isOneLiner }: EventProps)
                 )}
                 {time && (
                     <span className='text-muted-foreground text-xs font-medium'>
-                        {hour}:{minutes}
+                        {isTotalTime
+                            ? `${Number(hour)}h ${Number(minutes) > 0 && `${minutes}m`}`
+                            : `${hour}:${minutes}`}
                     </span>
                 )}
                 <span className='text-foreground truncate text-xs font-medium'>{title}</span>
