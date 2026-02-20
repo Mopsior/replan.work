@@ -33,7 +33,7 @@ export const DatePicker = ({ date, setDate, id }: DatePickerProps) => {
                 </Button>
             }
         >
-            <Drawer.Title>{t('input.datePicker.label')}</Drawer.Title>
+            <Drawer.Title className='not-md:hidden'>{t('input.datePicker.label')}</Drawer.Title>
             <Calendar
                 mode='single'
                 selected={date}
@@ -50,7 +50,7 @@ export const DatePicker = ({ date, setDate, id }: DatePickerProps) => {
                     : t('input.datePicker.notSelected')}
             </Drawer.Description>
             <Button variant='outline' onClick={() => setIsOpen(false)} role='button'>
-                {t('done')}
+                {t('select')}
             </Button>
         </Drawer.Dynamic>
     )

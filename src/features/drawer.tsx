@@ -68,6 +68,7 @@ const DrawerContent = ({
 
 const DrawerTitle = ({
     children,
+    className,
     withCenter = false,
     ...props
 }: { withCenter?: boolean } & ComponentProps<typeof Vaul.Title>) => (
@@ -76,7 +77,7 @@ const DrawerTitle = ({
         className={cn([
             'text-lg font-semibold tracking-tight',
             withCenter ? 'md:text-center' : '',
-            props.className,
+            className,
         ])}
     >
         {children}
@@ -91,11 +92,17 @@ const DrawerHiddenTitle = ({ children }: { children: ReactNode }) => (
 
 const DrawerDescription = ({
     children,
+    className,
+    centerOnMobile = false,
     ...props
-}: { children: ReactNode } & ComponentProps<typeof Vaul.Description>) => (
+}: { centerOnMobile?: boolean } & ComponentProps<typeof Vaul.Description>) => (
     <Vaul.Description
         {...props}
-        className={cn(['text-muted-foreground text-sm md:text-center', props.className])}
+        className={cn([
+            'text-muted-foreground',
+            centerOnMobile ? 'text-center' : 'text-sm md:text-center',
+            className,
+        ])}
     >
         {children}
     </Vaul.Description>

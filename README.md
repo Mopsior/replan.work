@@ -91,6 +91,8 @@ Handling error should be done through `<ErrorScreen />` component (and added lat
 
 ## 🗺️ Roadmap
 
+- [ ] Add .trim() for every zod schema
+
 - [ ] Add mobile calendar view
 - [x] Move to Biome
 - [ ] Handle months that aren't provided in dataset
