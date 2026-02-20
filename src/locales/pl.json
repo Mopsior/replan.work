@@ -1,10 +1,16 @@
 {
     "return": "Powrót",
     "go": "Przejdź",
+    "done": "Gotowe",
     "menu": "Menu",
     "delete": "Usuń",
-    "date": {
-        "placeholder": "Wybierz datę"
+    "input": {
+        "datePicker": {
+            "placeholder": "Wybierz datę",
+            "label": "Wybierz datę",
+            "description": "Wybrana data to {{date}} roku",
+            "notSelected": "Nie wybrano dat. Skorzystaj z kalendarza powyżej"
+        }
     },
     "settings": {
         "short": "Ustawienia",

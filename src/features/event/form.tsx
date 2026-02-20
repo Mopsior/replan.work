@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import z from 'zod'
 import { Button } from '@/components/ui/button'
-import { Calendar } from '@/components/ui/calendar'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
 import { EventType } from '@/types/enums'
 import { FormRequired } from '../form-required'
-import { RadioGroup } from '../radio-group'
+import { DatePicker } from '../inputs/date-picker'
+import { RadioGroup } from '../inputs/radio-group'
 import { EventDateType, formSchema } from './types'
 
 // TODO
@@ -48,7 +48,7 @@ export const EventForm = () => {
                 e.preventDefault()
                 form.handleSubmit()
             }}
-            className='flex flex-col w-full h-full justify-between'
+            className='flex flex-col w-full h-full justify-between space-y-4'
         >
             <FieldGroup className='gap-y-6'>
                 <div className='space-y-3'>
@@ -63,13 +63,10 @@ export const EventForm = () => {
                                         {t('calendar.event.create.form.date.label')}
                                         <FormRequired />
                                     </FieldLabel>
-                                    <Calendar
-                                        mode='single'
-                                        selected={field.state.value}
-                                        onSelect={field.handleChange}
+                                    <DatePicker
                                         id={field.name}
-                                        required
-                                        className='rounded-md bg-transparent border'
+                                        date={field.state.value}
+                                        setDate={field.handleChange}
                                     />
                                     {isInvalid && <FieldError errors={field.state.meta.errors} />}
                                 </Field>
@@ -79,6 +76,7 @@ export const EventForm = () => {
                     <RadioGroup
                         value={timeVariant}
                         onValueChange={(value) => setTimeVariant(value as EventDateType)}
+                        coloredTitle
                         items={[
                             {
                                 value: EventDateType.BLOCK,
