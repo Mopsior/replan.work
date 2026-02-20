@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils'
 import { COLOR_PALETTE } from '@/types/constants'
 import { variantIcon, variantTranslation } from './get-variants'
-import type { EventProps } from './types'
+import { EventProps } from './types'
 
 export const Event = ({ title, time, eventType, color, isOneLiner, isTotalTime }: EventProps) => {
     const [hour, minutes] = time?.split(':') ?? []

@@ -98,6 +98,7 @@ Handling error should be done through `<ErrorScreen />` component (and added lat
   - [ ] Disable switching months if forms/drawers are opened (add check using global state)
   - [ ] Handling Esc for return button
 - [ ] ServerFn Error translations handling
+- [ ] Change tabs design to old from shadcn
 - [ ] **Production**: add PostHog
 
 ## ☁️ Deployment

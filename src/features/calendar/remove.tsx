@@ -8,7 +8,7 @@ import { removeCalendarFn } from '@/functions/calendar/remove-calendar'
 import { Route } from '@/routes/app/route'
 import { QueryKeys } from '@/types/constants'
 import { catchError } from '@/utils/catch-error'
-import { RemoveCalendarProps } from './types'
+import { RemoveCalendarProps } from '../settings/types'
 
 export const RemoveCalendnarButton = ({ id, setIsOpen }: RemoveCalendarProps) => {
     const { t } = useTranslation()

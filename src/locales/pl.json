@@ -3,6 +3,9 @@
     "go": "Przejdź",
     "menu": "Menu",
     "delete": "Usuń",
+    "date": {
+        "placeholder": "Wybierz datę"
+    },
     "settings": {
         "short": "Ustawienia",
         "title": "Ustawienia aplikacji",
@@ -58,7 +61,37 @@
                 "custom": "Niestandardowe"
             },
             "more": "Więcej",
-            "fetchError": "Oopsie! Nie udało się pobrać wydarzeń."
+            "fetchError": "Oopsie! Nie udało się pobrać wydarzeń.",
+            "create": {
+                "button": "Stwórz wydarzenie",
+                "label": "Dodaj wydarzenie",
+                "description": "Wydarzenie odpowiada pojedynczemu blokowi czasu w kalendarzu.",
+                "form": {
+                    "date": {
+                        "label": "Data wydarzenia",
+                        "required": "Data wydarzenia jest wymagana",
+                        "minDate": "Data wydarzenia jest zbyt wczesna",
+                        "maxDate": "Data wydarzenia jest zbyt późna"
+                    },
+                    "type": {
+                        "block": {
+                            "label": "Określone godziny",
+                            "description": "Podaj czas rozpoczęcia i zakończenia."
+                        },
+                        "hours": {
+                            "label": "Łączny czas",
+                            "description": "Podaj łączną liczbę godzin."
+                        }
+                    },
+                    "title": {
+                        "maxLength": "Tytuł wydarzenia nie może być dłuższy niż {{charCount}} znaki"
+                    },
+                    "startTime": {
+                        "label": "Czas rozpoczęcia",
+                        "required": "Czas rozpoczęcia jest wymagany"
+                    }
+                }
+            }
         }
     },
     "appSettings": {

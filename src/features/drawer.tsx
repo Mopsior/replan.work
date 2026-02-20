@@ -48,7 +48,7 @@ const DrawerContent = ({
                 className={cn([
                     'fixed flex flex-col outline-none',
                     isSideDrawer
-                        ? 'top-4 right-4 bottom-4 w-112.5'
+                        ? 'top-4 right-4 bottom-4 w-[350px]'
                         : 'bg-card right-0 bottom-0 left-0 h-fit rounded-t-[10px]',
                 ])}
                 style={
@@ -68,11 +68,16 @@ const DrawerContent = ({
 
 const DrawerTitle = ({
     children,
+    withCenter = false,
     ...props
-}: { children: ReactNode } & ComponentProps<typeof Vaul.Title>) => (
+}: { withCenter?: boolean } & ComponentProps<typeof Vaul.Title>) => (
     <Vaul.Title
         {...props}
-        className={cn(['text-lg font-semibold tracking-tight', props.className])}
+        className={cn([
+            'text-lg font-semibold tracking-tight',
+            withCenter ? 'md:text-center' : '',
+            props.className,
+        ])}
     >
         {children}
     </Vaul.Title>
@@ -102,6 +107,10 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
+const DynamicNestedDrawerWrapper = ({ children }: { children: ReactNode }) => (
+    <div className='flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4'>{children}</div>
+)
+
 const DynamicNestedDrawer = ({
     children,
     trigger,
@@ -111,14 +120,14 @@ const DynamicNestedDrawer = ({
     if (isMobile) {
         return (
             <NestedDrawer {...props} trigger={trigger}>
-                {children}
+                <DynamicNestedDrawerWrapper>{children}</DynamicNestedDrawerWrapper>
             </NestedDrawer>
         )
     }
     return (
         <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
             <div className='bg-card relative h-full w-full rounded-md p-5'>
-                {children}
+                <DynamicNestedDrawerWrapper>{children}</DynamicNestedDrawerWrapper>
                 <Vaul.Close asChild>
                     <Button variant='ghost' className='absolute top-4 right-4'>
                         <X className='text-muted-foreground hover:text-foreground transition-colors' />

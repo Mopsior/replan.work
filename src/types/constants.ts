@@ -1,5 +1,7 @@
 export const IS_MOBILE = '(max-width: 767px)'
 export const IS_DESKTOP = '(min-width: 768px)'
+export const MAX_APP_DATE = new Date(2030, 11, 31)
+export const MIN_APP_DATE = new Date(2025, 0, 1)
 
 export enum QueryKeys {
     USER_CALENDARS = 'user_calendars',
