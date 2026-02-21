@@ -61,3 +61,9 @@ export interface TimePickerInputProps extends ComponentProps<typeof InputGroupIn
     secondRef?: React.RefObject<HTMLInputElement | null>
     variant?: TimePickerVariant
 }
+
+export const hoursSuffix = (hours: number) => {
+    if (hours === 1) return 'one'
+    if ((hours >= 2 && hours <= 4) || hours === 0) return 'few'
+    return 'many'
+}

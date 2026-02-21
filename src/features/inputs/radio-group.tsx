@@ -25,7 +25,7 @@ export const RadioGroup = ({
                                 <div className='flex items-center gap-x-2 capitalize'>
                                     {item.icon}
                                     {item.title && (
-                                        <FieldTitle coloredTitle={coloredTitle}>
+                                        <FieldTitle coloredTitle={coloredTitle} className='mt-0.5'>
                                             {item.title}
                                         </FieldTitle>
                                     )}

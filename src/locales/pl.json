@@ -10,6 +10,13 @@
             "label": "Wybierz datę",
             "description": "Wybrana data to {{date}} roku",
             "notSelected": "Nie wybrano dat. Skorzystaj z kalendarza powyżej"
+        },
+        "timePicker": {
+            "hours": {
+                "one": "godzina",
+                "few": "godziny",
+                "many": "godzin"
+            }
         }
     },
     "settings": {
@@ -130,6 +137,12 @@
                             }
                         },
                         "endBeforeStart": "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia"
+                    },
+                    "eventType": {
+                        "label": "Typ wydarzenia",
+                        "stationary": "Stacjonarne",
+                        "remote": "Zdalne",
+                        "hybrid": "Hybrydowe"
                     }
                 }
             }

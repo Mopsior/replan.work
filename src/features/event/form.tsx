@@ -1,5 +1,5 @@
 import { useForm } from '@tanstack/react-form'
-import { Plus } from 'lucide-react'
+import { Building, House, Laptop, Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import z from 'zod'
@@ -11,14 +11,11 @@ import { DatePicker } from '../inputs/date-picker'
 import { RadioGroup } from '../inputs/radio-group'
 import TimePicker from '../inputs/time-picker'
 import { TimePickerType, TimePickerVariant } from '../inputs/types'
-import { RectangleSkeleton } from '../skeletons/input'
-import { useCalculateDuration } from './calculate-duration'
 import { EventDateType, formSchema } from './types'
 
 // TODO
-// - Move calendar to Nested Drawer (here show only input from datePicker and predefined days like tommorow etc.) - try to avoid any popups or anythign like that, just use nested drawer
-// - Create own 24h time picker based on text and regex
-// + Maybe make custom <form.Field> with isInvalid and erors build in (to clean code)
+// - Add mobile time-picker
+// - Make title as "Advanced" collapsed option
 // + Maybe move useForm to separate file for better code cleanness (but remember about using this also for editing)
 
 export const EventForm = () => {
@@ -54,8 +51,6 @@ export const EventForm = () => {
         },
     })
 
-    const totalTime = useCalculateDuration(form, timeVariant)
-
     return (
         <form
             onSubmit={(e) => {
@@ -65,52 +60,52 @@ export const EventForm = () => {
             className='flex flex-col w-full h-full justify-between space-y-4'
         >
             <FieldGroup className='gap-y-6'>
-                <div className='space-y-3'>
-                    <form.Field
-                        name='date'
-                        children={(field) => {
-                            const isInvalid =
-                                field.state.meta.isTouched && !field.state.meta.isValid
-                            return (
-                                <Field data-invalid={isInvalid}>
-                                    <FieldLabel htmlFor={field.name}>
-                                        {t('calendar.event.create.form.date.label')}
-                                        <FormRequired />
-                                    </FieldLabel>
-                                    <DatePicker
-                                        id={field.name}
-                                        date={field.state.value}
-                                        setDate={field.handleChange}
-                                        isInvalid={isInvalid}
-                                        errors={field.state.meta.errors}
-                                    />
-                                </Field>
-                            )
-                        }}
-                    />
+                <form.Field
+                    name='date'
+                    children={(field) => {
+                        const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+                        return (
+                            <Field data-invalid={isInvalid}>
+                                <FieldLabel htmlFor={field.name}>
+                                    {t('calendar.event.create.form.date.label')}
+                                    <FormRequired />
+                                </FieldLabel>
+                                <DatePicker
+                                    id={field.name}
+                                    date={field.state.value}
+                                    setDate={field.handleChange}
+                                    isInvalid={isInvalid}
+                                    errors={field.state.meta.errors}
+                                />
+                            </Field>
+                        )
+                    }}
+                />
+                <Field>
+                    <FieldLabel>
+                        {t('calendar.event.create.form.time.label')}
+                        <FormRequired />
+                    </FieldLabel>
                     <RadioGroup
                         value={timeVariant}
                         onValueChange={(value) => setTimeVariant(value as EventDateType)}
-                        coloredTitle
+                        // coloredTitle
+                        className='gap-y-2'
                         items={[
                             {
                                 value: EventDateType.BLOCK,
                                 title: t('calendar.event.create.form.type.block.label'),
-                                description: t('calendar.event.create.form.type.block.description'),
+                                // description: t('calendar.event.create.form.type.block.description'),
                             },
                             {
                                 value: EventDateType.TIME,
                                 title: t('calendar.event.create.form.type.hours.label'),
-                                description: t('calendar.event.create.form.type.hours.description'),
+                                // description: t('calendar.event.create.form.type.hours.description'),
                             },
                         ]}
                     />
                     {timeVariant === EventDateType.BLOCK && (
-                        <Field>
-                            <FieldLabel>
-                                {t('calendar.event.create.form.time.label')}
-                                <FormRequired />
-                            </FieldLabel>
+                        <>
                             <div className='flex gap-x-4 items-center not-md:justify-center'>
                                 <span className='text-muted-foreground'>
                                     {t('calendar.event.create.form.time.from')}
@@ -208,25 +203,10 @@ export const EventForm = () => {
                                     />
                                 </TimePicker>
                             </div>
-                            {totalTime ? (
-                                <p className='text-base text-muted-foreground text-center'>
-                                    {totalTime.length > 0
-                                        ? t('calendar.event.create.form.time.calculate', {
-                                              duration: totalTime,
-                                          })
-                                        : t('calendar.event.create.form.time.empty')}
-                                </p>
-                            ) : (
-                                <RectangleSkeleton className='w-full h-4' />
-                            )}
-                        </Field>
+                        </>
                     )}
                     {timeVariant === EventDateType.TIME && (
-                        <Field>
-                            <FieldLabel>
-                                {t('calendar.event.create.form.time.label')}
-                                <FormRequired />
-                            </FieldLabel>
+                        <>
                             <div className='flex gap-x-4 items-center justify-center'>
                                 <TimePicker variant={TimePickerVariant.WIDE}>
                                     <form.Field
@@ -273,11 +253,57 @@ export const EventForm = () => {
                                             )
                                         }}
                                     />
+                                    <TimePicker.HoursAddon
+                                        hours={parseInt(
+                                            form.state.values.totalTimeHours ?? '0',
+                                            10,
+                                        )}
+                                    />
                                 </TimePicker>
                             </div>
-                        </Field>
+                        </>
                     )}
-                </div>
+                </Field>
+                <form.Field
+                    name='eventType'
+                    children={(field) => {
+                        const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+                        return (
+                            <Field data-invalid={isInvalid}>
+                                <FieldLabel htmlFor={field.name}>
+                                    {t('calendar.event.create.form.eventType.label')}
+                                    <FormRequired />
+                                </FieldLabel>
+                                <RadioGroup
+                                    value={field.state.value}
+                                    onValueChange={(value) =>
+                                        field.handleChange(value as EventType)
+                                    }
+                                    className='gap-y-2'
+                                    items={[
+                                        {
+                                            value: EventType.STATIONARY,
+                                            title: t(
+                                                'calendar.event.create.form.eventType.stationary',
+                                            ),
+                                            icon: <Building size={16} />,
+                                        },
+                                        {
+                                            value: EventType.REMOTE,
+                                            title: t('calendar.event.create.form.eventType.remote'),
+                                            icon: <House size={16} />,
+                                        },
+                                        {
+                                            value: EventType.HYBRID,
+                                            title: t('calendar.event.create.form.eventType.hybrid'),
+                                            icon: <Laptop size={16} />,
+                                        },
+                                    ]}
+                                />
+                            </Field>
+                        )
+                    }}
+                />
             </FieldGroup>
             <Button type='submit'>
                 <Plus size={16} />

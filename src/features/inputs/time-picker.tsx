@@ -1,5 +1,6 @@
 import { Clock } from 'lucide-react'
 import { ChangeEvent, useCallback, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
     InputGroup,
     InputGroupAddon,
@@ -7,7 +8,13 @@ import {
     InputGroupText,
 } from '@/components/ui/input-group'
 import { cn } from '@/lib/utils'
-import { TimePickerInputProps, TimePickerProps, TimePickerType, TimePickerVariant } from './types'
+import {
+    hoursSuffix,
+    TimePickerInputProps,
+    TimePickerProps,
+    TimePickerType,
+    TimePickerVariant,
+} from './types'
 
 const TimePicker = ({ children, variant = TimePickerVariant.DEFAULT }: TimePickerProps) => {
     return (
@@ -134,6 +141,17 @@ const TimePickerInput = ({
 
 const TimePickerDivider = () => <InputGroupText>:</InputGroupText>
 
+const TimePickerHoursAddon = ({ hours }: { hours: number }) => {
+    const { t } = useTranslation()
+
+    return (
+        <InputGroupAddon align={'inline-end'}>
+            <InputGroupText>{t(`input.timePicker.hours.${hoursSuffix(hours)}`)}</InputGroupText>
+        </InputGroupAddon>
+    )
+}
+
 TimePicker.Input = TimePickerInput
 TimePicker.Divider = TimePickerDivider
+TimePicker.HoursAddon = TimePickerHoursAddon
 export default TimePicker
