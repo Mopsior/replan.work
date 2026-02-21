@@ -18,9 +18,26 @@ export const formSchema = z.object({
         .date()
         .min(MIN_APP_DATE, t('calendar.event.create.form.date.minDate'))
         .max(MAX_APP_DATE, t('calendar.event.create.form.date.maxDate')),
-    // TODO: add validation for time fields
-    startTime: z.string().optional(),
-    endTime: z.string().optional(),
+    startTimeHours: z
+        .string()
+        .min(1, t('calendar.event.create.form.startTime.hours.minLength'))
+        .max(2, t('calendar.event.create.form.startTime.hours.maxLength'))
+        .optional(),
+    startTimeMinutes: z
+        .string()
+        .min(1, t('calendar.event.create.form.startTime.minutes.minLength'))
+        .max(2, t('calendar.event.create.form.startTime.minutes.maxLength'))
+        .optional(),
+    endTimeHours: z
+        .string()
+        .min(1, t('calendar.event.create.form.endTime.hours.minLength'))
+        .max(2, t('calendar.event.create.form.endTime.hours.maxLength'))
+        .optional(),
+    endTimeMinutes: z
+        .string()
+        .min(1, t('calendar.event.create.form.endTime.minutes.minLength'))
+        .max(2, t('calendar.event.create.form.endTime.minutes.maxLength'))
+        .optional(),
     totalTime: z.string().optional(),
     eventType: z.enum(EventType),
     title: z

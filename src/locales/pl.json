@@ -92,9 +92,30 @@
                     "title": {
                         "maxLength": "Tytuł wydarzenia nie może być dłuższy niż {{charCount}} znaki"
                     },
+                    "time": {
+                        "label": "Czas trwania",
+                        "from": "od",
+                        "to": "do"
+                    },
                     "startTime": {
-                        "label": "Czas rozpoczęcia",
-                        "required": "Czas rozpoczęcia jest wymagany"
+                        "hours": {
+                            "minLength": "Godzina rozpoczęcia musi mieć co najmniej 1 liczbę",
+                            "maxLength": "Godzina rozpoczęcia nie może być dłuższa niż 2 liczby"
+                        },
+                        "minutes": {
+                            "minLength": "Minuty rozpoczęcia muszą mieć co najmniej 1 liczbę",
+                            "maxLength": "Minuty rozpoczęcia nie mogą być dłuższe niż 2 liczby"
+                        }
+                    },
+                    "endTime": {
+                        "hours": {
+                            "minLength": "Godzina zakończenia musi mieć co najmniej 1 liczbę",
+                            "maxLength": "Godzina zakończenia nie może być dłuższa niż 2 liczby"
+                        },
+                        "minutes": {
+                            "minLength": "Minuty zakończenia muszą mieć co najmniej 1 liczbę",
+                            "maxLength": "Minuty zakończenia nie mogą być dłuższe niż 2 liczby"
+                        }
                     }
                 }
             }
