@@ -1,10 +1,28 @@
+import { Clock } from 'lucide-react'
 import { ChangeEvent, useCallback, useEffect } from 'react'
-import { InputGroup, InputGroupInput, InputGroupText } from '@/components/ui/input-group'
+import {
+    InputGroup,
+    InputGroupAddon,
+    InputGroupInput,
+    InputGroupText,
+} from '@/components/ui/input-group'
 import { cn } from '@/lib/utils'
-import { TimePickerInputProps, TimePickerType } from './types'
+import { TimePickerInputProps, TimePickerProps, TimePickerType, TimePickerVariant } from './types'
 
-const TimePicker = ({ children }: { children: React.ReactNode }) => {
-    return <InputGroup className='max-w-24'>{children}</InputGroup>
+const TimePicker = ({ children, variant = TimePickerVariant.DEFAULT }: TimePickerProps) => {
+    return (
+        <InputGroup
+            className={cn([
+                variant === TimePickerVariant.DEFAULT && 'max-w-24',
+                variant === TimePickerVariant.WIDE && 'w-full',
+            ])}
+        >
+            <InputGroupAddon>
+                <Clock />
+            </InputGroupAddon>
+            {children}
+        </InputGroup>
+    )
 }
 
 const TimePickerInput = ({
@@ -17,6 +35,7 @@ const TimePickerInput = ({
     className,
     firstRef,
     secondRef,
+    variant = TimePickerVariant.DEFAULT,
     ...props
 }: TimePickerInputProps) => {
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +120,12 @@ const TimePickerInput = ({
             value={value}
             onChange={(e) => handleInputChange(e)}
             onBlur={handleInputBlur}
-            className={cn(['text-center', className])}
+            className={cn([
+                'text-center p-0! not-nth-2:pr-1!',
+                variant === TimePickerVariant.WIDE &&
+                    'nth-2:max-w-8 not-nth-2:text-start not-nth-2:pl-2!',
+                className,
+            ])}
             autoComplete='off'
             {...props}
         />

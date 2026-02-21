@@ -35,6 +35,21 @@ export const I18N_TO_LOCALE: Partial<Record<string, Locale>> = {
     'en-US': enUS,
 } as const
 
+export enum TimePickerVariant {
+    DEFAULT = 'default',
+    WIDE = 'wide',
+}
+
+export interface TimePickerProps {
+    children: React.ReactNode
+    variant?: TimePickerVariant
+}
+
+export enum TimePickerType {
+    HOURS = 'hours',
+    MINUTES = 'minutes',
+}
+
 export interface TimePickerInputProps extends ComponentProps<typeof InputGroupInput> {
     name: string
     isInvalid: boolean
@@ -44,9 +59,5 @@ export interface TimePickerInputProps extends ComponentProps<typeof InputGroupIn
     type?: TimePickerType
     firstRef?: React.RefObject<HTMLInputElement | null>
     secondRef?: React.RefObject<HTMLInputElement | null>
-}
-
-export enum TimePickerType {
-    HOURS = 'hours',
-    MINUTES = 'minutes',
+    variant?: TimePickerVariant
 }

@@ -49,7 +49,7 @@ const DrawerContent = ({
                 className={cn([
                     'fixed flex flex-col outline-none',
                     isSideDrawer
-                        ? 'top-4 right-4 bottom-4 w-[350px]'
+                        ? 'top-4 right-4 bottom-4 w-87.5'
                         : 'bg-card right-0 bottom-0 left-0 h-fit rounded-t-[10px]',
                 ])}
                 style={

@@ -10,7 +10,7 @@ export const useCalculateDuration = (
     },
     timeVariant: EventDateType,
 ) => {
-    const [totalTime, setTotalTime] = useState('')
+    const [totalTime, setTotalTime] = useState<string | null>(null)
     const prevValuesRef = useRef<{
         startTimeHours?: string
         startTimeMinutes?: string

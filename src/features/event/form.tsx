@@ -10,7 +10,8 @@ import { FormRequired } from '../form-required'
 import { DatePicker } from '../inputs/date-picker'
 import { RadioGroup } from '../inputs/radio-group'
 import TimePicker from '../inputs/time-picker'
-import { TimePickerType } from '../inputs/types'
+import { TimePickerType, TimePickerVariant } from '../inputs/types'
+import { RectangleSkeleton } from '../skeletons/input'
 import { useCalculateDuration } from './calculate-duration'
 import { EventDateType, formSchema } from './types'
 
@@ -38,7 +39,7 @@ export const EventForm = () => {
             startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
             endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
             endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
-            totalTimeHours: '8',
+            totalTimeHours: '08',
             totalTimeMinutes: '00',
             eventType: EventType.STATIONARY,
             title: '',
@@ -207,13 +208,17 @@ export const EventForm = () => {
                                     />
                                 </TimePicker>
                             </div>
-                            <p className='text-base text-muted-foreground text-center'>
-                                {totalTime.length > 0
-                                    ? t('calendar.event.create.form.time.calculate', {
-                                          duration: totalTime,
-                                      })
-                                    : t('calendar.event.create.form.time.empty')}
-                            </p>
+                            {totalTime ? (
+                                <p className='text-base text-muted-foreground text-center'>
+                                    {totalTime.length > 0
+                                        ? t('calendar.event.create.form.time.calculate', {
+                                              duration: totalTime,
+                                          })
+                                        : t('calendar.event.create.form.time.empty')}
+                                </p>
+                            ) : (
+                                <RectangleSkeleton className='w-full h-4' />
+                            )}
                         </Field>
                     )}
                     {timeVariant === EventDateType.TIME && (
@@ -223,10 +228,7 @@ export const EventForm = () => {
                                 <FormRequired />
                             </FieldLabel>
                             <div className='flex gap-x-4 items-center justify-center'>
-                                <p className='text-base text-muted-foreground text-center'>
-                                    {t('calendar.event.create.form.time.total.label')}
-                                </p>
-                                <TimePicker>
+                                <TimePicker variant={TimePickerVariant.WIDE}>
                                     <form.Field
                                         name='totalTimeHours'
                                         children={(field) => {
@@ -243,6 +245,7 @@ export const EventForm = () => {
                                                     ref={firstTotalTimeInput}
                                                     secondRef={secondTotalTimeInput}
                                                     type={TimePickerType.HOURS}
+                                                    variant={TimePickerVariant.WIDE}
                                                 />
                                             )
                                         }}
@@ -265,6 +268,7 @@ export const EventForm = () => {
                                                     ref={secondTotalTimeInput}
                                                     firstRef={firstTotalTimeInput}
                                                     type={TimePickerType.MINUTES}
+                                                    variant={TimePickerVariant.WIDE}
                                                 />
                                             )
                                         }}
