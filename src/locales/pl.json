@@ -95,26 +95,39 @@
                     "time": {
                         "label": "Czas trwania",
                         "from": "od",
-                        "to": "do"
-                    },
-                    "startTime": {
-                        "hours": {
-                            "minLength": "Godzina rozpoczęcia musi mieć co najmniej 1 liczbę",
-                            "maxLength": "Godzina rozpoczęcia nie może być dłuższa niż 2 liczby"
+                        "to": "do",
+                        "calculate": "czyli łącznie {{duration}}",
+                        "empty": "Podaj godzinę rozpoczęcia i zakończenia",
+                        "start": {
+                            "hours": {
+                                "minLength": "Godzina rozpoczęcia musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Godzina rozpoczęcia nie może być dłuższa niż 2 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Minuty rozpoczęcia muszą mieć co najmniej 1 liczbę",
+                                "maxLength": "Minuty rozpoczęcia nie mogą być dłuższe niż 2 liczby"
+                            }
                         },
-                        "minutes": {
-                            "minLength": "Minuty rozpoczęcia muszą mieć co najmniej 1 liczbę",
-                            "maxLength": "Minuty rozpoczęcia nie mogą być dłuższe niż 2 liczby"
-                        }
-                    },
-                    "endTime": {
-                        "hours": {
-                            "minLength": "Godzina zakończenia musi mieć co najmniej 1 liczbę",
-                            "maxLength": "Godzina zakończenia nie może być dłuższa niż 2 liczby"
+                        "end": {
+                            "hours": {
+                                "minLength": "Godzina zakończenia musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Godzina zakończenia nie może być dłuższa niż 2 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Minuty zakończenia muszą mieć co najmniej 1 liczbę",
+                                "maxLength": "Minuty zakończenia nie mogą być dłuższe niż 2 liczby"
+                            }
                         },
-                        "minutes": {
-                            "minLength": "Minuty zakończenia muszą mieć co najmniej 1 liczbę",
-                            "maxLength": "Minuty zakończenia nie mogą być dłuższe niż 2 liczby"
+                        "total": {
+                            "label": "łącznie",
+                            "hours": {
+                                "minLength": "Łączna liczba godzin musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Łączna liczba godzin nie może być dłuższa niż 4 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Łączna liczba minut musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Łączna liczba minut nie może być dłuższa niż 2 liczby"
+                            }
                         }
                     }
                 }

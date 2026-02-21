@@ -20,25 +20,34 @@ export const formSchema = z.object({
         .max(MAX_APP_DATE, t('calendar.event.create.form.date.maxDate')),
     startTimeHours: z
         .string()
-        .min(1, t('calendar.event.create.form.startTime.hours.minLength'))
-        .max(2, t('calendar.event.create.form.startTime.hours.maxLength'))
+        .min(1, t('calendar.event.create.form.time.start.hours.minLength'))
+        .max(2, t('calendar.event.create.form.time.start.hours.maxLength'))
         .optional(),
     startTimeMinutes: z
         .string()
-        .min(1, t('calendar.event.create.form.startTime.minutes.minLength'))
-        .max(2, t('calendar.event.create.form.startTime.minutes.maxLength'))
+        .min(1, t('calendar.event.create.form.time.start.minutes.minLength'))
+        .max(2, t('calendar.event.create.form.time.start.minutes.maxLength'))
         .optional(),
     endTimeHours: z
         .string()
-        .min(1, t('calendar.event.create.form.endTime.hours.minLength'))
-        .max(2, t('calendar.event.create.form.endTime.hours.maxLength'))
+        .min(1, t('calendar.event.create.form.time.end.hours.minLength'))
+        .max(2, t('calendar.event.create.form.time.end.hours.maxLength'))
         .optional(),
     endTimeMinutes: z
         .string()
-        .min(1, t('calendar.event.create.form.endTime.minutes.minLength'))
-        .max(2, t('calendar.event.create.form.endTime.minutes.maxLength'))
+        .min(1, t('calendar.event.create.form.time.end.minutes.minLength'))
+        .max(2, t('calendar.event.create.form.time.end.minutes.maxLength'))
         .optional(),
-    totalTime: z.string().optional(),
+    totalTimeHours: z
+        .string()
+        .min(1, t('calendar.event.create.form.time.total.hours.minLength'))
+        .max(2, t('calendar.event.create.form.time.total.hours.maxLength'))
+        .optional(),
+    totalTimeMinutes: z
+        .string()
+        .min(1, t('calendar.event.create.form.time.total.minutes.minLength'))
+        .max(2, t('calendar.event.create.form.time.total.minutes.maxLength'))
+        .optional(),
     eventType: z.enum(EventType),
     title: z
         .string()

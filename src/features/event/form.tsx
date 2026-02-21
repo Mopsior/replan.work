@@ -11,6 +11,7 @@ import { DatePicker } from '../inputs/date-picker'
 import { RadioGroup } from '../inputs/radio-group'
 import TimePicker from '../inputs/time-picker'
 import { TimePickerType } from '../inputs/types'
+import { useCalculateDuration } from './calculate-duration'
 import { EventDateType, formSchema } from './types'
 
 // TODO
@@ -26,6 +27,8 @@ export const EventForm = () => {
     const secondStartTimeInput = useRef(null)
     const firstEndTimeInput = useRef(null)
     const secondEndTimeInput = useRef(null)
+    const firstTotalTimeInput = useRef(null)
+    const secondTotalTimeInput = useRef(null)
     const today = new Date()
 
     const form = useForm({
@@ -34,8 +37,9 @@ export const EventForm = () => {
             startTimeHours: today.getHours().toString().padStart(2, '0'),
             startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
             endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
-            endTimeMinutes: today.getHours().toString().padStart(2, '0'),
-            totalTime: '',
+            endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
+            totalTimeHours: '8',
+            totalTimeMinutes: '00',
             eventType: EventType.STATIONARY,
             title: '',
         } as z.infer<typeof formSchema>,
@@ -48,6 +52,8 @@ export const EventForm = () => {
             console.log(value)
         },
     })
+
+    const totalTime = useCalculateDuration(form, timeVariant)
 
     return (
         <form
@@ -104,7 +110,7 @@ export const EventForm = () => {
                                 {t('calendar.event.create.form.time.label')}
                                 <FormRequired />
                             </FieldLabel>
-                            <div className='flex gap-x-4 items-center'>
+                            <div className='flex gap-x-4 items-center not-md:justify-center'>
                                 <span className='text-muted-foreground'>
                                     {t('calendar.event.create.form.time.from')}
                                 </span>
@@ -194,6 +200,70 @@ export const EventForm = () => {
                                                     handleBlur={field.handleBlur}
                                                     ref={secondEndTimeInput}
                                                     firstRef={firstEndTimeInput}
+                                                    type={TimePickerType.MINUTES}
+                                                />
+                                            )
+                                        }}
+                                    />
+                                </TimePicker>
+                            </div>
+                            <p className='text-base text-muted-foreground text-center'>
+                                {totalTime.length > 0
+                                    ? t('calendar.event.create.form.time.calculate', {
+                                          duration: totalTime,
+                                      })
+                                    : t('calendar.event.create.form.time.empty')}
+                            </p>
+                        </Field>
+                    )}
+                    {timeVariant === EventDateType.TIME && (
+                        <Field>
+                            <FieldLabel>
+                                {t('calendar.event.create.form.time.label')}
+                                <FormRequired />
+                            </FieldLabel>
+                            <div className='flex gap-x-4 items-center justify-center'>
+                                <p className='text-base text-muted-foreground text-center'>
+                                    {t('calendar.event.create.form.time.total.label')}
+                                </p>
+                                <TimePicker>
+                                    <form.Field
+                                        name='totalTimeHours'
+                                        children={(field) => {
+                                            const isInvalid =
+                                                field.state.meta.isTouched &&
+                                                !field.state.meta.isValid
+                                            return (
+                                                <TimePicker.Input
+                                                    name={field.name}
+                                                    isInvalid={isInvalid}
+                                                    value={field.state.value}
+                                                    handleChange={field.handleChange}
+                                                    handleBlur={field.handleBlur}
+                                                    ref={firstTotalTimeInput}
+                                                    secondRef={secondTotalTimeInput}
+                                                    type={TimePickerType.HOURS}
+                                                />
+                                            )
+                                        }}
+                                    />
+                                    <TimePicker.Divider />
+                                    <form.Field
+                                        name='totalTimeMinutes'
+                                        children={(field) => {
+                                            const isInvalid =
+                                                field.state.meta.isTouched &&
+                                                !field.state.meta.isValid
+
+                                            return (
+                                                <TimePicker.Input
+                                                    name={field.name}
+                                                    isInvalid={isInvalid}
+                                                    value={field.state.value}
+                                                    handleChange={field.handleChange}
+                                                    handleBlur={field.handleBlur}
+                                                    ref={secondTotalTimeInput}
+                                                    firstRef={firstTotalTimeInput}
                                                     type={TimePickerType.MINUTES}
                                                 />
                                             )
