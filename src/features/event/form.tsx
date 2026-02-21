@@ -137,7 +137,6 @@ export const EventForm = () => {
                                                 field.state.meta.isTouched &&
                                                 !field.state.meta.isValid
 
-                                            console.log(field.state.value)
                                             return (
                                                 <TimePicker.Input
                                                     name={field.name}

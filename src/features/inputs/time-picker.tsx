@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect } from 'react'
+import { ChangeEvent, useCallback, useEffect } from 'react'
 import { InputGroup, InputGroupInput, InputGroupText } from '@/components/ui/input-group'
 import { cn } from '@/lib/utils'
 import { TimePickerInputProps, TimePickerType } from './types'
@@ -29,52 +29,62 @@ const TimePickerInput = ({
         }
     }
 
-    useEffect(() => {
-        if (!(typeof props.ref !== 'function' && props.ref?.current)) return
+    const handleInputBlur = () => {
+        if (value && value.length === 1) {
+            handleChange(value.padStart(2, '0'))
+        }
+        handleBlur()
+    }
 
-        const handleKeyUp = (e: KeyboardEvent) => {
-            if (typeof props.ref === 'function') return
+    const handleKeyUp = useCallback(
+        (e: KeyboardEvent) => {
+            if (typeof props.ref === 'function' || !props.ref?.current) return
+            if (e.target !== props.ref.current) return
+
             const key = e.key.toLowerCase()
-            console.log(key, e.ctrlKey, e.altKey, e.metaKey)
-            if (
-                e.ctrlKey ||
-                e.altKey ||
-                e.metaKey ||
-                e.shiftKey ||
-                key === 'control' ||
-                key === 'alt' ||
-                key === 'meta' ||
-                key === 'shift' ||
-                key === 'tab'
-            )
-                return
+            const currentValue = props.ref.current.value
 
-            if (key === 'backspace' || key === 'delete') {
-                if (props.ref?.current?.value.length !== 0) return
-                if (!firstRef?.current) return
-                return firstRef.current.focus()
+            const isModifierKey = e.ctrlKey || e.altKey || e.metaKey || e.shiftKey
+            const isModifierKeyName = ['control', 'alt', 'meta', 'shift', 'tab'].includes(key)
+            if (isModifierKey || isModifierKeyName) return
+
+            if ((key === 'backspace' || key === 'delete') && currentValue.length === 0) {
+                firstRef?.current?.focus()
+                return
             }
 
-            if (key === 'arrowright') {
-                if (!secondRef?.current) return
-                secondRef?.current?.focus()
-                return secondRef?.current?.select()
+            if (key === 'arrowleft' && firstRef?.current && currentValue.length === 0) {
+                firstRef.current.focus()
+                firstRef.current.select()
+                return
+            }
+
+            if (key === 'arrowright' && secondRef?.current && currentValue.length === 2) {
+                secondRef.current.focus()
+                secondRef.current.select()
+                return
             }
 
             if (key.startsWith('arrow')) return
 
-            if (props.ref?.current?.value.length !== 2) return
-            if (!secondRef?.current) return
+            if (!(currentValue.length === 2 && secondRef?.current)) return
 
-            secondRef?.current?.focus()
-            secondRef?.current?.select()
-        }
+            secondRef.current.focus()
+            secondRef.current.select()
+        },
+        [props.ref, firstRef, secondRef],
+    )
+
+    useEffect(() => {
+        if (typeof props.ref === 'function' || !props.ref?.current) return
 
         const refCurrent = props.ref.current
-        refCurrent.addEventListener('keyup', (e: KeyboardEvent) => handleKeyUp(e))
+        refCurrent.addEventListener('keyup', handleKeyUp)
 
-        return () => refCurrent?.removeEventListener('keyup', (e: KeyboardEvent) => handleKeyUp(e))
-    }, [props.ref, secondRef])
+        return () => {
+            refCurrent.removeEventListener('keyup', handleKeyUp)
+        }
+    }, [props.ref, handleKeyUp])
 
     return (
         <InputGroupInput
@@ -90,7 +100,7 @@ const TimePickerInput = ({
             max={type === TimePickerType.HOURS ? 23 : 59}
             value={value}
             onChange={(e) => handleInputChange(e)}
-            onBlur={handleBlur}
+            onBlur={handleInputBlur}
             className={cn(['text-center', className])}
             autoComplete='off'
             {...props}
