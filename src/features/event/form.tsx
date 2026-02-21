@@ -67,8 +67,9 @@ export const EventForm = () => {
                                         id={field.name}
                                         date={field.state.value}
                                         setDate={field.handleChange}
+                                        isInvalid={isInvalid}
+                                        errors={field.state.meta.errors}
                                     />
-                                    {isInvalid && <FieldError errors={field.state.meta.errors} />}
                                 </Field>
                             )
                         }}

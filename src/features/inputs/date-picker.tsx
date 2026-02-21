@@ -3,12 +3,13 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
+import { FieldError } from '@/components/ui/field'
 import { IS_DESKTOP } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
 import Drawer from '../drawer'
 import { DatePickerProps, I18N_TO_LOCALE } from './types'
 
-export const DatePicker = ({ date, setDate, id }: DatePickerProps) => {
+export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerProps) => {
     const { t, i18n } = useTranslation()
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const isDesktop = useMediaQuery(IS_DESKTOP)
@@ -19,15 +20,25 @@ export const DatePicker = ({ date, setDate, id }: DatePickerProps) => {
 
     const handleSelect = (value: Date) => {
         setDate(value)
-        if (isDesktop) return setIsOpen(false)
+        if (isDesktop && !isInvalid) return setIsOpen(false)
     }
 
     return (
         <Drawer.Dynamic
             open={isOpen}
             onOpenChange={setIsOpen}
+            bottomChildren={
+                <Button
+                    variant='outline'
+                    onClick={() => setIsOpen(false)}
+                    role='button'
+                    disabled={isInvalid}
+                >
+                    {t('select')}
+                </Button>
+            }
             trigger={
-                <Button variant='outline' className=''>
+                <Button variant='outline' className={isInvalid ? 'border-red-500!' : ''}>
                     <CalendarIcon />
                     {date ? format(date) : <span>{t('input.datePicker.placeholder')}</span>}
                 </Button>
@@ -44,14 +55,12 @@ export const DatePicker = ({ date, setDate, id }: DatePickerProps) => {
                 locale={I18N_TO_LOCALE[i18n.language]}
                 className='rounded-md bg-transparent border w-full'
             />
-            <Drawer.Description>
+            <Drawer.Description centerOnMobile className='text-sm'>
                 {date
                     ? t('input.datePicker.description', { date: format(date) })
                     : t('input.datePicker.notSelected')}
             </Drawer.Description>
-            <Button variant='outline' onClick={() => setIsOpen(false)} role='button'>
-                {t('select')}
-            </Button>
+            {isInvalid && <FieldError className='text-center' errors={errors} />}
         </Drawer.Dynamic>
     )
 }

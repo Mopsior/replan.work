@@ -10,6 +10,7 @@ import { useMediaQuery } from '@/utils/use-media-query'
 interface DrawerProps {
     children: ReactNode
     trigger?: ReactNode
+    bottomChildren?: ReactNode
 }
 
 const Drawer = ({
@@ -114,27 +115,46 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
-const DynamicNestedDrawerWrapper = ({ children }: { children: ReactNode }) => (
-    <div className='flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4'>{children}</div>
+const DynamicNestedDrawerWrapper = ({
+    children,
+    bottomChildren,
+}: {
+    children: ReactNode
+    bottomChildren?: DrawerProps['bottomChildren']
+}) => (
+    <div
+        className={cn([
+            'flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4',
+            bottomChildren ? 'justify-between' : '',
+        ])}
+    >
+        {bottomChildren ? <div className='flex flex-col gap-y-4'>{children}</div> : children}
+        {bottomChildren}
+    </div>
 )
 
 const DynamicNestedDrawer = ({
     children,
     trigger,
+    bottomChildren = false,
     ...props
 }: DrawerProps & (ComponentProps<typeof Vaul.Root> | ComponentProps<typeof Vaul.NestedRoot>)) => {
     const isMobile = useMediaQuery(IS_MOBILE)
     if (isMobile) {
         return (
             <NestedDrawer {...props} trigger={trigger}>
-                <DynamicNestedDrawerWrapper>{children}</DynamicNestedDrawerWrapper>
+                <DynamicNestedDrawerWrapper bottomChildren={bottomChildren}>
+                    {children}
+                </DynamicNestedDrawerWrapper>
             </NestedDrawer>
         )
     }
     return (
         <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
             <div className='bg-card relative h-full w-full rounded-md p-5'>
-                <DynamicNestedDrawerWrapper>{children}</DynamicNestedDrawerWrapper>
+                <DynamicNestedDrawerWrapper bottomChildren={bottomChildren}>
+                    {children}
+                </DynamicNestedDrawerWrapper>
                 <Vaul.Close asChild>
                     <Button variant='ghost' className='absolute top-4 right-4'>
                         <X className='text-muted-foreground hover:text-foreground transition-colors' />

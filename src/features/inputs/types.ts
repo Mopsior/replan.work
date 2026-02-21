@@ -1,7 +1,7 @@
 import { ComponentProps, Dispatch, ReactNode, SetStateAction } from 'react'
 import { Locale } from 'react-day-picker'
 import { enUS, pl } from 'react-day-picker/locale'
-import { Field } from '@/components/ui/field'
+import { Field, FieldError } from '@/components/ui/field'
 import { RadioGroup } from '@/components/ui/radio-group'
 
 export interface RadioGroupProps extends ComponentProps<typeof RadioGroup> {
@@ -19,6 +19,8 @@ export interface DatePickerProps {
     date: Date
     setDate: Dispatch<SetStateAction<Date>>
     id?: string
+    isInvalid?: boolean
+    errors?: ComponentProps<typeof FieldError>['errors']
 }
 
 export interface FieldTitleProps {
