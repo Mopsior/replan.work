@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
 import { getRandomColor } from '@/utils/get-random-color'
+import { CreateCalendarDrawer } from '../calendar/create'
 import { ListItem } from '../calendar/list-item'
 import { ErrorScreen } from '../error-screen'
 import { ListItemSkeleton } from '../skeletons/list-item'
-import { NewCalendarDrawer } from './new-calendar-drawer'
 
 export const CalendarSettings = () => {
     const { t } = useTranslation()
@@ -26,7 +26,7 @@ export const CalendarSettings = () => {
                     id={calendar.id}
                 />
             ))}
-            {!isLoading && !isError && <NewCalendarDrawer />}
+            {!isLoading && !isError && <CreateCalendarDrawer />}
         </div>
     )
 }

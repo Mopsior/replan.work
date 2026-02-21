@@ -24,8 +24,8 @@ import { FormVariant } from '@/types/enums'
 import { catchError } from '@/utils/catch-error'
 import { getRandomColor } from '@/utils/get-random-color'
 import { FormRequired } from '../form-required'
-import { RemoveCalendnarButton } from './remove-button'
-import { CalendarFormProps, formSchema } from './types'
+import { CalendarFormProps, formSchema } from '../settings/types'
+import { RemoveCalendnarButton } from './remove'
 
 export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: CalendarFormProps) => {
     const { t } = useTranslation()

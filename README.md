@@ -91,14 +91,7 @@ Handling error should be done through `<ErrorScreen />` component (and added lat
 
 ## 🗺️ Roadmap
 
-- [ ] Add mobile calendar view
-- [x] Move to Biome
-- [ ] Handle months that aren't provided in dataset
-- [ ] A11y:
-  - [ ] Disable switching months if forms/drawers are opened (add check using global state)
-  - [ ] Handling Esc for return button
-- [ ] ServerFn Error translations handling
-- [ ] **Production**: add PostHog
+Project roadmap can be found in [Github Projects](https://github.com/users/Mopsior/projects/8/views/2)
 
 ## ☁️ Deployment
 

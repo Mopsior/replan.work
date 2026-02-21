@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-import type { EventType } from '@/types/enums'
 
 export interface ItemProps {
     day: string
@@ -11,15 +10,6 @@ export interface ItemProps {
     eventsCount?: number
     totalTime?: string
     children?: ReactNode
-}
-
-export interface EventProps {
-    title: string
-    time?: string
-    color?: string
-    eventType: EventType
-    isOneLiner?: boolean
-    isTotalTime?: boolean
 }
 
 export enum Cell {
