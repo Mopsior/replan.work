@@ -128,7 +128,8 @@
                                 "minLength": "Łączna liczba minut musi mieć co najmniej 1 liczbę",
                                 "maxLength": "Łączna liczba minut nie może być dłuższa niż 2 liczby"
                             }
-                        }
+                        },
+                        "endBeforeStart": "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia"
                     }
                 }
             }
