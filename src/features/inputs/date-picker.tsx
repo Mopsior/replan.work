@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Calendar } from '@/components/ui/calendar'
 import { FieldError } from '@/components/ui/field'
+import { cn } from '@/lib/utils'
 import { IS_DESKTOP } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
 import Drawer from '../drawer'
@@ -38,8 +39,11 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
                 </Button>
             }
             trigger={
-                <Button variant='outline' className={isInvalid ? 'border-red-500!' : ''}>
-                    <CalendarIcon />
+                <Button
+                    variant='outline'
+                    className={cn(['w-full', isInvalid ? 'border-red-500!' : ''])}
+                >
+                    <CalendarIcon className='text-muted-foreground' />
                     {date ? format(date) : <span>{t('input.datePicker.placeholder')}</span>}
                 </Button>
             }

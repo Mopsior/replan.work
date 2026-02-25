@@ -10,7 +10,7 @@ import { FormRequired } from '../form-required'
 import { DatePicker } from '../inputs/date-picker'
 import { RadioGroup } from '../inputs/radio-group'
 import TimePicker from '../inputs/time-picker'
-import { TimePickerType, TimePickerVariant } from '../inputs/types'
+import { RadioGroupVariant, TimePickerType, TimePickerVariant } from '../inputs/types'
 import { EventDateType, formSchema } from './types'
 
 // TODO
@@ -60,154 +60,129 @@ export const EventForm = () => {
             className='flex flex-col w-full h-full justify-between space-y-4'
         >
             <FieldGroup className='gap-y-6'>
-                <form.Field
-                    name='date'
-                    children={(field) => {
-                        const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
-                        return (
-                            <Field data-invalid={isInvalid}>
-                                <FieldLabel htmlFor={field.name}>
-                                    {t('calendar.event.create.form.date.label')}
-                                    <FormRequired />
-                                </FieldLabel>
-                                <DatePicker
-                                    id={field.name}
-                                    date={field.state.value}
-                                    setDate={field.handleChange}
-                                    isInvalid={isInvalid}
-                                    errors={field.state.meta.errors}
-                                />
-                            </Field>
-                        )
-                    }}
-                />
                 <Field>
                     <FieldLabel>
-                        {t('calendar.event.create.form.time.label')}
+                        {t('calendar.event.create.form.date.label')}
                         <FormRequired />
                     </FieldLabel>
-                    <RadioGroup
-                        value={timeVariant}
-                        onValueChange={(value) => setTimeVariant(value as EventDateType)}
-                        // coloredTitle
-                        className='gap-y-2'
-                        items={[
-                            {
-                                value: EventDateType.BLOCK,
-                                title: t('calendar.event.create.form.type.block.label'),
-                                // description: t('calendar.event.create.form.type.block.description'),
-                            },
-                            {
-                                value: EventDateType.TIME,
-                                title: t('calendar.event.create.form.type.hours.label'),
-                                // description: t('calendar.event.create.form.type.hours.description'),
-                            },
-                        ]}
-                    />
-                    {timeVariant === EventDateType.BLOCK && (
-                        <>
-                            <div className='flex gap-x-4 items-center not-md:justify-center'>
-                                <span className='text-muted-foreground'>
-                                    {t('calendar.event.create.form.time.from')}
-                                </span>
-                                <TimePicker>
-                                    <form.Field
-                                        name='startTimeHours'
-                                        children={(field) => {
-                                            const isInvalid =
-                                                field.state.meta.isTouched &&
-                                                !field.state.meta.isValid
-                                            return (
-                                                <TimePicker.Input
-                                                    name={field.name}
-                                                    isInvalid={isInvalid}
-                                                    value={field.state.value}
-                                                    handleChange={field.handleChange}
-                                                    handleBlur={field.handleBlur}
-                                                    ref={firstStartTimeInput}
-                                                    secondRef={secondStartTimeInput}
-                                                    type={TimePickerType.HOURS}
-                                                />
-                                            )
-                                        }}
+                    <div className='not-md:grid not-md:grid-cols-2 not-md:gap-x-2 justify-between items-center'>
+                        <form.Field
+                            name='date'
+                            children={(field) => {
+                                const isInvalid =
+                                    field.state.meta.isTouched && !field.state.meta.isValid
+                                return (
+                                    <DatePicker
+                                        id={field.name}
+                                        date={field.state.value}
+                                        setDate={field.handleChange}
+                                        isInvalid={isInvalid}
+                                        errors={field.state.meta.errors}
                                     />
-                                    <TimePicker.Divider />
-                                    <form.Field
-                                        name='startTimeMinutes'
-                                        children={(field) => {
-                                            const isInvalid =
-                                                field.state.meta.isTouched &&
-                                                !field.state.meta.isValid
+                                )
+                            }}
+                        />
+                        <div className='flex w-full gap-x-2 md:gap-x-4 items-center justify-between md:justify-center md:pt-3'>
+                            {timeVariant === EventDateType.BLOCK && (
+                                <>
+                                    <span className='text-muted-foreground not-md:hidden'>
+                                        {t('calendar.event.create.form.time.from')}
+                                    </span>
+                                    <TimePicker>
+                                        <form.Field
+                                            name='startTimeHours'
+                                            children={(field) => {
+                                                const isInvalid =
+                                                    field.state.meta.isTouched &&
+                                                    !field.state.meta.isValid
+                                                return (
+                                                    <TimePicker.Input
+                                                        name={field.name}
+                                                        isInvalid={isInvalid}
+                                                        value={field.state.value}
+                                                        handleChange={field.handleChange}
+                                                        handleBlur={field.handleBlur}
+                                                        ref={firstStartTimeInput}
+                                                        secondRef={secondStartTimeInput}
+                                                        type={TimePickerType.HOURS}
+                                                    />
+                                                )
+                                            }}
+                                        />
+                                        <TimePicker.Divider />
+                                        <form.Field
+                                            name='startTimeMinutes'
+                                            children={(field) => {
+                                                const isInvalid =
+                                                    field.state.meta.isTouched &&
+                                                    !field.state.meta.isValid
 
-                                            return (
-                                                <TimePicker.Input
-                                                    name={field.name}
-                                                    isInvalid={isInvalid}
-                                                    value={field.state.value}
-                                                    handleChange={field.handleChange}
-                                                    handleBlur={field.handleBlur}
-                                                    ref={secondStartTimeInput}
-                                                    firstRef={firstStartTimeInput}
-                                                    secondRef={firstEndTimeInput}
-                                                    type={TimePickerType.MINUTES}
-                                                />
-                                            )
-                                        }}
-                                    />
-                                </TimePicker>
-                                <span className='text-muted-foreground'>
-                                    {t('calendar.event.create.form.time.to')}
-                                </span>
-                                <TimePicker>
-                                    <form.Field
-                                        name='endTimeHours'
-                                        children={(field) => {
-                                            const isInvalid =
-                                                field.state.meta.isTouched &&
-                                                !field.state.meta.isValid
-                                            return (
-                                                <TimePicker.Input
-                                                    name={field.name}
-                                                    isInvalid={isInvalid}
-                                                    value={field.state.value}
-                                                    handleChange={field.handleChange}
-                                                    handleBlur={field.handleBlur}
-                                                    ref={firstEndTimeInput}
-                                                    firstRef={secondStartTimeInput}
-                                                    secondRef={secondEndTimeInput}
-                                                    type={TimePickerType.HOURS}
-                                                />
-                                            )
-                                        }}
-                                    />
-                                    <TimePicker.Divider />
-                                    <form.Field
-                                        name='endTimeMinutes'
-                                        children={(field) => {
-                                            const isInvalid =
-                                                field.state.meta.isTouched &&
-                                                !field.state.meta.isValid
-                                            return (
-                                                <TimePicker.Input
-                                                    name={field.name}
-                                                    isInvalid={isInvalid}
-                                                    value={field.state.value}
-                                                    handleChange={field.handleChange}
-                                                    handleBlur={field.handleBlur}
-                                                    ref={secondEndTimeInput}
-                                                    firstRef={firstEndTimeInput}
-                                                    type={TimePickerType.MINUTES}
-                                                />
-                                            )
-                                        }}
-                                    />
-                                </TimePicker>
-                            </div>
-                        </>
-                    )}
-                    {timeVariant === EventDateType.TIME && (
-                        <>
-                            <div className='flex gap-x-4 items-center justify-center'>
+                                                return (
+                                                    <TimePicker.Input
+                                                        name={field.name}
+                                                        isInvalid={isInvalid}
+                                                        value={field.state.value}
+                                                        handleChange={field.handleChange}
+                                                        handleBlur={field.handleBlur}
+                                                        ref={secondStartTimeInput}
+                                                        firstRef={firstStartTimeInput}
+                                                        secondRef={firstEndTimeInput}
+                                                        type={TimePickerType.MINUTES}
+                                                    />
+                                                )
+                                            }}
+                                        />
+                                    </TimePicker>
+                                    <span className='text-muted-foreground not-md:hidden'>
+                                        {t('calendar.event.create.form.time.to')}
+                                    </span>
+                                    <TimePicker>
+                                        <form.Field
+                                            name='endTimeHours'
+                                            children={(field) => {
+                                                const isInvalid =
+                                                    field.state.meta.isTouched &&
+                                                    !field.state.meta.isValid
+                                                return (
+                                                    <TimePicker.Input
+                                                        name={field.name}
+                                                        isInvalid={isInvalid}
+                                                        value={field.state.value}
+                                                        handleChange={field.handleChange}
+                                                        handleBlur={field.handleBlur}
+                                                        ref={firstEndTimeInput}
+                                                        firstRef={secondStartTimeInput}
+                                                        secondRef={secondEndTimeInput}
+                                                        type={TimePickerType.HOURS}
+                                                    />
+                                                )
+                                            }}
+                                        />
+                                        <TimePicker.Divider />
+                                        <form.Field
+                                            name='endTimeMinutes'
+                                            children={(field) => {
+                                                const isInvalid =
+                                                    field.state.meta.isTouched &&
+                                                    !field.state.meta.isValid
+                                                return (
+                                                    <TimePicker.Input
+                                                        name={field.name}
+                                                        isInvalid={isInvalid}
+                                                        value={field.state.value}
+                                                        handleChange={field.handleChange}
+                                                        handleBlur={field.handleBlur}
+                                                        ref={secondEndTimeInput}
+                                                        firstRef={firstEndTimeInput}
+                                                        type={TimePickerType.MINUTES}
+                                                    />
+                                                )
+                                            }}
+                                        />
+                                    </TimePicker>
+                                </>
+                            )}
+                            {timeVariant === EventDateType.TIME && (
                                 <TimePicker variant={TimePickerVariant.WIDE}>
                                     <form.Field
                                         name='totalTimeHours'
@@ -260,9 +235,24 @@ export const EventForm = () => {
                                         )}
                                     />
                                 </TimePicker>
-                            </div>
-                        </>
-                    )}
+                            )}
+                        </div>
+                    </div>
+                    <RadioGroup
+                        variant={RadioGroupVariant.SMALL}
+                        value={timeVariant}
+                        onValueChange={(value) => setTimeVariant(value as EventDateType)}
+                        items={[
+                            {
+                                value: EventDateType.BLOCK,
+                                title: t('calendar.event.create.form.type.block.label'),
+                            },
+                            {
+                                value: EventDateType.TIME,
+                                title: t('calendar.event.create.form.type.hours.label'),
+                            },
+                        ]}
+                    ></RadioGroup>
                 </Field>
                 <form.Field
                     name='eventType'
@@ -275,6 +265,7 @@ export const EventForm = () => {
                                     <FormRequired />
                                 </FieldLabel>
                                 <RadioGroup
+                                    variant={RadioGroupVariant.DYNAMIC}
                                     value={field.state.value}
                                     onValueChange={(value) =>
                                         field.handleChange(value as EventType)
