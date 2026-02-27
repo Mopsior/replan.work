@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { HTMLAttributes, ReactNode } from 'react'
 
 export interface ItemProps {
     day: string
@@ -55,9 +55,22 @@ export type HolidayData = {
     }
 }
 
-export interface ListItemProps {
+interface BaseListItemProps {
     name: string
     color: string
-    salary?: number
+}
+
+export interface ListItemProps
+    extends BaseListItemProps,
+        Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+    addon?: ReactNode
+}
+
+export interface ListItemEditableProps extends BaseListItemProps {
     id: string
+    salary?: number
+}
+
+export interface ListItemRadioItemProps extends BaseListItemProps {
+    value: string
 }

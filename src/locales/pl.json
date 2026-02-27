@@ -40,7 +40,8 @@
     },
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {
-        "app": "aplikacji"
+        "app": "aplikacji",
+        "settings": "ustawień"
     },
     "calendar": {
         "months": {
@@ -141,6 +142,13 @@
                         "stationary": "Stacjonarne",
                         "remote": "Zdalne",
                         "hybrid": "Hybrydowe"
+                    },
+                    "calendar": {
+                        "label": "Kalendarz",
+                        "empty": {
+                            "label": "Brak kalendarzy",
+                            "description": "Aby stworzyć wydarzenie, najpierw dodaj kalendarz w ustawieniach"
+                        }
                     }
                 }
             }

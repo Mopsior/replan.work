@@ -3,7 +3,7 @@ import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
 import { getRandomColor } from '@/utils/get-random-color'
 import { CreateCalendarDrawer } from '../calendar/create'
-import { ListItem } from '../calendar/list-item'
+import ListItem from '../calendar/list-item'
 import { ErrorScreen } from '../error-screen'
 import { ListItemSkeleton } from '../skeletons/list-item'
 
@@ -18,7 +18,7 @@ export const CalendarSettings = () => {
             {isError && error && <ErrorScreen error={error} />}
             {isLoading && <ListItemSkeleton />}
             {data?.map((calendar) => (
-                <ListItem
+                <ListItem.Editable
                     key={`calendar-item-${calendar.id}`}
                     name={calendar.name}
                     color={calendar.color ?? getRandomColor()}

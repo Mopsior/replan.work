@@ -85,6 +85,20 @@ The theme is applied as a CSS class (`light` or `dark`) on the `<html>` element.
 </div>
 ```
 
+## 💡 Quick Tips
+<details>
+<summary>Getting <b>UserID</b></summary>
+
+In `/app/*` you can get userID from **loader data** (fetched on `/app/route.tsx`)
+
+```tsx
+// import path matters!
+import { Route } from '@/routes/app/route'
+// ...
+const { userId } = Route.useLoaderData()
+```
+</details>
+
 ## 🐞 Error handling
 
 Handling error should be done through `<ErrorScreen />` component (and added later similar things). This will create one space for sending data to PostHog

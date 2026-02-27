@@ -14,7 +14,6 @@ export interface EventProps {
 
 export const formSchema = z
     .object({
-        calendarId: z.uuid(),
         date: z
             .date()
             .min(MIN_APP_DATE, t('calendar.event.create.form.date.minDate'))
@@ -50,6 +49,7 @@ export const formSchema = z
             .max(2, t('calendar.event.create.form.time.total.minutes.maxLength'))
             .optional(),
         eventType: z.enum(EventType),
+        calendarId: z.uuid(),
         title: z
             .string()
             .max(16, t('calendar.event.create.form.title.maxLength', { charCount: 16 }))

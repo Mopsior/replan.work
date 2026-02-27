@@ -4,13 +4,16 @@ import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import z from 'zod'
 import { Button } from '@/components/ui/button'
-import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { useUserCalendars } from '@/hooks/use-user-calendars'
+import { Route } from '@/routes/app/route'
 import { EventType } from '@/types/enums'
 import { FormRequired } from '../form-required'
 import { DatePicker } from '../inputs/date-picker'
 import { RadioGroup } from '../inputs/radio-group'
 import TimePicker from '../inputs/time-picker'
 import { RadioGroupVariant, TimePickerType, TimePickerVariant } from '../inputs/types'
+import { CalendarSelect } from './form/calendar-select'
 import { EventDateType, formSchema } from './types'
 
 // TODO
@@ -20,6 +23,9 @@ import { EventDateType, formSchema } from './types'
 
 export const EventForm = () => {
     const { t } = useTranslation()
+    const { userId } = Route.useLoaderData()
+    const { data: calendars } = useUserCalendars(userId)
+
     const [timeVariant, setTimeVariant] = useState<EventDateType>(EventDateType.BLOCK)
     const firstStartTimeInput = useRef(null)
     const secondStartTimeInput = useRef(null)
@@ -39,7 +45,8 @@ export const EventForm = () => {
             totalTimeHours: '08',
             totalTimeMinutes: '00',
             eventType: EventType.STATIONARY,
-            title: '',
+            calendarId: calendars?.[0]?.id ?? '',
+            title: calendars?.[0]?.name ?? '',
         } as z.infer<typeof formSchema>,
         validators: {
             onSubmit: formSchema,
@@ -291,6 +298,25 @@ export const EventForm = () => {
                                         },
                                     ]}
                                 />
+                            </Field>
+                        )
+                    }}
+                />
+                <form.Field
+                    name='calendarId'
+                    children={(field) => {
+                        const isInvalid = field.state.meta.isTouched && !field.state.meta.isValid
+                        return (
+                            <Field data-invalid={isInvalid}>
+                                <FieldLabel htmlFor={field.name}>
+                                    {t('calendar.event.create.form.calendar.label')}
+                                    <FormRequired />
+                                </FieldLabel>
+                                <CalendarSelect
+                                    value={field.state.value}
+                                    onValueChange={(value) => field.handleChange(value as string)}
+                                />
+                                {isInvalid && <FieldError errors={field.state.meta.errors} />}
                             </Field>
                         )
                     }}
