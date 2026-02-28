@@ -54,7 +54,7 @@ const CalendarsList = ({
                 <ListItem.RadioItem
                     key={`event-creation-calendar-${calendar.id}`}
                     name={calendar.name}
-                    color={calendar.color}
+                    itemColor={calendar.color}
                     value={calendar.id}
                 />
             ))}
@@ -74,7 +74,7 @@ const MobileCalendarsList = ({
     return (
         <ListItem
             name={selectedCalendar.name}
-            color={selectedCalendar.color}
+            itemColor={selectedCalendar.color}
             className={cn(['text-sm text-muted-foreground', className])}
             addon={
                 <span className='flex items-center gap-x-1'>

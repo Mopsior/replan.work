@@ -57,12 +57,10 @@ export type HolidayData = {
 
 interface BaseListItemProps {
     name: string
-    color: string
+    itemColor: string
 }
 
-export interface ListItemProps
-    extends BaseListItemProps,
-        Omit<HTMLAttributes<HTMLDivElement>, 'color'> {
+export interface ListItemProps extends BaseListItemProps, HTMLAttributes<HTMLDivElement> {
     addon?: ReactNode
 }
 

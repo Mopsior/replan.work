@@ -21,7 +21,7 @@ export const CalendarSettings = () => {
                 <ListItem.Editable
                     key={`calendar-item-${calendar.id}`}
                     name={calendar.name}
-                    color={calendar.color ?? getRandomColor()}
+                    itemColor={calendar.color ?? getRandomColor()}
                     salary={calendar.salary ?? undefined}
                     id={calendar.id}
                 />
