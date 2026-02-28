@@ -115,7 +115,7 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
-const DynamicNestedDrawerWrapper = ({
+const DrawerWrapper = ({
     children,
     bottomChildren,
 }: {
@@ -143,18 +143,14 @@ const DynamicNestedDrawer = ({
     if (isMobile) {
         return (
             <NestedDrawer {...props} trigger={trigger}>
-                <DynamicNestedDrawerWrapper bottomChildren={bottomChildren}>
-                    {children}
-                </DynamicNestedDrawerWrapper>
+                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
             </NestedDrawer>
         )
     }
     return (
         <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
             <div className='bg-card relative h-full w-full rounded-md p-5'>
-                <DynamicNestedDrawerWrapper bottomChildren={bottomChildren}>
-                    {children}
-                </DynamicNestedDrawerWrapper>
+                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
                 <Vaul.Close asChild>
                     <Button variant='ghost' className='absolute top-4 right-4'>
                         <X className='text-muted-foreground hover:text-foreground transition-colors' />
@@ -171,4 +167,5 @@ Drawer.Description = DrawerDescription
 Drawer.HiddenDescription = DrawerHiddenDescription
 Drawer.Nested = NestedDrawer
 Drawer.Dynamic = DynamicNestedDrawer
+Drawer.Wrapper = DrawerWrapper
 export default Drawer

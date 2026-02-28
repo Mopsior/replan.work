@@ -1,13 +1,16 @@
 import { t } from 'i18next'
 import { ChevronDown } from 'lucide-react'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 import { RadioGroup } from '@/components/ui/radio-group'
 import ListItem from '@/features/calendar/list-item'
+import Drawer from '@/features/drawer'
 import { ErrorScreen } from '@/features/error-screen'
 import { EmptyListSkeleton, ListItemSkeleton } from '@/features/skeletons/list-item'
 import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { cn } from '@/lib/utils'
 import { Route } from '@/routes/app/route'
-import { CalendarListProps, CalendarSelectProps, MobileCalendarListProps } from './types'
+import { CalendarListProps, CalendarSelectProps } from './types'
 
 export const CalendarSelect = ({ value, onValueChange }: CalendarSelectProps) => {
     const { userId } = Route.useLoaderData()
@@ -19,15 +22,16 @@ export const CalendarSelect = ({ value, onValueChange }: CalendarSelectProps) =>
     return (
         <div className='flex flex-row md:flex-col gap-y-2 not-md:items-center w-full'>
             <CalendarsList
-                calendars={calendars}
                 value={value}
                 onValueChange={onValueChange}
+                calendars={calendars}
                 isLoading={isLoading}
                 className='not-md:hidden'
             />
             <MobileCalendarsList
-                calendars={calendars}
                 value={value}
+                onValueChange={onValueChange}
+                calendars={calendars}
                 isLoading={isLoading}
                 className='md:hidden'
             />
@@ -64,24 +68,51 @@ const CalendarsList = ({
 
 const MobileCalendarsList = ({
     value,
+    onValueChange,
+    calendars,
     isLoading,
     className,
-    calendars,
-}: MobileCalendarListProps) => {
+}: CalendarListProps) => {
+    const [isOpen, setIsOpen] = useState(false)
     if (isLoading) return <ListItemSkeleton count={1} className={className} />
     const selectedCalendar = calendars.find((calendar) => calendar.id === value) ?? calendars[0]
 
     return (
-        <ListItem
-            name={selectedCalendar.name}
-            itemColor={selectedCalendar.color}
-            className={cn(['text-sm text-muted-foreground', className])}
-            addon={
-                <span className='flex items-center gap-x-1'>
-                    {t('select')}
-                    <ChevronDown size={14} />
-                </span>
+        <Drawer.Nested
+            open={isOpen}
+            onOpenChange={setIsOpen}
+            trigger={
+                <ListItem
+                    name={selectedCalendar.name}
+                    itemColor={selectedCalendar.color}
+                    className={cn(['text-sm text-muted-foreground', className])}
+                    addon={
+                        <span className='flex items-center gap-x-1'>
+                            {t('select')}
+                            <ChevronDown size={14} />
+                        </span>
+                    }
+                />
             }
-        />
+        >
+            <Drawer.Wrapper
+                bottomChildren={
+                    <Button type='button' onClick={() => setIsOpen(false)}>
+                        {t('select')}
+                    </Button>
+                }
+            >
+                <Drawer.Title>{t('calendar.event.create.form.calendar.choose')}</Drawer.Title>
+                <Drawer.HiddenDescription>
+                    {t('calendar.event.create.form.calendar.altDescription')}
+                </Drawer.HiddenDescription>
+                <CalendarsList
+                    value={value}
+                    onValueChange={onValueChange}
+                    calendars={calendars}
+                    isLoading={isLoading}
+                />
+            </Drawer.Wrapper>
+        </Drawer.Nested>
     )
 }

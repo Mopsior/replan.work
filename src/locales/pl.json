@@ -148,7 +148,9 @@
                         "empty": {
                             "label": "Brak kalendarzy",
                             "description": "Aby stworzyć wydarzenie, najpierw dodaj kalendarz w ustawieniach"
-                        }
+                        },
+                        "choose": "Wybierz kalendarz",
+                        "altDescription": "Wybierz kalendarz, do którego chcesz dodać wydarzenie."
                     }
                 }
             }

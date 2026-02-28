@@ -13,10 +13,3 @@ export interface CalendarListProps extends CalendarSelectProps, HTMLAttributes<H
     calendars: Calendar[]
     isLoading: boolean
 }
-
-export interface MobileCalendarListProps {
-    value: string
-    calendars: Calendar[]
-    isLoading: boolean
-    className?: string
-}
