@@ -21,19 +21,11 @@ export const CalendarSelect = ({ value, onValueChange }: CalendarSelectProps) =>
 
     return (
         <div className='flex flex-row md:flex-col gap-y-2 not-md:items-center w-full'>
-            <CalendarsList
+            <ExpandableCalendarList
                 value={value}
                 onValueChange={onValueChange}
                 calendars={calendars}
                 isLoading={isLoading}
-                className='not-md:hidden'
-            />
-            <MobileCalendarsList
-                value={value}
-                onValueChange={onValueChange}
-                calendars={calendars}
-                isLoading={isLoading}
-                className='md:hidden'
             />
         </div>
     )
@@ -66,7 +58,7 @@ const CalendarsList = ({
     )
 }
 
-const MobileCalendarsList = ({
+const ExpandableCalendarList = ({
     value,
     onValueChange,
     calendars,
@@ -78,7 +70,7 @@ const MobileCalendarsList = ({
     const selectedCalendar = calendars.find((calendar) => calendar.id === value) ?? calendars[0]
 
     return (
-        <Drawer.Nested
+        <Drawer.Dynamic
             open={isOpen}
             onOpenChange={setIsOpen}
             trigger={
@@ -94,25 +86,22 @@ const MobileCalendarsList = ({
                     }
                 />
             }
+            bottomChildren={
+                <Button type='button' onClick={() => setIsOpen(false)}>
+                    {t('select')}
+                </Button>
+            }
         >
-            <Drawer.Wrapper
-                bottomChildren={
-                    <Button type='button' onClick={() => setIsOpen(false)}>
-                        {t('select')}
-                    </Button>
-                }
-            >
-                <Drawer.Title>{t('calendar.event.create.form.calendar.choose')}</Drawer.Title>
-                <Drawer.HiddenDescription>
-                    {t('calendar.event.create.form.calendar.altDescription')}
-                </Drawer.HiddenDescription>
-                <CalendarsList
-                    value={value}
-                    onValueChange={onValueChange}
-                    calendars={calendars}
-                    isLoading={isLoading}
-                />
-            </Drawer.Wrapper>
-        </Drawer.Nested>
+            <Drawer.Title>{t('calendar.event.create.form.calendar.choose')}</Drawer.Title>
+            <Drawer.HiddenDescription>
+                {t('calendar.event.create.form.calendar.altDescription')}
+            </Drawer.HiddenDescription>
+            <CalendarsList
+                value={value}
+                onValueChange={onValueChange}
+                calendars={calendars}
+                isLoading={isLoading}
+            />
+        </Drawer.Dynamic>
     )
 }

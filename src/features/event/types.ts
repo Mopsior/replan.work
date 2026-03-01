@@ -52,6 +52,7 @@ export const formSchema = z
         calendarId: z.uuid(),
         title: z
             .string()
+            .min(3, t('calendar.event.create.form.title.minLength', { charCount: 3 }))
             .max(16, t('calendar.event.create.form.title.maxLength', { charCount: 16 }))
             .optional(),
     })

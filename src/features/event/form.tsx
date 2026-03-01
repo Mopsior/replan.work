@@ -1,10 +1,12 @@
 import { useForm } from '@tanstack/react-form'
-import { Building, House, Laptop, Plus } from 'lucide-react'
+import { Building, ChevronDown, ChevronUp, House, Laptop, Plus } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import z from 'zod'
 import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
 import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
 import { EventType } from '@/types/enums'
@@ -18,7 +20,6 @@ import { EventDateType, formSchema } from './types'
 
 // TODO
 // - Add mobile time-picker
-// - Make title as "Advanced" collapsed option
 // + Maybe move useForm to separate file for better code cleanness (but remember about using this also for editing)
 
 export const EventForm = () => {
@@ -27,6 +28,7 @@ export const EventForm = () => {
     const { data: calendars } = useUserCalendars(userId)
 
     const [timeVariant, setTimeVariant] = useState<EventDateType>(EventDateType.BLOCK)
+    const [isExpanded, setIsExpanded] = useState(false)
     const firstStartTimeInput = useRef(null)
     const secondStartTimeInput = useRef(null)
     const firstEndTimeInput = useRef(null)
@@ -55,6 +57,18 @@ export const EventForm = () => {
         },
         onSubmit: async ({ value }) => {
             console.log(value)
+        },
+        listeners: {
+            onChange: ({ formApi, fieldApi }) => {
+                if (fieldApi.name === 'calendarId') {
+                    const selectedCalendar = calendars?.find(
+                        (calendar) => calendar.id === fieldApi.state.value,
+                    )
+                    if (selectedCalendar && selectedCalendar.name !== formApi.state.values.title) {
+                        formApi.setFieldValue('title', selectedCalendar.name)
+                    }
+                }
+            },
         },
     })
 
@@ -321,6 +335,42 @@ export const EventForm = () => {
                         )
                     }}
                 />
+                <Collapsible
+                    className='space-y-2'
+                    open={isExpanded}
+                    onOpenChange={(open) => setIsExpanded(open)}
+                >
+                    <CollapsibleTrigger className='text-sm text-muted-foreground hover:bg-muted rounded-md py-1 mx-auto px-2 cursor-pointer flex justify-center items-center gap-x-2 transition-colors'>
+                        {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        {t('advanced')}
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                        <form.Field
+                            name='title'
+                            children={(field) => {
+                                const isInvalid =
+                                    field.state.meta.isTouched && !field.state.meta.isValid
+                                return (
+                                    <Field data-invalid={isInvalid}>
+                                        <FieldLabel htmlFor={field.name}>
+                                            {t('calendar.event.create.form.title.label')}
+                                        </FieldLabel>
+                                        <Input
+                                            value={field.state.value}
+                                            onChange={(e) => field.handleChange(e.target.value)}
+                                        />
+                                        <FieldDescription>
+                                            {t('calendar.event.create.form.title.description')}
+                                        </FieldDescription>
+                                        {isInvalid && (
+                                            <FieldError errors={field.state.meta.errors} />
+                                        )}
+                                    </Field>
+                                )
+                            }}
+                        />
+                    </CollapsibleContent>
+                </Collapsible>
             </FieldGroup>
             <Button type='submit'>
                 <Plus size={16} />
