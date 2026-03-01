@@ -12,7 +12,7 @@ index 7f343be1fafe1cf302ee6afc7268c29490895e34..a4f8181b7321ffc0ff8dd100ce964818
 +        if (nestedIsOpen !== undefined) {
 +            onNestedOpenChange(nestedIsOpen);
 +        }
-+    }, [nestedIsOpen, onNestedOpenChange]);
++    }, [nestedIsOpen]);
      return /*#__PURE__*/ React__namespace.default.createElement(Root, {
          nested: true,
          open: nestedIsOpen,
@@ -30,7 +30,7 @@ index 0dbbce5526681925a81804ced237a045a53c0355..7621c6bf5fc7b31c08af3ceee55da265
 +        if (nestedIsOpen !== undefined) {
 +            onNestedOpenChange(nestedIsOpen);
 +        }
-+    }, [nestedIsOpen, onNestedOpenChange]);
++    }, [nestedIsOpen]);
      return /*#__PURE__*/ React__default.createElement(Root, {
          nested: true,
          open: nestedIsOpen,
