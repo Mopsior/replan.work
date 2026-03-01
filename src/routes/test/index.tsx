@@ -1,7 +1,5 @@
-import { useAuth } from '@clerk/tanstack-react-start'
 import { createFileRoute, notFound } from '@tanstack/react-router'
-import { Event } from '@/features/calendar/event'
-import { useEvents } from '@/hooks/use-events'
+import { Event } from '@/features/event/event'
 import { EventType } from '@/types/enums'
 
 export const Route = createFileRoute('/test/')({
@@ -14,15 +12,6 @@ export const Route = createFileRoute('/test/')({
 })
 
 function RouteComponent() {
-    const { userId } = useAuth()
-    const { data, isLoading, isError, error } = useEvents(
-        userId!,
-        new Date().getMonth() + 1,
-        new Date().getFullYear(),
-    )
-
-    console.log(data, isLoading, isError, error)
-
     return (
         <div className='flex h-dvh w-full items-center justify-center p-4'>
             <div className='grid grid-cols-2 gap-x-4 gap-y-4'>

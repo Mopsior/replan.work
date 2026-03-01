@@ -1,5 +1,4 @@
-import { ReactNode } from 'react'
-import type { EventType } from '@/types/enums'
+import { HTMLAttributes, ReactNode } from 'react'
 
 export interface ItemProps {
     day: string
@@ -11,15 +10,6 @@ export interface ItemProps {
     eventsCount?: number
     totalTime?: string
     children?: ReactNode
-}
-
-export interface EventProps {
-    title: string
-    time?: string
-    color?: string
-    eventType: EventType
-    isOneLiner?: boolean
-    isTotalTime?: boolean
 }
 
 export enum Cell {
@@ -65,9 +55,20 @@ export type HolidayData = {
     }
 }
 
-export interface ListItemProps {
+interface BaseListItemProps {
     name: string
-    color: string
-    salary?: number
+    itemColor: string
+}
+
+export interface ListItemProps extends BaseListItemProps, HTMLAttributes<HTMLDivElement> {
+    addon?: ReactNode
+}
+
+export interface ListItemEditableProps extends BaseListItemProps {
     id: string
+    salary?: number
+}
+
+export interface ListItemRadioItemProps extends BaseListItemProps {
+    value: string
 }

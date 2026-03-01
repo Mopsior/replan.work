@@ -1,8 +1,25 @@
 {
     "return": "Powrót",
     "go": "Przejdź",
+    "select": "Wybierz",
     "menu": "Menu",
     "delete": "Usuń",
+    "advanced": "Zaawansowane",
+    "input": {
+        "datePicker": {
+            "placeholder": "Wybierz datę",
+            "label": "Wybierz datę",
+            "description": "Wybrana data to {{date}} roku",
+            "notSelected": "Nie wybrano dat. Skorzystaj z kalendarza powyżej"
+        },
+        "timePicker": {
+            "hours": {
+                "one": "godzina",
+                "few": "godziny",
+                "many": "godzin"
+            }
+        }
+    },
     "settings": {
         "short": "Ustawienia",
         "title": "Ustawienia aplikacji",
@@ -24,7 +41,8 @@
     },
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {
-        "app": "aplikacji"
+        "app": "aplikacji",
+        "settings": "ustawień"
     },
     "calendar": {
         "months": {
@@ -58,7 +76,88 @@
                 "custom": "Niestandardowe"
             },
             "more": "Więcej",
-            "fetchError": "Oopsie! Nie udało się pobrać wydarzeń."
+            "fetchError": "Oopsie! Nie udało się pobrać wydarzeń.",
+            "create": {
+                "button": "Stwórz wydarzenie",
+                "label": "Dodaj wydarzenie",
+                "description": "Wydarzenie odpowiada pojedynczemu blokowi czasu w kalendarzu.",
+                "form": {
+                    "date": {
+                        "label": "Data wydarzenia",
+                        "required": "Data wydarzenia jest wymagana",
+                        "minDate": "Data wydarzenia jest zbyt wczesna",
+                        "maxDate": "Data wydarzenia jest zbyt późna"
+                    },
+                    "type": {
+                        "block": {
+                            "label": "Określone godziny"
+                        },
+                        "hours": {
+                            "label": "Łączny czas"
+                        }
+                    },
+                    "title": {
+                        "label": "Tytuł wydarzenia",
+                        "description": "Jest to domyślnie nazwa wybranego kalendarza, ale możesz ją zmienić.",
+                        "maxLength": "Tytuł wydarzenia nie może być dłuższy niż {{charCount}} znaków",
+                        "minLength": "Tytuł wydarzenia musi być dłuższy niż {{charCount}} znaki"
+                    },
+                    "time": {
+                        "label": "Czas trwania",
+                        "from": "od",
+                        "to": "do",
+                        "calculate": "czyli łącznie {{duration}}",
+                        "empty": "Podaj godzinę rozpoczęcia i zakończenia",
+                        "start": {
+                            "hours": {
+                                "minLength": "Godzina rozpoczęcia musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Godzina rozpoczęcia nie może być dłuższa niż 2 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Minuty rozpoczęcia muszą mieć co najmniej 1 liczbę",
+                                "maxLength": "Minuty rozpoczęcia nie mogą być dłuższe niż 2 liczby"
+                            }
+                        },
+                        "end": {
+                            "hours": {
+                                "minLength": "Godzina zakończenia musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Godzina zakończenia nie może być dłuższa niż 2 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Minuty zakończenia muszą mieć co najmniej 1 liczbę",
+                                "maxLength": "Minuty zakończenia nie mogą być dłuższe niż 2 liczby"
+                            }
+                        },
+                        "total": {
+                            "label": "łącznie",
+                            "hours": {
+                                "minLength": "Łączna liczba godzin musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Łączna liczba godzin nie może być dłuższa niż 4 liczby"
+                            },
+                            "minutes": {
+                                "minLength": "Łączna liczba minut musi mieć co najmniej 1 liczbę",
+                                "maxLength": "Łączna liczba minut nie może być dłuższa niż 2 liczby"
+                            }
+                        },
+                        "endBeforeStart": "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia"
+                    },
+                    "eventType": {
+                        "label": "Typ wydarzenia",
+                        "stationary": "Stacjonarne",
+                        "remote": "Zdalne",
+                        "hybrid": "Hybrydowe"
+                    },
+                    "calendar": {
+                        "label": "Kalendarz",
+                        "empty": {
+                            "label": "Brak kalendarzy",
+                            "description": "Aby stworzyć wydarzenie, najpierw dodaj kalendarz w ustawieniach"
+                        },
+                        "choose": "Wybierz kalendarz",
+                        "altDescription": "Wybierz kalendarz, do którego chcesz dodać wydarzenie."
+                    }
+                }
+            }
         }
     },
     "appSettings": {

@@ -37,6 +37,7 @@
         "@tanstack/zod-adapter": "^1.154.7",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
+        "date-fns": "^4.1.0",
         "drizzle-kit": "^0.31.8",
         "drizzle-orm": "^0.45.1",
         "i18next": "^25.7.4",
@@ -46,6 +47,7 @@
         "nitro": "latest",
         "pg": "^8.16.3",
         "react": "^19.2.3",
+        "react-day-picker": "^9.13.2",
         "react-dom": "^19.2.3",
         "react-i18next": "^16.5.1",
         "react-scan": "^0.4.3",
@@ -79,6 +81,11 @@
         "web-vitals": "^5.1.0"
     },
     "packageManager": "pnpm@10.9.0+sha512.0486e394640d3c1fb3c9d43d49cf92879ff74f8516959c235308f5a8f62e2e19528a65cdc2a3058f587cde71eba3d5b56327c8c33a97e4c4051ca48a10ca2d5f",
+    "pnpm": {
+        "patchedDependencies": {
+            "vaul@1.1.2": "patches/vaul.patch"
+        }
+    },
     "lint-staged": {
         "*.{js,ts,cjs,mjs,d.cts,d.mts,jsx,tsx,json,jsonc}": [
             "biome check --write --no-errors-on-unmatched"

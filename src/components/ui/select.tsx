@@ -2,6 +2,7 @@ import { Select as SelectPrimitive } from '@base-ui/react/select'
 import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import { ComponentProps } from 'react'
 
 const Select = SelectPrimitive.Root
 
@@ -66,14 +67,15 @@ function SelectContent({
     align = 'center',
     alignOffset = 0,
     alignItemWithTrigger = true,
+    portalProps,
     ...props
-}: SelectPrimitive.Popup.Props &
+}: { portalProps?: ComponentProps<typeof SelectPrimitive.Portal>} & SelectPrimitive.Popup.Props &
     Pick<
         SelectPrimitive.Positioner.Props,
         'align' | 'alignOffset' | 'side' | 'sideOffset' | 'alignItemWithTrigger'
     >) {
     return (
-        <SelectPrimitive.Portal>
+        <SelectPrimitive.Portal {...portalProps}>
             <SelectPrimitive.Positioner
                 side={side}
                 sideOffset={sideOffset}
@@ -81,6 +83,7 @@ function SelectContent({
                 alignOffset={alignOffset}
                 alignItemWithTrigger={alignItemWithTrigger}
                 className='isolate z-50'
+                
             >
                 <SelectPrimitive.Popup
                     data-slot='select-content'
