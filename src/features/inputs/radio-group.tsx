@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, Fragment } from 'react'
 import {
     FieldTitle as BaseFieldTitle,
     Field,
@@ -28,12 +28,11 @@ export const RadioGroup = ({
             {...props}
         >
             {items.map((item) => (
-                <>
+                <Fragment key={`radio-group-item-${item.value}`}>
                     {(variant === RadioGroupVariant.DEFAULT ||
                         variant === RadioGroupVariant.DYNAMIC) && (
                         <RadioGroupItemWide
                             item={item}
-                            key={`radio-group-item-default-${item.value}`}
                             className={cn(variant === RadioGroupVariant.DYNAMIC && 'not-md:hidden')}
                         />
                     )}
@@ -41,11 +40,10 @@ export const RadioGroup = ({
                         variant === RadioGroupVariant.DYNAMIC) && (
                         <RadioGroupItemSmall
                             item={item}
-                            key={`radio-group-item-small-${item.value}`}
                             className={cn(variant === RadioGroupVariant.DYNAMIC && 'md:hidden')}
                         />
                     )}
-                </>
+                </Fragment>
             ))}
         </BaseRadioGroup>
     )
