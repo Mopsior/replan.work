@@ -1,6 +1,6 @@
 import { useForm } from '@tanstack/react-form'
 import { Building, ChevronDown, ChevronUp, House, Laptop, Plus } from 'lucide-react'
-import { useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import z from 'zod'
 import { Button } from '@/components/ui/button'
@@ -44,8 +44,6 @@ export const EventForm = () => {
             startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
             endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
             endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
-            totalTimeHours: '08',
-            totalTimeMinutes: '00',
             eventType: EventType.STATIONARY,
             calendarId: calendars?.[0]?.id ?? '',
             title: calendars?.[0]?.name ?? '',
@@ -72,6 +70,49 @@ export const EventForm = () => {
         },
     })
 
+    const timeErrors = useMemo(() => {
+        const timeFields = [
+            'startTimeHours',
+            'startTimeMinutes',
+            'endTimeHours',
+            'endTimeMinutes',
+            'totalTimeHours',
+            'totalTimeMinutes',
+        ] as const
+
+        return timeFields.flatMap((field) => {
+            const meta = form.state.fieldMeta[field]
+            return meta?.isTouched ? (meta.errors ?? []) : []
+        })
+    }, [form.state.fieldMeta])
+
+    const handleTimeVariantChange = (variant: EventDateType) => {
+        const fieldUpdates =
+            variant === EventDateType.BLOCK
+                ? {
+                      totalTimeHours: undefined,
+                      totalTimeMinutes: undefined,
+                      startTimeHours: today.getHours().toString().padStart(2, '0'),
+                      startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
+                      endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
+                      endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
+                  }
+                : {
+                      startTimeHours: undefined,
+                      startTimeMinutes: undefined,
+                      endTimeHours: undefined,
+                      endTimeMinutes: undefined,
+                      totalTimeHours: '8',
+                      totalTimeMinutes: '00',
+                  }
+
+        Object.entries(fieldUpdates).forEach(([field, value]) => {
+            form.setFieldValue(field as keyof typeof fieldUpdates, value)
+        })
+
+        setTimeVariant(variant)
+    }
+
     return (
         <form
             onSubmit={(e) => {
@@ -93,13 +134,21 @@ export const EventForm = () => {
                                 const isInvalid =
                                     field.state.meta.isTouched && !field.state.meta.isValid
                                 return (
-                                    <DatePicker
-                                        id={field.name}
-                                        date={field.state.value}
-                                        setDate={field.handleChange}
-                                        isInvalid={isInvalid}
-                                        errors={field.state.meta.errors}
-                                    />
+                                    <>
+                                        <DatePicker
+                                            id={field.name}
+                                            date={field.state.value}
+                                            setDate={field.handleChange}
+                                            isInvalid={isInvalid}
+                                            errors={field.state.meta.errors}
+                                        />
+                                        {isInvalid && (
+                                            <FieldError
+                                                className='mt-1'
+                                                errors={field.state.meta.errors}
+                                            />
+                                        )}
+                                    </>
                                 )
                             }}
                         />
@@ -262,7 +311,7 @@ export const EventForm = () => {
                     <RadioGroup
                         variant={RadioGroupVariant.SMALL}
                         value={timeVariant}
-                        onValueChange={(value) => setTimeVariant(value as EventDateType)}
+                        onValueChange={(value) => handleTimeVariantChange(value as EventDateType)}
                         items={[
                             {
                                 value: EventDateType.BLOCK,
@@ -274,6 +323,7 @@ export const EventForm = () => {
                             },
                         ]}
                     ></RadioGroup>
+                    {timeErrors.length > 0 && <FieldError errors={timeErrors} />}
                 </Field>
                 <form.Field
                     name='eventType'

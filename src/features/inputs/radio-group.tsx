@@ -61,10 +61,12 @@ export const RadioGroupItemWide = ({
                 {item.icon ? (
                     <div className='flex items-center gap-x-2 capitalize'>
                         {item.icon}
-                        {item.title && <FieldTitle className='mt-0.5'>{item.title}</FieldTitle>}
+                        {item.title && (
+                            <FieldTitle className='mt-0.5 text-foreground'>{item.title}</FieldTitle>
+                        )}
                     </div>
                 ) : (
-                    item.title && <FieldTitle>{item.title}</FieldTitle>
+                    item.title && <FieldTitle className='text-foreground'>{item.title}</FieldTitle>
                 )}
                 {item.description && <FieldDescription>{item.description}</FieldDescription>}
             </FieldContent>
@@ -77,21 +79,21 @@ export const RadioGroupItemSmall = ({
     item,
     className,
     ...props
-}: RadioGroupItemProps & ComponentProps<typeof Field>) => (
-    <Field
+}: RadioGroupItemProps & ComponentProps<typeof FieldLabel>) => (
+    <FieldLabel
         className={cn(
-            'flex items-center gap-x-2 rounded-md border px-2 py-1 w-fit has-data-checked:bg-primary/10 has-data-checked:border-primary transition-colors group text-primary cursor-pointer *:cursor-pointer',
+            'flex items-center gap-x-2 rounded-md border px-2 py-1 w-fit has-data-checked:bg-primary/10 has-data-checked:border-primary transition-colors group cursor-pointer *:cursor-pointer',
             className,
         )}
-        orientation='vertical'
+        htmlFor={item.value}
         {...props}
     >
-        <FieldLabel htmlFor={item.value} className='group-has-data-checked:text-primary text-base'>
+        <FieldContent className='group-has-data-checked:text-primary text-base flex flex-row items-center! gap-x-2'>
             {item.icon}
             {item.title}
-        </FieldLabel>
+        </FieldContent>
         <RadioGroupItem value={item.value} id={item.value} withIndicator={false} />
-    </Field>
+    </FieldLabel>
 )
 
 const FieldTitle = ({ children, className }: FieldTitleProps) => (

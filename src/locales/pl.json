@@ -139,7 +139,8 @@
                                 "maxLength": "Łączna liczba minut nie może być dłuższa niż 2 liczby"
                             }
                         },
-                        "endBeforeStart": "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia"
+                        "endBeforeStart": "Czas zakończenia nie może być wcześniejszy niż czas rozpoczęcia",
+                        "variantsConflict": "Nie możesz podać czasu rozpoczecia/zakończenia i łącznego czasu jednocześnie. Jeśli któraś z tych wartości nie została automatycznie wyczyszczona, to wystąpił bład. Zmień typ i wyczyść godziny dla innego typu."
                     },
                     "eventType": {
                         "label": "Typ wydarzenia",

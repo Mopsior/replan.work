@@ -130,7 +130,7 @@ const TimePickerInput = ({
             className={cn([
                 'text-center p-0! not-nth-2:pr-1!',
                 variant === TimePickerVariant.WIDE &&
-                    'nth-2:max-w-8 not-nth-2:text-start not-nth-2:pl-2!',
+                    'nth-2:max-w-7 not-nth-2:text-start not-nth-2:pl-2!',
                 className,
             ])}
             autoComplete='off'

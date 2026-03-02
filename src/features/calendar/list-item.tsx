@@ -18,7 +18,7 @@ const ListItem = ({ name, itemColor, className, addon, ...props }: ListItemProps
     >
         <div className='flex items-center gap-x-2'>
             <div className='size-3 rounded-full' style={{ backgroundColor: `#${itemColor}` }} />
-            {name}
+            <span className='text-foreground'>{name}</span>
         </div>
         {addon}
     </div>
@@ -32,7 +32,6 @@ const EditableListItem = ({ name, itemColor, salary, id }: ListItemEditableProps
             open={isOpen}
             onOpenChange={setIsOpen}
             trigger={<ListItem name={name} itemColor={itemColor} />}
-            // trigger={<p> test</p>}
         >
             <Drawer.Title withCenter>{t('appSettings.calendars.edit.label')}</Drawer.Title>
             <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
@@ -57,7 +56,7 @@ const ListItemRadioItem = ({ name, itemColor, value }: ListItemRadioItemProps) =
     >
         <div className='flex items-center gap-x-2'>
             <div className='size-3 rounded-full' style={{ backgroundColor: `#${itemColor}` }} />
-            {name}
+            <span className='text-foreground'>{name}</span>
         </div>
         <RadioGroupItem value={value} id={value} />
     </FieldLabel>

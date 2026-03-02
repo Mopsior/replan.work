@@ -78,6 +78,24 @@ export const formSchema = z
             path: ['endTimeHours'],
         },
     )
+    .refine(
+        (data) => {
+            if (
+                (data.totalTimeHours || data.totalTimeMinutes) &&
+                (data.startTimeHours ||
+                    data.startTimeMinutes ||
+                    data.endTimeHours ||
+                    data.endTimeMinutes)
+            ) {
+                return false
+            }
+            return true
+        },
+        {
+            message: t('calendar.event.create.form.time.variantsConflict'),
+            path: ['date'],
+        },
+    )
 
 export enum EventDateType {
     BLOCK = 'block',
