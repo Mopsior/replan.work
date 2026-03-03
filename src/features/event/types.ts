@@ -2,6 +2,7 @@ import { t } from 'i18next'
 import z from 'zod'
 import { MAX_APP_DATE, MIN_APP_DATE } from '@/types/constants'
 import { EventType } from '@/types/enums'
+import { Calendar } from './form/types'
 
 export interface EventProps {
     title: string
@@ -97,7 +98,24 @@ export const formSchema = z
         },
     )
 
+export type FormValues = z.infer<typeof formSchema>
+
 export enum EventDateType {
     BLOCK = 'block',
     TIME = 'hours',
+}
+
+export const defaultFormValues = (calendars?: Calendar[]) => {
+    const today = new Date()
+
+    return {
+        date: new Date(),
+        startTimeHours: today.getHours().toString().padStart(2, '0'),
+        startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
+        endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
+        endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
+        eventType: EventType.STATIONARY,
+        calendarId: calendars?.[0]?.id ?? '',
+        title: calendars?.[0]?.name ?? '',
+    } as z.infer<typeof formSchema>
 }
