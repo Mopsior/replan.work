@@ -9,6 +9,15 @@ import { RadioGroupVariant, TimePickerType, TimePickerVariant } from '@/features
 import { defaultFormValues, EventDateType } from '../types'
 import { withForm } from './hook'
 
+const timeFields = [
+    'startTimeHours',
+    'startTimeMinutes',
+    'endTimeHours',
+    'endTimeMinutes',
+    'totalTimeHours',
+    'totalTimeMinutes',
+] as const
+
 export const DateField = withForm({
     defaultValues: defaultFormValues(),
     render: ({ form }) => {
@@ -23,16 +32,9 @@ export const DateField = withForm({
         const firstTotalTimeInput = useRef(null)
         const secondTotalTimeInput = useRef(null)
 
-        const timeErrors = useMemo(() => {
-            const timeFields = [
-                'startTimeHours',
-                'startTimeMinutes',
-                'endTimeHours',
-                'endTimeMinutes',
-                'totalTimeHours',
-                'totalTimeMinutes',
-            ] as const
+        // Collect errors from all time-related fields to display them together
 
+        const timeErrors = useMemo(() => {
             return timeFields.flatMap((field) => {
                 const meta = form.state.fieldMeta[field]
                 return meta?.isTouched ? (meta.errors ?? []) : []
@@ -59,8 +61,24 @@ export const DateField = withForm({
                           totalTimeMinutes: '00',
                       }
 
+            // Reset field errors, because data will be cleared
+            timeFields.forEach((field) => {
+                form.setFieldMeta(field, (prev) => ({
+                    ...prev,
+                    isTouched: false,
+                    isBlurred: false,
+                    isDirty: false,
+                    errorMap: {},
+                    errorSourceMap: {},
+                }))
+            })
+
+            // Reset field values
             Object.entries(fieldUpdates).forEach(([field, value]) => {
-                form.setFieldValue(field as keyof typeof fieldUpdates, value)
+                form.setFieldValue(field as keyof typeof fieldUpdates, value, {
+                    dontUpdateMeta: true,
+                    dontValidate: true,
+                })
             })
 
             setTimeVariant(variant)
