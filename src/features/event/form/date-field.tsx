@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
 import { FormRequired } from '@/features/form-required'
@@ -9,21 +9,31 @@ import { RadioGroupVariant, TimePickerType, TimePickerVariant } from '@/features
 import { defaultFormValues, EventDateType } from '../types'
 import { withForm } from './hook'
 
-const timeFields = [
+const blockTimeFields = [
     'startTimeHours',
     'startTimeMinutes',
     'endTimeHours',
     'endTimeMinutes',
-    'totalTimeHours',
-    'totalTimeMinutes',
 ] as const
+const totalTimeFields = ['totalTimeHours', 'totalTimeMinutes'] as const
+
+const toFieldError = (error: unknown): { message?: string } | undefined => {
+    if (error == null) return undefined
+    if (error instanceof Error) return { message: error.message }
+
+    if (typeof error === 'object' && 'message' in error) {
+        const { message } = error as { message?: unknown }
+        return message == null ? undefined : { message: String(message) }
+    }
+
+    return { message: String(error) }
+}
 
 export const DateField = withForm({
     defaultValues: defaultFormValues(),
     render: ({ form }) => {
         const { t } = useTranslation()
         const [timeVariant, setTimeVariant] = useState<EventDateType>(EventDateType.BLOCK)
-        const today = new Date()
 
         const firstStartTimeInput = useRef(null)
         const secondStartTimeInput = useRef(null)
@@ -31,56 +41,10 @@ export const DateField = withForm({
         const secondEndTimeInput = useRef(null)
         const firstTotalTimeInput = useRef(null)
         const secondTotalTimeInput = useRef(null)
-
-        // Collect errors from all time-related fields to display them together
-
-        const timeErrors = useMemo(() => {
-            return timeFields.flatMap((field) => {
-                const meta = form.state.fieldMeta[field]
-                return meta?.isTouched ? (meta.errors ?? []) : []
-            })
-        }, [form.state.fieldMeta])
+        const activeTimeFields =
+            timeVariant === EventDateType.BLOCK ? blockTimeFields : totalTimeFields
 
         const handleTimeVariantChange = (variant: EventDateType) => {
-            const fieldUpdates =
-                variant === EventDateType.BLOCK
-                    ? {
-                          totalTimeHours: undefined,
-                          totalTimeMinutes: undefined,
-                          startTimeHours: today.getHours().toString().padStart(2, '0'),
-                          startTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
-                          endTimeHours: (today.getHours() + 1).toString().padStart(2, '0'),
-                          endTimeMinutes: today.getMinutes().toString().padStart(2, '0'),
-                      }
-                    : {
-                          startTimeHours: undefined,
-                          startTimeMinutes: undefined,
-                          endTimeHours: undefined,
-                          endTimeMinutes: undefined,
-                          totalTimeHours: '8',
-                          totalTimeMinutes: '00',
-                      }
-
-            // Reset field errors, because data will be cleared
-            timeFields.forEach((field) => {
-                form.setFieldMeta(field, (prev) => ({
-                    ...prev,
-                    isTouched: false,
-                    isBlurred: false,
-                    isDirty: false,
-                    errorMap: {},
-                    errorSourceMap: {},
-                }))
-            })
-
-            // Reset field values
-            Object.entries(fieldUpdates).forEach(([field, value]) => {
-                form.setFieldValue(field as keyof typeof fieldUpdates, value, {
-                    dontUpdateMeta: true,
-                    dontValidate: true,
-                })
-            })
-
             setTimeVariant(variant)
         }
 
@@ -221,7 +185,16 @@ export const DateField = withForm({
                         },
                     ]}
                 ></RadioGroup>
-                {timeErrors.length > 0 && <FieldError errors={timeErrors} />}
+                <form.Subscribe
+                    selector={(state) =>
+                        activeTimeFields.flatMap((fieldName) => {
+                            const meta = state.fieldMeta[fieldName]
+                            if (!meta || !meta.isTouched || meta.isValid) return
+                            return meta.errors.map(toFieldError)
+                        })
+                    }
+                    children={(errors) => <FieldError errors={errors} />}
+                />
             </Field>
         )
     },
