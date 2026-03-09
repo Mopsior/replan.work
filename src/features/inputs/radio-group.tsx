@@ -54,7 +54,7 @@ export const RadioGroupItemWide = ({
     ...props
 }: RadioGroupItemProps & ComponentProps<typeof FieldLabel>) => (
     <FieldLabel htmlFor={item.value} {...props}>
-        <Field className='cursor-pointer px-4! py-2!' orientation='horizontal'>
+        <Field className='cursor-pointer px-4! py-2! items-center!' orientation='horizontal'>
             <FieldContent>
                 {item.icon ? (
                     <div className='flex items-center gap-x-2 capitalize'>

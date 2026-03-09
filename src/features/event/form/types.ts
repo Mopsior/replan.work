@@ -11,7 +11,7 @@ export interface CalendarSelectProps {
 }
 
 export interface CalendarListProps extends CalendarSelectProps, HTMLAttributes<HTMLDivElement> {
-    calendars: Calendar[]
+    calendars?: Calendar[]
     isLoading: boolean
 }
 
@@ -22,3 +22,14 @@ export interface TimePickerFieldProps {
     type: TimePickerType
     variant?: TimePickerVariant
 }
+
+export const blockTimeFields = [
+    'startTimeHours',
+    'startTimeMinutes',
+    'endTimeHours',
+    'endTimeMinutes',
+] as const
+
+export const totalTimeFields = ['totalTimeHours', 'totalTimeMinutes'] as const
+
+export type TimeFields = (typeof blockTimeFields)[number] | (typeof totalTimeFields)[number]

@@ -2,6 +2,7 @@ export const IS_MOBILE = '(max-width: 767px)'
 export const IS_DESKTOP = '(min-width: 768px)'
 export const MAX_APP_DATE = new Date(2030, 11, 31)
 export const MIN_APP_DATE = new Date(2025, 0, 1)
+export const TIME_REGEX = /^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$/
 
 export enum QueryKeys {
     USER_CALENDARS = 'user_calendars',
@@ -18,3 +19,11 @@ export const COLOR_PALETTE = [
     { hex: '422006', tailwind: 'bg-yellow-950' },
     { hex: '404040', tailwind: 'bg-neutral-700' },
 ] as const
+
+export enum MAX {
+    CALENDAR_NAME_LENGTH = 16,
+}
+
+export enum MIN {
+    CALENDAR_NAME_LENGTH = 3,
+}

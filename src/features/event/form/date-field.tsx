@@ -8,14 +8,7 @@ import TimePicker from '@/features/inputs/time-picker'
 import { RadioGroupVariant, TimePickerType, TimePickerVariant } from '@/features/inputs/types'
 import { defaultFormValues, EventDateType } from '../types'
 import { withForm } from './hook'
-
-const blockTimeFields = [
-    'startTimeHours',
-    'startTimeMinutes',
-    'endTimeHours',
-    'endTimeMinutes',
-] as const
-const totalTimeFields = ['totalTimeHours', 'totalTimeMinutes'] as const
+import { blockTimeFields, TimeFields, totalTimeFields } from './types'
 
 const toFieldError = (error: unknown): { message?: string } | undefined => {
     if (error == null) return undefined
@@ -45,6 +38,12 @@ export const DateField = withForm({
             timeVariant === EventDateType.BLOCK ? blockTimeFields : totalTimeFields
 
         const handleTimeVariantChange = (variant: EventDateType) => {
+            Object.entries(
+                variant === EventDateType.BLOCK ? totalTimeFields : blockTimeFields,
+            ).forEach(([_, value]) => {
+                form.setFieldValue(value as TimeFields, undefined)
+            })
+
             setTimeVariant(variant)
         }
 

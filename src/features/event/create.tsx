@@ -28,7 +28,7 @@ export const CreateEvent = () => {
         >
             <Drawer.Title withCenter>{t('calendar.event.create.label')}</Drawer.Title>
             <Drawer.Description>{t('calendar.event.create.description')}</Drawer.Description>
-            <EventForm />
+            <EventForm setIsOpen={setIsOpen} />
         </Drawer.Dynamic>
     )
 }

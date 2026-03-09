@@ -1,12 +1,19 @@
 import { t } from 'i18next'
 import z from 'zod'
+import { MAX, MIN } from '@/types/constants'
 import { FormVariant } from '@/types/enums'
 
 export const formSchema = z.object({
     name: z
         .string()
-        .min(1, t('appSettings.calendars.form.name.required'))
-        .max(16, t('appSettings.calendars.form.name.maxLength')),
+        .min(
+            MIN.CALENDAR_NAME_LENGTH,
+            t('appSettings.calendars.form.name.minLength', { count: MIN.CALENDAR_NAME_LENGTH }),
+        )
+        .max(
+            MAX.CALENDAR_NAME_LENGTH,
+            t('appSettings.calendars.form.name.maxLength', { count: MAX.CALENDAR_NAME_LENGTH }),
+        ),
     color: z
         .string()
         .min(6, t('appSettings.calendars.form.color.tooShort', { charCount: 6 }))

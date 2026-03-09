@@ -108,6 +108,7 @@
                         "to": "do",
                         "calculate": "czyli łącznie {{duration}}",
                         "empty": "Podaj godzinę rozpoczęcia i zakończenia",
+                        "startEndBothOrNeither": "Musisz podać zarówno godzinę rozpoczęcia, jak i zakończenia, lub tylko całkowity czas trwania.",
                         "start": {
                             "hours": {
                                 "minLength": "Godzina rozpoczęcia musi mieć co najmniej 1 liczbę",
@@ -156,7 +157,9 @@
                         },
                         "choose": "Wybierz kalendarz",
                         "altDescription": "Wybierz kalendarz, do którego chcesz dodać wydarzenie."
-                    }
+                    },
+                    "success": "Wydarzenie zostało dodane do kalendarza",
+                    "error": "Nie udało się dodać wydarzenia"
                 }
             }
         }
@@ -171,7 +174,8 @@
                     "label": "Nazwa kalendarza",
                     "placeholder": "Moja praca",
                     "required": "Nazwa kalendarza jest wymagana",
-                    "maxLength": "Nazwa kalendarza nie może być dłuższa niż 16 znaków"
+                    "minLength": "Nazwa kalendarza musi być dłuższa niż {{count}} znaków",
+                    "maxLength": "Nazwa kalendarza nie może być dłuższa niż {{count}} znaków"
                 },
                 "color": {
                     "label": "Kolor",

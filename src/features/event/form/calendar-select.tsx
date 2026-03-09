@@ -17,7 +17,7 @@ export const CalendarSelect = ({ value, onValueChange }: CalendarSelectProps) =>
     const { data: calendars, isLoading, error } = useUserCalendars(userId)
 
     if (error) return <ErrorScreen error={error} />
-    if (!calendars) return !isLoading && <EmptyListSkeleton />
+    if (!calendars && !isLoading) return <EmptyListSkeleton />
 
     return (
         <div className='flex flex-row md:flex-col gap-y-2 not-md:items-center w-full'>
@@ -46,7 +46,7 @@ const CalendarsList = ({
             onValueChange={onValueChange}
             className={cn(['flex flex-col gap-y-2', className])}
         >
-            {calendars.map((calendar) => (
+            {calendars?.map((calendar) => (
                 <ListItem.RadioItem
                     key={`event-creation-calendar-${calendar.id}`}
                     name={calendar.name}
@@ -67,6 +67,7 @@ const ExpandableCalendarList = ({
 }: CalendarListProps) => {
     const [isOpen, setIsOpen] = useState(false)
     if (isLoading) return <ListItemSkeleton count={1} className={className} />
+    if (!calendars) return
     const selectedCalendar = calendars.find((calendar) => calendar.id === value) ?? calendars[0]
 
     return (

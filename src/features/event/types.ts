@@ -1,6 +1,6 @@
 import { t } from 'i18next'
 import z from 'zod'
-import { MAX_APP_DATE, MIN_APP_DATE } from '@/types/constants'
+import { MAX, MAX_APP_DATE, MIN, MIN_APP_DATE } from '@/types/constants'
 import { EventType } from '@/types/enums'
 import { Calendar } from './form/types'
 
@@ -53,8 +53,18 @@ export const formSchema = z
         calendarId: z.uuid(),
         title: z
             .string()
-            .min(3, t('calendar.event.create.form.title.minLength', { charCount: 3 }))
-            .max(16, t('calendar.event.create.form.title.maxLength', { charCount: 16 }))
+            .min(
+                MIN.CALENDAR_NAME_LENGTH,
+                t('calendar.event.create.form.title.minLength', {
+                    charCount: MIN.CALENDAR_NAME_LENGTH,
+                }),
+            )
+            .max(
+                MAX.CALENDAR_NAME_LENGTH,
+                t('calendar.event.create.form.title.maxLength', {
+                    charCount: MAX.CALENDAR_NAME_LENGTH,
+                }),
+            )
             .optional(),
     })
     .refine(
