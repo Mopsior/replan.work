@@ -38,9 +38,7 @@ export const createCalendar = createServerFn({ method: 'POST' })
     .inputValidator(calendarSchema)
     .handler(async ({ data }) => {
         const { isAuthenticated, userId } = await auth()
-        if (!isAuthenticated || userId !== data.userId) {
-            throw new Error('Unauthorized')
-        }
+        if (!isAuthenticated || !userId) throw new Error('Unauthorized')
 
         const [error] = await catchError(
             db.insert(calendars).values({

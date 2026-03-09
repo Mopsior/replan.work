@@ -11,7 +11,6 @@ import { catchError } from '@/utils/catch-error'
 
 const eventSchema = z
     .object({
-        userId: z.string(),
         calendarId: z.uuid(),
         title: z
             .string()
@@ -33,7 +32,7 @@ const eventSchema = z
         startTime: z.string().regex(TIME_REGEX).optional(),
         endTime: z.string().regex(TIME_REGEX).optional(),
         totalTime: z.string().regex(TIME_REGEX).optional(),
-        date: z
+        date: z.coerce
             .date()
             .min(MIN_APP_DATE, t('calendar.event.create.form.date.minDate'))
             .max(MAX_APP_DATE, t('calendar.event.create.form.date.maxDate')),
@@ -83,7 +82,7 @@ export const createEvent = createServerFn({
     .inputValidator(eventSchema)
     .handler(async ({ data }) => {
         const { isAuthenticated, userId } = await auth()
-        if (!isAuthenticated || userId !== data.userId) throw new Error('Unauthorized')
+        if (!isAuthenticated || !userId) throw new Error('Unauthorized')
 
         const [calendarsError, calendars] = await catchError(
             db
@@ -91,7 +90,7 @@ export const createEvent = createServerFn({
                 .from(calendarsSchema)
                 .where(
                     and(
-                        eq(calendarsSchema.userId, data.userId),
+                        eq(calendarsSchema.userId, userId),
                         eq(calendarsSchema.id, data.calendarId),
                     ),
                 )
@@ -101,7 +100,7 @@ export const createEvent = createServerFn({
 
         const [error] = await catchError(
             db.insert(events).values({
-                userId: data.userId,
+                userId: userId,
                 calendarId: data.calendarId,
                 title: data.title || calendars[0].name,
                 eventType: data.eventType,

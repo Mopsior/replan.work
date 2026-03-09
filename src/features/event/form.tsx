@@ -10,7 +10,7 @@ import { useUserCalendars } from '@/hooks/use-user-calendars'
 import { Route } from '@/routes/app/route'
 import { QueryKeys } from '@/types/constants'
 import { catchError } from '@/utils/catch-error'
-import { AdvancedCollapsible } from './form/advanceed-collapsible'
+import { AdvancedCollapsible } from './form/advanced-collapsible'
 import { DateField } from './form/date-field'
 import { useAppForm } from './form/hook'
 import { defaultFormValues, formSchema } from './types'
@@ -40,7 +40,6 @@ export const EventForm = ({ setIsOpen }: { setIsOpen: (open: boolean) => void })
             const [error] = await catchError(
                 createEvent({
                     data: {
-                        userId,
                         calendarId: value.calendarId,
                         title,
                         eventType: value.eventType,
