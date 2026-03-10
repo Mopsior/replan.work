@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { FormVariant } from '@/types/enums'
 import Drawer from '../drawer'
-import { CalendarForm } from './calendar-form'
+import { CalendarForm } from './form'
 
-export const NewCalendarDrawer = () => {
+export const CreateCalendarDrawer = () => {
     const { t } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
 
@@ -21,13 +21,9 @@ export const NewCalendarDrawer = () => {
                 </Button>
             }
         >
-            <div className='flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4'>
-                <Drawer.Title className='md:text-center'>
-                    {t('appSettings.calendars.create.label')}
-                </Drawer.Title>
-                <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
-                <CalendarForm setIsOpen={setIsOpen} variant={FormVariant.CREATE} />
-            </div>
+            <Drawer.Title withCenter>{t('appSettings.calendars.create.label')}</Drawer.Title>
+            <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
+            <CalendarForm setIsOpen={setIsOpen} variant={FormVariant.CREATE} />
         </Drawer.Dynamic>
     )
 }

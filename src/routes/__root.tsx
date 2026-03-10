@@ -15,6 +15,8 @@ import { ThemeProvider } from '@/lib/theme-provider'
 import { ToasterWrapper } from '@/lib/toaster-wrapper'
 import { Language } from '@/types/enums'
 import appCss from '../styles.css?url'
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
+import { formDevtoolsPlugin } from '@tanstack/react-form-devtools'
 
 export const Route = createRootRoute({
     head: () => ({
@@ -81,9 +83,14 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                             }}
                             plugins={[
                                 {
-                                    name: 'Tanstack Router',
+                                    name: 'Router',
                                     render: <TanStackRouterDevtoolsPanel />,
                                 },
+                                {
+                                    name: 'Query',
+                                    render: <ReactQueryDevtoolsPanel />,
+                                },
+                                formDevtoolsPlugin(),
                             ]}
                         />
                         <ToasterWrapper />

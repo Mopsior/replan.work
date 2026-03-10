@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Tabs as ShadTabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UserButton } from '../clerk/user-button'
+import { CreateEvent } from '../event/create'
 import { Return } from '../return'
 import { selectedRouteTab } from './types'
 
@@ -16,7 +17,10 @@ export const Tabs = () => {
         return <Return to='/app/summary' className='not-md:hidden' />
 
     return (
-        <div className='relative flex w-full justify-center not-md:items-center not-md:gap-x-4'>
+        <div className='flex w-full justify-center items-center gap-x-4'>
+            <div className='block md:hidden'>
+                <CreateEvent />
+            </div>
             <ShadTabs value={selectedRouteTab[location.pathname]}>
                 <TabsList>
                     <TabsTrigger
@@ -40,7 +44,7 @@ export const Tabs = () => {
                     <Settings2 />
                 </Button>
             </Link>
-            <div className='fixed top-13 right-8 -translate-y-1/2 transform not-md:hidden'>
+            <div className='not-md:hidden h-fit w-fit flex items-center justify-center'>
                 <UserButton />
             </div>
         </div>

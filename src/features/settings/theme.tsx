@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useTheme } from '@/lib/theme-provider'
 import { Theme } from '@/types/enums'
 import Drawer from '../drawer'
-import { RadioGroup } from '../radio-group'
+import { RadioGroup } from '../inputs/radio-group'
 import { getNextTheme, themeIcons, themeTranslations } from './get-next-theme'
 
 export const ThemeSettings = () => {

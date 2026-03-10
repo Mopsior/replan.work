@@ -49,7 +49,7 @@ function RouteComponent() {
                 setIsDrawerOpen: setIsDrawerOpen,
             }}
         >
-            <div className='h-full w-full md:grid md:grid-cols-[auto_450px]'>
+            <div className='h-full w-full md:grid md:grid-cols-[auto_350px]'>
                 <Calendar />
                 <SidebarWrapper>
                     <Outlet />

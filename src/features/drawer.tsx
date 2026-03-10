@@ -10,6 +10,7 @@ import { useMediaQuery } from '@/utils/use-media-query'
 interface DrawerProps {
     children: ReactNode
     trigger?: ReactNode
+    bottomChildren?: ReactNode
 }
 
 const Drawer = ({
@@ -48,7 +49,7 @@ const DrawerContent = ({
                 className={cn([
                     'fixed flex flex-col outline-none',
                     isSideDrawer
-                        ? 'top-4 right-4 bottom-4 w-112.5'
+                        ? 'top-4 right-4 bottom-4 w-87.5'
                         : 'bg-card right-0 bottom-0 left-0 h-fit rounded-t-[10px]',
                 ])}
                 style={
@@ -68,11 +69,17 @@ const DrawerContent = ({
 
 const DrawerTitle = ({
     children,
+    className,
+    withCenter = false,
     ...props
-}: { children: ReactNode } & ComponentProps<typeof Vaul.Title>) => (
+}: { withCenter?: boolean } & ComponentProps<typeof Vaul.Title>) => (
     <Vaul.Title
         {...props}
-        className={cn(['text-lg font-semibold tracking-tight', props.className])}
+        className={cn([
+            'text-lg font-semibold tracking-tight',
+            withCenter ? 'md:text-center' : '',
+            className,
+        ])}
     >
         {children}
     </Vaul.Title>
@@ -86,11 +93,17 @@ const DrawerHiddenTitle = ({ children }: { children: ReactNode }) => (
 
 const DrawerDescription = ({
     children,
+    className,
+    centerOnMobile = false,
     ...props
-}: { children: ReactNode } & ComponentProps<typeof Vaul.Description>) => (
+}: { centerOnMobile?: boolean } & ComponentProps<typeof Vaul.Description>) => (
     <Vaul.Description
         {...props}
-        className={cn(['text-muted-foreground text-sm md:text-center', props.className])}
+        className={cn([
+            'text-muted-foreground',
+            centerOnMobile ? 'text-center' : 'text-sm md:text-center',
+            className,
+        ])}
     >
         {children}
     </Vaul.Description>
@@ -102,23 +115,42 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
+const DrawerWrapper = ({
+    children,
+    bottomChildren,
+}: {
+    children: ReactNode
+    bottomChildren?: DrawerProps['bottomChildren']
+}) => (
+    <div
+        className={cn([
+            'flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4',
+            bottomChildren ? 'justify-between' : '',
+        ])}
+    >
+        {bottomChildren ? <div className='flex flex-col gap-y-4'>{children}</div> : children}
+        {bottomChildren}
+    </div>
+)
+
 const DynamicNestedDrawer = ({
     children,
     trigger,
+    bottomChildren = false,
     ...props
 }: DrawerProps & (ComponentProps<typeof Vaul.Root> | ComponentProps<typeof Vaul.NestedRoot>)) => {
     const isMobile = useMediaQuery(IS_MOBILE)
     if (isMobile) {
         return (
             <NestedDrawer {...props} trigger={trigger}>
-                {children}
+                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
             </NestedDrawer>
         )
     }
     return (
         <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
             <div className='bg-card relative h-full w-full rounded-md p-5'>
-                {children}
+                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
                 <Vaul.Close asChild>
                     <Button variant='ghost' className='absolute top-4 right-4'>
                         <X className='text-muted-foreground hover:text-foreground transition-colors' />
@@ -135,4 +167,5 @@ Drawer.Description = DrawerDescription
 Drawer.HiddenDescription = DrawerHiddenDescription
 Drawer.Nested = NestedDrawer
 Drawer.Dynamic = DynamicNestedDrawer
+Drawer.Wrapper = DrawerWrapper
 export default Drawer

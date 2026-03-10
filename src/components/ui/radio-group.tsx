@@ -13,12 +13,13 @@ function RadioGroup({ className, ...props }: RadioGroupPrimitive.Props) {
     )
 }
 
-function RadioGroupItem({ className, ...props }: RadioPrimitive.Root.Props) {
+function RadioGroupItem({ className, withIndicator = true, ...props }: RadioPrimitive.Root.Props & { withIndicator?: boolean }) {
     return (
         <RadioPrimitive.Root
             data-slot='radio-group-item'
             className={cn(
                 'border-input text-primary dark:bg-input/30 focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:aria-invalid:border-destructive/50 group/radio-group-item peer relative flex aspect-square size-4 shrink-0 rounded-full border shadow-xs outline-none after:absolute after:-inset-x-3 after:-inset-y-2 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:ring-[3px]',
+                !withIndicator && 'hidden',
                 className,
             )}
             {...props}

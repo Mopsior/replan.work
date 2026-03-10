@@ -1,0 +1,36 @@
+diff --git a/dist/index.js b/dist/index.js
+index 7f343be1fafe1cf302ee6afc7268c29490895e34..a4f8181b7321ffc0ff8dd100ce964818d2800b49 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -1633,6 +1633,13 @@ function NestedRoot({ onDrag, onOpenChange, open: nestedIsOpen, ...rest }) {
+     if (!onNestedDrag) {
+         throw new Error('Drawer.NestedRoot must be placed in another drawer');
+     }
++    // Fix for controlled nested drawers stacking effect
++    // https://github.com/emilkowalski/vaul/issues/540
++    React__namespace.default.useEffect(() => {
++        if (nestedIsOpen !== undefined) {
++            onNestedOpenChange(nestedIsOpen);
++        }
++    }, [nestedIsOpen]);
+     return /*#__PURE__*/ React__namespace.default.createElement(Root, {
+         nested: true,
+         open: nestedIsOpen,
+diff --git a/dist/index.mjs b/dist/index.mjs
+index 0dbbce5526681925a81804ced237a045a53c0355..7621c6bf5fc7b31c08af3ceee55da265ac909bdc 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -1611,6 +1611,13 @@ function NestedRoot({ onDrag, onOpenChange, open: nestedIsOpen, ...rest }) {
+     if (!onNestedDrag) {
+         throw new Error('Drawer.NestedRoot must be placed in another drawer');
+     }
++    // Fix for controlled nested drawers stacking effect
++    // https://github.com/emilkowalski/vaul/issues/540
++    React__default.useEffect(() => {
++        if (nestedIsOpen !== undefined) {
++            onNestedOpenChange(nestedIsOpen);
++        }
++    }, [nestedIsOpen]);
+     return /*#__PURE__*/ React__default.createElement(Root, {
+         nested: true,
+         open: nestedIsOpen,
