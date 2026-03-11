@@ -17,6 +17,7 @@ import { Language } from '@/types/enums'
 import appCss from '../styles.css?url'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { formDevtoolsPlugin } from '@tanstack/react-form-devtools'
+import { TooltipProvider } from '@/components/ui/tooltip'
 
 export const Route = createRootRoute({
     head: () => ({
@@ -75,25 +76,27 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 </head>
                 <body>
                     <ThemeProvider>
-                        {children}
-                        <Footer />
-                        <TanStackDevtools
-                            config={{
-                                position: 'bottom-right',
-                            }}
-                            plugins={[
-                                {
-                                    name: 'Router',
-                                    render: <TanStackRouterDevtoolsPanel />,
-                                },
-                                {
-                                    name: 'Query',
-                                    render: <ReactQueryDevtoolsPanel />,
-                                },
-                                formDevtoolsPlugin(),
-                            ]}
-                        />
-                        <ToasterWrapper />
+                        <TooltipProvider>
+                            {children}
+                            <Footer />
+                            <TanStackDevtools
+                                config={{
+                                    position: 'bottom-right',
+                                }}
+                                plugins={[
+                                    {
+                                        name: 'Router',
+                                        render: <TanStackRouterDevtoolsPanel />,
+                                    },
+                                    {
+                                        name: 'Query',
+                                        render: <ReactQueryDevtoolsPanel />,
+                                    },
+                                    formDevtoolsPlugin(),
+                                ]}
+                            />
+                            <ToasterWrapper />
+                        </TooltipProvider>
                     </ThemeProvider>
                     <Scripts />
                 </body>
