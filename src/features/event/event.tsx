@@ -8,7 +8,7 @@ export const Event = ({ title, time, eventType, color, isOneLiner, isTotalTime }
 
     return (
         <div className='bg-secondary flex h-fit w-full flex-col rounded-md px-2 py-1'>
-            <div className='flex flex-row gap-x-1'>
+            <div className='grid grid-cols-[8px_auto_1fr] gap-x-1'>
                 {color && (
                     <div
                         className={cn(
@@ -27,7 +27,7 @@ export const Event = ({ title, time, eventType, color, isOneLiner, isTotalTime }
                 <span className='text-foreground truncate text-xs font-medium'>{title}</span>
             </div>
             {!isOneLiner && (
-                <div className='flex flex-row items-center gap-x-1 pl-3'>
+                <div className='grid grid-cols-[12px_auto] items-center gap-x-1 pl-3'>
                     {variantIcon[eventType]}
                     <span className='text-muted-foreground text-xs font-medium'>
                         {variantTranslation[eventType]}

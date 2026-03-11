@@ -1,24 +1,23 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
 import { X } from 'lucide-react'
-import type { ComponentProps, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { Drawer as Vaul } from 'vaul'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { IS_MOBILE } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
+import {
+    DrawerContentProps,
+    DrawerDescriptionProps,
+    DrawerTitleProps,
+    DrawerWrapperProps,
+    DynamicNestedDrawerProps,
+    MainDrawerProps,
+    NestedDrawerProps,
+    SideDrawerProps,
+} from './types'
 
-interface DrawerProps {
-    children: ReactNode
-    trigger?: ReactNode
-    bottomChildren?: ReactNode
-}
-
-const Drawer = ({
-    children,
-    trigger,
-    isSideDrawer,
-    ...props
-}: DrawerProps & ComponentProps<typeof Vaul.Root> & { isSideDrawer?: boolean }) => (
+const Drawer = ({ children, trigger, isSideDrawer, ...props }: MainDrawerProps) => (
     <Vaul.Root {...props}>
         <DrawerContent trigger={trigger} isSideDrawer={isSideDrawer}>
             {children}
@@ -26,21 +25,13 @@ const Drawer = ({
     </Vaul.Root>
 )
 
-const NestedDrawer = ({
-    children,
-    trigger,
-    ...props
-}: DrawerProps & ComponentProps<typeof Vaul.NestedRoot>) => (
+const NestedDrawer = ({ children, trigger, ...props }: NestedDrawerProps) => (
     <Vaul.NestedRoot {...props}>
         <DrawerContent trigger={trigger}>{children}</DrawerContent>
     </Vaul.NestedRoot>
 )
 
-const DrawerContent = ({
-    children,
-    trigger,
-    isSideDrawer,
-}: DrawerProps & { isSideDrawer?: boolean }) => (
+const DrawerContent = ({ children, trigger, isSideDrawer }: DrawerContentProps) => (
     <>
         <Vaul.Trigger asChild>{trigger}</Vaul.Trigger>
         <Vaul.Portal>
@@ -67,12 +58,7 @@ const DrawerContent = ({
     </>
 )
 
-const DrawerTitle = ({
-    children,
-    className,
-    withCenter = false,
-    ...props
-}: { withCenter?: boolean } & ComponentProps<typeof Vaul.Title>) => (
+const DrawerTitle = ({ children, className, withCenter = false, ...props }: DrawerTitleProps) => (
     <Vaul.Title
         {...props}
         className={cn([
@@ -96,7 +82,7 @@ const DrawerDescription = ({
     className,
     centerOnMobile = false,
     ...props
-}: { centerOnMobile?: boolean } & ComponentProps<typeof Vaul.Description>) => (
+}: DrawerDescriptionProps) => (
     <Vaul.Description
         {...props}
         className={cn([
@@ -115,13 +101,7 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
-const DrawerWrapper = ({
-    children,
-    bottomChildren,
-}: {
-    children: ReactNode
-    bottomChildren?: DrawerProps['bottomChildren']
-}) => (
+const DrawerWrapper = ({ children, bottomChildren }: DrawerWrapperProps) => (
     <div
         className={cn([
             'flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4',
@@ -138,7 +118,7 @@ const DynamicNestedDrawer = ({
     trigger,
     bottomChildren = false,
     ...props
-}: DrawerProps & (ComponentProps<typeof Vaul.Root> | ComponentProps<typeof Vaul.NestedRoot>)) => {
+}: DynamicNestedDrawerProps) => {
     const isMobile = useMediaQuery(IS_MOBILE)
     if (isMobile) {
         return (
@@ -148,18 +128,32 @@ const DynamicNestedDrawer = ({
         )
     }
     return (
-        <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
-            <div className='bg-card relative h-full w-full rounded-md p-5'>
-                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
+        <SideDrawer trigger={trigger} bottomChildren={bottomChildren}>
+            {children}
+        </SideDrawer>
+    )
+}
+
+const SideDrawer = ({
+    trigger,
+    bottomChildren,
+    withClose,
+    children,
+    ...props
+}: SideDrawerProps) => (
+    <Drawer isSideDrawer direction='right' trigger={trigger} {...props}>
+        <div className='bg-card relative h-full w-full rounded-md p-5'>
+            <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
+            {withClose && (
                 <Vaul.Close asChild>
                     <Button variant='ghost' className='absolute top-4 right-4'>
                         <X className='text-muted-foreground hover:text-foreground transition-colors' />
                     </Button>
                 </Vaul.Close>
-            </div>
-        </Drawer>
-    )
-}
+            )}
+        </div>
+    </Drawer>
+)
 
 Drawer.Title = DrawerTitle
 Drawer.HiddenTitle = DrawerHiddenTitle
@@ -168,4 +162,5 @@ Drawer.HiddenDescription = DrawerHiddenDescription
 Drawer.Nested = NestedDrawer
 Drawer.Dynamic = DynamicNestedDrawer
 Drawer.Wrapper = DrawerWrapper
+Drawer.Side = SideDrawer
 export default Drawer

@@ -5,6 +5,7 @@
     "menu": "Menu",
     "delete": "Usuń",
     "advanced": "Zaawansowane",
+    "openMenu": "Otwórz menu",
     "input": {
         "datePicker": {
             "placeholder": "Wybierz datę",

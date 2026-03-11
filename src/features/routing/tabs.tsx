@@ -44,7 +44,7 @@ export const Tabs = () => {
                     <Settings2 />
                 </Button>
             </Link>
-            <div className='not-md:hidden h-fit w-fit flex items-center justify-center'>
+            <div className='hidden h-fit w-fit xl:flex items-center justify-center'>
                 <UserButton />
             </div>
         </div>

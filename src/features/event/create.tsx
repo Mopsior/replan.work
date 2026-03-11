@@ -2,12 +2,13 @@ import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import { IS_MOBILE } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
 import Drawer from '../drawer'
 import { EventForm } from './form'
 
-export const CreateEvent = () => {
+export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?: boolean }) => {
     const { t } = useTranslation()
     const [isOpen, setIsOpen] = useState(false)
     const isMobile = useMediaQuery(IS_MOBILE)
@@ -18,7 +19,7 @@ export const CreateEvent = () => {
             onOpenChange={setIsOpen}
             trigger={
                 <Button
-                    className='md:absolute md:bottom-8 md:right-8'
+                    className={cn([controlPositioning && 'md:absolute md:bottom-8 md:right-8'])}
                     variant={isMobile ? 'secondary' : 'default'}
                 >
                     <Plus size={16} />
