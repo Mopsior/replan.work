@@ -13,6 +13,7 @@ import { Route as AppRouteRouteImport } from './routes/app/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TestIndexRouteImport } from './routes/test/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as ApiHealthRouteImport } from './routes/api/health'
 import { Route as authWaitlistRouteImport } from './routes/(auth)/waitlist'
 import { Route as AppSummaryIndexRouteImport } from './routes/app/summary/index'
 import { Route as AppShareIndexRouteImport } from './routes/app/share/index'
@@ -39,6 +40,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRouteRoute,
+} as any)
+const ApiHealthRoute = ApiHealthRouteImport.update({
+  id: '/api/health',
+  path: '/api/health',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const authWaitlistRoute = authWaitlistRouteImport.update({
   id: '/(auth)/waitlist',
@@ -75,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/waitlist': typeof authWaitlistRoute
+  '/api/health': typeof ApiHealthRoute
   '/app/': typeof AppIndexRoute
   '/test': typeof TestIndexRoute
   '/sign-in/$': typeof authSignInSplatRoute
@@ -86,6 +93,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/waitlist': typeof authWaitlistRoute
+  '/api/health': typeof ApiHealthRoute
   '/app': typeof AppIndexRoute
   '/test': typeof TestIndexRoute
   '/sign-in/$': typeof authSignInSplatRoute
@@ -99,6 +107,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app': typeof AppRouteRouteWithChildren
   '/(auth)/waitlist': typeof authWaitlistRoute
+  '/api/health': typeof ApiHealthRoute
   '/app/': typeof AppIndexRoute
   '/test/': typeof TestIndexRoute
   '/(auth)/sign-in/$': typeof authSignInSplatRoute
@@ -113,6 +122,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/waitlist'
+    | '/api/health'
     | '/app/'
     | '/test'
     | '/sign-in/$'
@@ -124,6 +134,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/waitlist'
+    | '/api/health'
     | '/app'
     | '/test'
     | '/sign-in/$'
@@ -136,6 +147,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app'
     | '/(auth)/waitlist'
+    | '/api/health'
     | '/app/'
     | '/test/'
     | '/(auth)/sign-in/$'
@@ -149,6 +161,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRouteRoute: typeof AppRouteRouteWithChildren
   authWaitlistRoute: typeof authWaitlistRoute
+  ApiHealthRoute: typeof ApiHealthRoute
   TestIndexRoute: typeof TestIndexRoute
   authSignInSplatRoute: typeof authSignInSplatRoute
   authSignUpSplatRoute: typeof authSignUpSplatRoute
@@ -183,6 +196,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRouteRoute
+    }
+    '/api/health': {
+      id: '/api/health'
+      path: '/api/health'
+      fullPath: '/api/health'
+      preLoaderRoute: typeof ApiHealthRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/(auth)/waitlist': {
       id: '/(auth)/waitlist'
@@ -251,6 +271,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRouteRoute: AppRouteRouteWithChildren,
   authWaitlistRoute: authWaitlistRoute,
+  ApiHealthRoute: ApiHealthRoute,
   TestIndexRoute: TestIndexRoute,
   authSignInSplatRoute: authSignInSplatRoute,
   authSignUpSplatRoute: authSignUpSplatRoute,
