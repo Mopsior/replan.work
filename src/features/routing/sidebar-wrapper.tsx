@@ -1,9 +1,11 @@
 import { Outlet } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import { useDebounce } from '@/hooks/use-debounce'
+import { useHover } from '@/hooks/use-hover'
 import { CreateEvent } from '../event/create'
 import { DesktopDrawer } from './desktop-drawer'
 import { Tabs } from './tabs'
@@ -12,6 +14,14 @@ import { SidebarWrapperPropsp } from './types'
 export const SidebarWrapper = ({ title, description }: SidebarWrapperPropsp) => {
     const [isOpen, setIsOpen] = useState(false)
     const { t } = useTranslation()
+    const [ref, hovering] = useHover()
+    const debouncedHovering = useDebounce(hovering, 50)
+
+    useEffect(() => {
+        if (debouncedHovering) {
+            setIsOpen(true)
+        }
+    }, [debouncedHovering])
 
     return (
         <>
@@ -34,6 +44,10 @@ export const SidebarWrapper = ({ title, description }: SidebarWrapperPropsp) => 
                     </TooltipContent>
                 </Tooltip>
             </div>
+            <div
+                className='h-dvh w-4 fixed right-0 top-0 bottom-0 hidden md:not-xl:inline'
+                ref={ref}
+            />
             <DesktopDrawer
                 title={title}
                 description={description}
