@@ -1,3 +1,4 @@
+import { t } from 'i18next'
 import { HTMLAttributes, ReactNode } from 'react'
 
 export interface ItemProps {
@@ -71,4 +72,14 @@ export interface ListItemEditableProps extends BaseListItemProps {
 
 export interface ListItemRadioItemProps extends BaseListItemProps {
     value: string
+}
+
+export const weekdays = {
+    1: t('calendar.weekdays.1'),
+    2: t('calendar.weekdays.2'),
+    3: t('calendar.weekdays.3'),
+    4: t('calendar.weekdays.4'),
+    5: t('calendar.weekdays.5'),
+    6: t('calendar.weekdays.6'),
+    7: t('calendar.weekdays.7'),
 }

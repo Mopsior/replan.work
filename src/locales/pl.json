@@ -60,6 +60,7 @@
             "11": "Listopad",
             "12": "Grudzień"
         },
+        "weekday": "Tydzień",
         "weekdays": {
             "1": "Poniedziałek",
             "2": "Wtorek",

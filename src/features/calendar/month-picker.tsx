@@ -57,7 +57,7 @@ export const MonthPicker = () => {
     useKeyPress('ArrowLeft', handlePrevMonth)
 
     return (
-        <div className='flex gap-x-4'>
+        <div className='flex gap-x-4 not-md:before:absolute before:left-0 before:top-20 before:h-4 before:w-full before:bg-linear-to-b before:from-background before:via-background/50 before:to-transparent before:pointer-events-none before:content-[""]'>
             <Button variant='ghost' onClick={handlePrevMonth}>
                 <ChevronLeft size={16} className='size-4' />
             </Button>
