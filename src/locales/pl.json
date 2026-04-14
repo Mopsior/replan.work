@@ -80,6 +80,7 @@
             },
             "more": "Więcej",
             "empty": "Brak wydarzeń",
+            "freeDay": "Dzień wolny",
             "fetchError": "Oopsie! Nie udało się pobrać wydarzeń.",
             "create": {
                 "button": "Stwórz wydarzenie",
