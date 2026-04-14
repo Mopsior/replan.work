@@ -43,7 +43,8 @@
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {
         "app": "aplikacji",
-        "settings": "ustawień"
+        "settings": "ustawień",
+        "nextMonth": "następnego miesiąca"
     },
     "calendar": {
         "months": {
@@ -78,6 +79,7 @@
                 "custom": "Niestandardowe"
             },
             "more": "Więcej",
+            "empty": "Brak wydarzeń",
             "fetchError": "Oopsie! Nie udało się pobrać wydarzeń.",
             "create": {
                 "button": "Stwórz wydarzenie",
