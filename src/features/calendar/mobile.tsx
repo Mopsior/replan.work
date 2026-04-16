@@ -32,6 +32,7 @@ export const MobileCalendar = () => {
 
     const today = new Date()
     const currentWeekRef = useRef<HTMLDivElement>(null)
+    const didInitialScrollRef = useRef(false)
 
     const getCurrentWeekIndex = () => {
         if (today.getMonth() + 1 !== month || today.getFullYear() !== year) {
@@ -43,13 +44,18 @@ export const MobileCalendar = () => {
     const currentWeekIndex = getCurrentWeekIndex()
 
     useEffect(() => {
-        if (currentWeekRef.current) {
-            currentWeekRef.current.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start',
-            })
-        }
+        didInitialScrollRef.current = false
     }, [month, year])
+
+    useEffect(() => {
+        if (didInitialScrollRef.current) return
+        if (!currentWeekRef.current) return
+        if (!events) return
+        currentWeekRef.current.scrollIntoView({
+            block: 'start',
+        })
+        didInitialScrollRef.current = true
+    }, [month, year, events])
 
     if (error) {
         toast.error(t('calendar.event.fetchError'))
