@@ -23,7 +23,7 @@ export const MobileCalendar = () => {
         from: Route.fullPath,
     })
 
-    const { days, firstDayOfMonth, daysInMonth, weeksCount } = useCalendar({
+    const { days, firstDayOfMonth, weeksCount } = useCalendar({
         month,
         year,
     })
@@ -81,12 +81,10 @@ export const MobileCalendar = () => {
                             if (!day?.day)
                                 return <Fragment key={`week-${weekIndex}-day-empty-${index}`} />
 
-                            const weekDay = (day.day + firstDayOfMonth - 2) % 7
+                            const dayOffset = day.day + firstDayOfMonth - 2
+                            const weekDay = dayOffset % 7
                             const weekDayName = getWeekDay(weekDay)
-                            const week =
-                                day.day + firstDayOfMonth - 2 >= daysInMonth
-                                    ? weeksCount
-                                    : Math.floor((day.day + firstDayOfMonth - 2) / 7) + 1
+                            const week = Math.floor(dayOffset / 7) + 1
 
                             if (week === weekIndex + 1) {
                                 const eventsForDay = events?.filter((event) => {
