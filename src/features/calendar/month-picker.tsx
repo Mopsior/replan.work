@@ -6,8 +6,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/u
 import { useKeyPress } from '@/hooks/use-key-press'
 import { cn } from '@/lib/utils'
 import { Route } from '@/routes/app/route'
+import { getMonthName } from '../../utils/get-month-name'
 import { H2 } from '../typography'
-import { getMonthName } from './get-month-name'
 
 export const MonthPicker = () => {
     const { month, year } = useSearch({

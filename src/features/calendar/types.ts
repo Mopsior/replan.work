@@ -83,3 +83,39 @@ export const weekdays = {
     6: t('calendar.weekdays.6'),
     7: t('calendar.weekdays.7'),
 }
+
+export interface MobileCalendarEvent {
+    id: string
+    date: string | Date
+    title?: string | null
+    calendarName: string
+    startTime?: string | null
+    totalTime?: string | null
+    eventType: string
+    calendarColor?: string | null
+}
+
+export interface MobileDayData {
+    day: CalendarDay
+    weekDay: number
+    events?: MobileCalendarEvent[]
+}
+
+export interface MobileWeekData {
+    weekIndex: number
+    days: MobileDayData[]
+}
+
+export interface MobileDayProps {
+    dayData: MobileDayData
+    isLoading: boolean
+}
+
+export interface MobileWeekProps {
+    week: MobileWeekData
+    isLoading: boolean
+}
+
+export interface MobileFooterProps {
+    month: number
+}

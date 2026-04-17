@@ -1,5 +1,5 @@
-import type { CalendarDay } from './types'
-import { Cell } from './types'
+import type { CalendarDay } from '../features/calendar/types'
+import { Cell } from '../features/calendar/types'
 
 export const getPosition = (
     day: CalendarDay,

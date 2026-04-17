@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
+import { weekdays } from '../types'
 import { CalendarGrid } from './grid'
-import { weekdays } from './types'
 
 export const DesktopCalendar = () => {
     return (
