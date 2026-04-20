@@ -3,16 +3,16 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "format": "pnpm exec biome check --write",
         "dev": "vite dev --port 3000",
+        "db:studio": "drizzle-kit studio",
+        "db:push": "drizzle-kit push",
         "build": "vite build",
         "preview": "vite preview",
-        "test": "vitest run",
-        "format": "pnpm exec biome check --write",
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
-        "db:push": "drizzle-kit push",
         "db:pull": "drizzle-kit pull",
-        "db:studio": "drizzle-kit studio",
+        "test": "vitest run",
         "prepare": "husky"
     },
     "dependencies": {

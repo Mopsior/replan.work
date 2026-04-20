@@ -1,11 +1,12 @@
 import { useNavigate, useSearch } from '@tanstack/react-router'
-import { t } from 'i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useMemo } from 'react'
 import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger } from '@/components/ui/select'
 import { useKeyPress } from '@/hooks/use-key-press'
+import { cn } from '@/lib/utils'
 import { Route } from '@/routes/app/route'
+import { getMonthName } from '../../utils/get-month-name'
 import { H2 } from '../typography'
 
 export const MonthPicker = () => {
@@ -13,25 +14,15 @@ export const MonthPicker = () => {
         from: Route.fullPath,
     })
 
-    const monthsItems = useMemo(
-        () => ({
-            1: t('calendar.months.1'),
-            2: t('calendar.months.2'),
-            3: t('calendar.months.3'),
-            4: t('calendar.months.4'),
-            5: t('calendar.months.5'),
-            6: t('calendar.months.6'),
-            7: t('calendar.months.7'),
-            8: t('calendar.months.8'),
-            9: t('calendar.months.9'),
-            10: t('calendar.months.10'),
-            11: t('calendar.months.11'),
-            12: t('calendar.months.12'),
-        }),
-        [],
-    )
-
     const navigate = useNavigate()
+
+    const monthsItems = useMemo(() => {
+        const months: Record<string, string> = {}
+        for (let i = 1; i <= 12; i++) {
+            months[i] = getMonthName(i)
+        }
+        return months
+    }, [])
 
     const yearsItems = useMemo(() => {
         const years = []
@@ -57,7 +48,13 @@ export const MonthPicker = () => {
     useKeyPress('ArrowLeft', handlePrevMonth)
 
     return (
-        <div className='flex gap-x-4'>
+        <div
+            className={cn([
+                'flex gap-x-4',
+                'not-md:before:absolute before:left-0 before:top-20 before:h-4 before:w-full before:bg-linear-to-b before:from-background before:via-background/90 before:to-transparent before:pointer-events-none before:content-[""]',
+                'not-md:after:fixed after:left-0 after:bottom-0 after:h-8 after:w-full after:bg-linear-to-t after:from-background after:via-background/90 after:to-transparent after:pointer-events-none after:content-[""]',
+            ])}
+        >
             <Button variant='ghost' onClick={handlePrevMonth}>
                 <ChevronLeft size={16} className='size-4' />
             </Button>
@@ -67,7 +64,7 @@ export const MonthPicker = () => {
             >
                 <SelectTrigger withInputStyles={false}>
                     <H2 className='cursor-pointer underline-offset-4 hover:underline'>
-                        {monthsItems[month as keyof typeof monthsItems]}
+                        {getMonthName(month)}
                     </H2>
                 </SelectTrigger>
                 <SelectContent

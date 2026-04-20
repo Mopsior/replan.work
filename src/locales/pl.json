@@ -43,7 +43,8 @@
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {
         "app": "aplikacji",
-        "settings": "ustawień"
+        "settings": "ustawień",
+        "nextMonth": "następnego miesiąca"
     },
     "calendar": {
         "months": {
@@ -60,6 +61,7 @@
             "11": "Listopad",
             "12": "Grudzień"
         },
+        "weekday": "Tydzień",
         "weekdays": {
             "1": "Poniedziałek",
             "2": "Wtorek",
@@ -77,6 +79,8 @@
                 "custom": "Niestandardowe"
             },
             "more": "Więcej",
+            "empty": "Brak wydarzeń",
+            "freeDay": "Dzień wolny",
             "fetchError": "Oopsie! Nie udało się pobrać wydarzeń.",
             "create": {
                 "button": "Stwórz wydarzenie",

@@ -22,10 +22,9 @@
         "noUnusedParameters": true,
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
-        "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"],
-            "@components/*": ["src/features/*"],
+            "@components/*": ["./src/features/*"],
             "@db/*": ["./src/db/*"],
             "@functions/*": ["./src/functions/*"],
             "@lib/*": ["./src/lib/*"],

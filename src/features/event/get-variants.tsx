@@ -11,8 +11,7 @@ export const variantTranslation: Record<EventType, string> = {
 }
 
 const iconProps = {
-    className: 'size-3 text-muted-foreground',
-    size: 12,
+    className: 'size-4 md:size-3 text-muted-foreground -mt-0.5 not-md:hidden',
 }
 
 export const variantIcon: Record<EventType, ReactNode> = {

@@ -13,6 +13,12 @@ export interface EventProps {
     isTotalTime?: boolean
 }
 
+export interface TimeLabelProps {
+    time?: string
+    isTotalTime?: boolean
+    visibleOnMobile?: boolean
+}
+
 export const formSchema = z
     .object({
         date: z
