@@ -26,6 +26,7 @@ export const MobileCalendar = () => {
 
     const currentWeekRef = useRef<HTMLDivElement>(null)
     const didInitialScrollRef = useRef(false)
+    const listRef = useRef<HTMLDivElement>(null)
 
     const { weeks, currentWeekIndex } = useMobileCalendarData({
         days,
@@ -58,7 +59,10 @@ export const MobileCalendar = () => {
     }, [error, t])
 
     return (
-        <div className='space-y-24 h-full w-full md:hidden scroll-smooth snap-mandatory snap-y pt-0 p-8 pb-16 overflow-y-auto scroll-pb-20'>
+        <div
+            className='space-y-24 h-full w-full md:hidden scroll-smooth snap-mandatory snap-y pt-0 p-8 pb-16 overflow-y-auto scroll-pb-20'
+            ref={listRef}
+        >
             {weeks.map((week) => (
                 <MobileWeek
                     key={`week-${week.weekIndex}`}

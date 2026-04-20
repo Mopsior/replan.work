@@ -29,10 +29,8 @@ export const MobileDay = ({ dayData, isLoading }: MobileDayProps) => {
                                 ? 'text-muted-foreground'
                                 : 'text-foreground',
                             isToday && [
-                                'bg-primary relative',
-                                'before:absolute before:-left-1 before:top-0 before:w-1 before:h-full before:bg-primary before:rounded-l',
-                                'after:absolute after:-right-1 after:top-0 after:w-1 after:h-full after:bg-primary after:rounded-r',
-                                'text-background',
+                                'text-background relative',
+                                'before:content-[""] before:absolute before:inset-0 before:bg-primary before:rounded-md before:-left-1/8 before:top-0 before:w-[125%] before:h-full before:-z-10',
                             ],
                         ])}
                     >

@@ -16,7 +16,7 @@ export const MobileWeek = forwardRef<HTMLDivElement, MobileWeekProps>(
                     <div className='w-full h-px bg-muted rounded-full' />
                 </div>
 
-                <div className='space-y-4 snap-start snap-always scroll-mt-2'>
+                <div className='space-y-4 snap-start snap-always scroll-mt-4'>
                     {week.days.map((dayData) => {
                         return (
                             <MobileDay
