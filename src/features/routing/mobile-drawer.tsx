@@ -80,7 +80,9 @@ export const MobileDrawer = ({
                         </div>
                     )}
                     {isDescriptionVisible ? (
-                        <Drawer.Description>{description}</Drawer.Description>
+                        <Drawer.Description className='text-center'>
+                            {description}
+                        </Drawer.Description>
                     ) : (
                         <Drawer.HiddenDescription>{description}</Drawer.HiddenDescription>
                     )}

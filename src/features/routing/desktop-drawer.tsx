@@ -3,6 +3,7 @@ import { Settings2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import Drawer from '../drawer'
+import { SideDrawerWidth } from '../types'
 import { Tabs } from './tabs'
 import { DesktopDrawerProps } from './types'
 
@@ -14,6 +15,7 @@ export const DesktopDrawer = ({ title, description, isOpen, setIsOpen }: Desktop
         <Drawer.Side
             open={isOpen}
             onOpenChange={setIsOpen}
+            width={SideDrawerWidth.WIDE}
             bottomChildren={
                 location.pathname !== '/app/settings' && (
                     <Link to='/app/settings'>
