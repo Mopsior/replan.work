@@ -28,7 +28,7 @@ const EditableListItem = ({ name, itemColor, salary, id }: ListItemEditableProps
     const { t } = useTranslation()
 
     return (
-        <Drawer.Dynamic
+        <Drawer.DynamicNested
             open={isOpen}
             onOpenChange={setIsOpen}
             trigger={<ListItem name={name} itemColor={itemColor} />}
@@ -45,7 +45,7 @@ const EditableListItem = ({ name, itemColor, salary, id }: ListItemEditableProps
                 }}
                 id={id}
             />
-        </Drawer.Dynamic>
+        </Drawer.DynamicNested>
     )
 }
 

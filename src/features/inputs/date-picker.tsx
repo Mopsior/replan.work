@@ -25,7 +25,7 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
     }
 
     return (
-        <Drawer.Dynamic
+        <Drawer.DynamicNested
             open={isOpen}
             onOpenChange={setIsOpen}
             bottomChildren={
@@ -65,6 +65,6 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
                     : t('input.datePicker.notSelected')}
             </Drawer.Description>
             {isInvalid && <FieldError className='text-center' errors={errors} />}
-        </Drawer.Dynamic>
+        </Drawer.DynamicNested>
     )
 }

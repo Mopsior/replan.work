@@ -134,6 +134,27 @@ const DynamicNestedDrawer = ({
     )
 }
 
+const DynamicDrawer = ({
+    children,
+    trigger,
+    bottomChildren = false,
+    ...props
+}: DynamicNestedDrawerProps) => {
+    const isMobile = useMediaQuery(IS_MOBILE)
+    if (isMobile) {
+        return (
+            <Drawer {...props} trigger={trigger}>
+                <DrawerWrapper bottomChildren={bottomChildren}>{children}</DrawerWrapper>
+            </Drawer>
+        )
+    }
+    return (
+        <SideDrawer trigger={trigger} bottomChildren={bottomChildren}>
+            {children}
+        </SideDrawer>
+    )
+}
+
 const SideDrawer = ({
     trigger,
     bottomChildren,
@@ -160,7 +181,8 @@ Drawer.HiddenTitle = DrawerHiddenTitle
 Drawer.Description = DrawerDescription
 Drawer.HiddenDescription = DrawerHiddenDescription
 Drawer.Nested = NestedDrawer
-Drawer.Dynamic = DynamicNestedDrawer
+Drawer.Dynamic = DynamicDrawer
+Drawer.DynamicNested = DynamicNestedDrawer
 Drawer.Wrapper = DrawerWrapper
 Drawer.Side = SideDrawer
 export default Drawer

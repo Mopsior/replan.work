@@ -11,7 +11,7 @@ export const CreateCalendarDrawer = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <Drawer.Dynamic
+        <Drawer.DynamicNested
             open={isOpen}
             onOpenChange={setIsOpen}
             trigger={
@@ -24,6 +24,6 @@ export const CreateCalendarDrawer = () => {
             <Drawer.Title withCenter>{t('appSettings.calendars.create.label')}</Drawer.Title>
             <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
             <CalendarForm setIsOpen={setIsOpen} variant={FormVariant.CREATE} />
-        </Drawer.Dynamic>
+        </Drawer.DynamicNested>
     )
 }

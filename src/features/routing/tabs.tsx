@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Tabs as ShadTabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UserButton } from '../clerk/user-button'
-import { CreateEvent } from '../event/create'
 import { Return } from '../return'
 import { selectedRouteTab } from './types'
 
@@ -18,9 +17,6 @@ export const Tabs = () => {
 
     return (
         <div className='flex w-full justify-center items-center gap-x-4'>
-            <div className='block md:hidden'>
-                <CreateEvent />
-            </div>
             <ShadTabs value={selectedRouteTab[location.pathname]}>
                 <TabsList>
                     <TabsTrigger

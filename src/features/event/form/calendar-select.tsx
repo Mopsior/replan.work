@@ -71,7 +71,7 @@ const ExpandableCalendarList = ({
     const selectedCalendar = calendars.find((calendar) => calendar.id === value) ?? calendars[0]
 
     return (
-        <Drawer.Dynamic
+        <Drawer.DynamicNested
             open={isOpen}
             onOpenChange={setIsOpen}
             trigger={
@@ -103,6 +103,6 @@ const ExpandableCalendarList = ({
                 calendars={calendars}
                 isLoading={isLoading}
             />
-        </Drawer.Dynamic>
+        </Drawer.DynamicNested>
     )
 }
