@@ -7,7 +7,13 @@ import { SideDrawerWidth } from '../types'
 import { Tabs } from './tabs'
 import { DesktopDrawerProps } from './types'
 
-export const DesktopDrawer = ({ title, description, isOpen, setIsOpen }: DesktopDrawerProps) => {
+export const DesktopDrawer = ({
+    title,
+    description,
+    isOpen,
+    setIsOpen,
+    isDescriptionVisible,
+}: DesktopDrawerProps) => {
     const { t } = useTranslation()
     const location = useLocation()
 
@@ -27,9 +33,13 @@ export const DesktopDrawer = ({ title, description, isOpen, setIsOpen }: Desktop
                 )
             }
         >
-            <Drawer.HiddenTitle>{title}</Drawer.HiddenTitle>
-            <Drawer.HiddenDescription>{description}</Drawer.HiddenDescription>
             <Tabs />
+            <Drawer.HiddenTitle>{title}</Drawer.HiddenTitle>
+            {isDescriptionVisible ? (
+                <Drawer.Description>{description}</Drawer.Description>
+            ) : (
+                <Drawer.HiddenDescription>{description}</Drawer.HiddenDescription>
+            )}
             <Outlet />
         </Drawer.Side>
     )

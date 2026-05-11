@@ -34,6 +34,7 @@ export type DrawerDescriptionProps = ComponentProps<typeof Vaul.Description> & {
 export interface DrawerWrapperProps {
     children: ReactNode
     bottomChildren?: DrawerProps['bottomChildren']
+    className?: string
 }
 
 export type DynamicNestedDrawerProps = DrawerProps &

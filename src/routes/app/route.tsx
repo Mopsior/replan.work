@@ -55,9 +55,13 @@ function RouteComponent() {
                 md: side drawer
                 xl: static sidebar 
             */}
-            <div className='h-full w-full xl:grid xl:grid-cols-[auto_350px]'>
+            <div className='h-full w-full xl:grid xl:grid-cols-[auto_400px]'>
                 <Calendar />
-                <SidebarWrapper title={drawerTitle} description={drawerDescription} />
+                <SidebarWrapper
+                    title={drawerTitle}
+                    description={drawerDescription}
+                    isDescriptionVisible={isDescriptionVisible}
+                />
             </div>
             <MobileDrawer
                 title={drawerTitle}

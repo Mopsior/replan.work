@@ -13,5 +13,8 @@
     "i18n-ally.keystyle": "nested",
     "i18n-ally.sourceLanguage": "pl",
     "i18n-ally.displayLanguage": "pl",
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "biomejs.biome",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "biomejs.biome"
+    }
 }

@@ -110,11 +110,12 @@ const DrawerHiddenDescription = ({ children }: { children: ReactNode }) => (
     </VisuallyHidden>
 )
 
-const DrawerWrapper = ({ children, bottomChildren }: DrawerWrapperProps) => (
+const DrawerWrapper = ({ children, bottomChildren, className }: DrawerWrapperProps) => (
     <div
         className={cn([
             'flex w-full h-full flex-col gap-y-4 px-4 not-md:pb-4',
             bottomChildren ? 'justify-between' : '',
+            className,
         ])}
     >
         {bottomChildren ? <div className='flex flex-col gap-y-4'>{children}</div> : children}

@@ -241,7 +241,12 @@
             "weekendHours": "Weekend",
             "earnings": "Zarobki"
         },
-        "generateReport": "Generuj raport"
+        "generateReport": "Generuj raport",
+        "earningsDisclaimer": {
+            "explanation": "Jak to obliczamy?",
+            "label": "Jak obliczamy twoje zarobki",
+            "hours": "Zarobki liczymy ze stawki godzinowej razy pełne godziny. Minuty pokazujemy tylko w podsumowaniu"
+        }
     },
     "": "",
     "exampleDuration": "4h 25min",

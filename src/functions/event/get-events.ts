@@ -1,3 +1,4 @@
+import { auth } from '@clerk/tanstack-react-start/server'
 import { createServerFn } from '@tanstack/react-start'
 import { and, between, eq } from 'drizzle-orm'
 import z from 'zod'
@@ -13,6 +14,10 @@ const GetEventsSchema = z.object({
 export const getEvents = createServerFn({ method: 'GET' })
     .inputValidator(GetEventsSchema)
     .handler(async ({ data }) => {
+        const { isAuthenticated, userId } = await auth()
+        if (!isAuthenticated || !userId) throw new Error('Unauthorized')
+        if (userId !== data.userId) throw new Error('Unauthorized')
+
         const result = await db
             .select({
                 id: events.id,
