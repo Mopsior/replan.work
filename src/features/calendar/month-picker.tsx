@@ -50,9 +50,9 @@ export const MonthPicker = () => {
     return (
         <div
             className={cn([
-                'flex gap-x-4',
+                'flex gap-x-4 items-center',
                 'not-md:before:absolute before:left-0 before:top-20 before:h-4 before:w-full before:bg-linear-to-b before:from-background before:via-background/90 before:to-transparent before:pointer-events-none before:content-[""]',
-                'not-md:after:fixed after:left-0 after:bottom-0 after:h-8 after:w-full after:bg-linear-to-t after:from-background after:via-background/90 after:to-transparent after:pointer-events-none after:content-[""]',
+                'not-md:after:fixed after:left-0 after:bottom-0 after:h-16 after:w-full after:bg-linear-to-t after:from-background after:via-background/90 after:to-transparent after:pointer-events-none after:content-[""]',
             ])}
         >
             <Button variant='ghost' onClick={handlePrevMonth}>

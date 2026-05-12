@@ -7,8 +7,14 @@ export interface DrawerProps {
     bottomChildren?: ReactNode
 }
 
+export enum SideDrawerWidth {
+    DEFAULT = 'default',
+    WIDE = 'wide',
+}
+
 interface SideDrawer {
     isSideDrawer?: boolean
+    width?: SideDrawerWidth
 }
 
 export type MainDrawerProps = DrawerProps & ComponentProps<typeof Vaul.Root> & SideDrawer
@@ -28,6 +34,7 @@ export type DrawerDescriptionProps = ComponentProps<typeof Vaul.Description> & {
 export interface DrawerWrapperProps {
     children: ReactNode
     bottomChildren?: DrawerProps['bottomChildren']
+    className?: string
 }
 
 export type DynamicNestedDrawerProps = DrawerProps &
@@ -35,4 +42,5 @@ export type DynamicNestedDrawerProps = DrawerProps &
 
 export type SideDrawerProps = NestedDrawerProps & {
     withClose?: boolean
+    width?: SideDrawerWidth
 }

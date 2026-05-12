@@ -1,3 +1,4 @@
+import { auth } from '@clerk/tanstack-react-start/server'
 import { createServerFn } from '@tanstack/react-start'
 import { eq } from 'drizzle-orm'
 import z from 'zod'
@@ -11,6 +12,10 @@ const GetCalendarSchema = z.object({
 export const getCalendars = createServerFn({ method: 'GET' })
     .inputValidator(GetCalendarSchema)
     .handler(async ({ data }) => {
+        const { isAuthenticated, userId } = await auth()
+        if (!isAuthenticated || !userId) throw new Error('Unauthorized')
+        if (userId !== data.userId) throw new Error('Unauthorized')
+
         const calendars = await db
             .select()
             .from(calendarsSchema)

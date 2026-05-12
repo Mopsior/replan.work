@@ -18,11 +18,13 @@ export interface DesktopDrawerProps {
     description: ReactNode
     isOpen: boolean
     setIsOpen: (open: boolean) => void
+    isDescriptionVisible?: boolean
 }
 
 export interface SidebarWrapperPropsp {
     title: ReactNode
     description: ReactNode
+    isDescriptionVisible: boolean
 }
 
 export interface MobileDrawerProps {

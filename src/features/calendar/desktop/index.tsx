@@ -4,7 +4,7 @@ import { CalendarGrid } from './grid'
 
 export const DesktopCalendar = () => {
     return (
-        <div className='flex h-full w-full flex-col gap-y-4 overflow-y-auto not-md:hidden'>
+        <div className='flex h-full w-full flex-col gap-y-4 overflow-y-auto not-md:hidden [scrollbar-width:thin] [scrollbar-color:gray_transparent]'>
             <div className='grid h-fit w-full grid-cols-7'>
                 {Object.values(weekdays).map((day, index) => (
                     <div

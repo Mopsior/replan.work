@@ -21,16 +21,16 @@ export const ThemeSettings = () => {
     const nextTheme = getNextTheme(userTheme as Theme)
 
     return (
-        <div className='flex h-fit w-full flex-col gap-y-2 md:hidden'>
+        <div className='flex h-fit w-full flex-col gap-y-2 xl:hidden'>
             <p className='text-muted-foreground text-sm'>{t('appSettings.themes.label')}</p>
-            <Drawer.Nested
+            <Drawer.DynamicNested
                 trigger={
                     <Button variant={'secondary'}>
                         {themeIcons[nextTheme]} {t('appSettings.themes.button')}
                     </Button>
                 }
             >
-                <div className='flex w-full flex-col gap-y-4 px-4 pb-8'>
+                <div className='flex w-full flex-col gap-y-4 not-md:px-4 not-md:pb-8'>
                     <Drawer.Title>{t('appSettings.themes.label')}</Drawer.Title>
                     <Drawer.HiddenDescription>
                         {t('appSettings.themes.ariaDescription')}
@@ -45,7 +45,7 @@ export const ThemeSettings = () => {
                         }))}
                     />
                 </div>
-            </Drawer.Nested>
+            </Drawer.DynamicNested>
         </div>
     )
 }

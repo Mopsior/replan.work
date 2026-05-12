@@ -11,7 +11,11 @@ import { DesktopDrawer } from './desktop-drawer'
 import { Tabs } from './tabs'
 import { SidebarWrapperPropsp } from './types'
 
-export const SidebarWrapper = ({ title, description }: SidebarWrapperPropsp) => {
+export const SidebarWrapper = ({
+    title,
+    description,
+    isDescriptionVisible,
+}: SidebarWrapperPropsp) => {
     const [isOpen, setIsOpen] = useState(false)
     const { t } = useTranslation()
     const [ref, hovering] = useHover()
@@ -25,8 +29,11 @@ export const SidebarWrapper = ({ title, description }: SidebarWrapperPropsp) => 
 
     return (
         <>
-            <div className='hidden xl:flex h-full w-full flex-col items-center gap-6 py-8 pr-8 relative'>
+            <div className='hidden xl:flex h-full w-full flex-col items-center gap-4 py-8 pr-8 relative'>
                 <Tabs />
+                {isDescriptionVisible && (
+                    <p className='text-xs text-muted-foreground text-center pt-2'>{description}</p>
+                )}
                 <Outlet />
                 <CreateEvent />
             </div>
@@ -51,6 +58,7 @@ export const SidebarWrapper = ({ title, description }: SidebarWrapperPropsp) => 
             <DesktopDrawer
                 title={title}
                 description={description}
+                isDescriptionVisible={isDescriptionVisible}
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
             />
