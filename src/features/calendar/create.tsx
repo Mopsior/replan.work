@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { FormVariant } from '@/types/enums'
-import Drawer from '../drawer'
+import Drawer from '../drawer-legacy'
 import { CalendarForm } from './form'
 
 export const CreateCalendarDrawer = () => {

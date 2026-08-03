@@ -1,4 +1,5 @@
 import { createFileRoute, notFound } from '@tanstack/react-router'
+import Drawer from '@/features/drawer'
 import { Event } from '@/features/event/event'
 import { EventType } from '@/types/enums'
 
@@ -13,7 +14,7 @@ export const Route = createFileRoute('/test/')({
 
 function RouteComponent() {
     return (
-        <div className='flex h-dvh w-full items-center justify-center p-4'>
+        <div className='flex h-dvh w-full items-center justify-center p-4 gap-4 flex-col md:flex-row'>
             <div className='grid grid-cols-2 gap-x-4 gap-y-4'>
                 <Event title='Teatr' time='10:00-11:00' eventType={EventType.STATIONARY} />
                 <Event title='Teatr' time='10:00-11:00' eventType={EventType.REMOTE} />
@@ -26,6 +27,27 @@ function RouteComponent() {
                     isOneLiner
                 />
             </div>
+            <Drawer>
+                <Drawer.Trigger>Open Drawer</Drawer.Trigger>
+                <Drawer.Content>
+                    <Drawer.Container>
+                        <div>asdhajjdas</div>
+                        <Drawer>
+                            <Drawer.Trigger>Open Drawer</Drawer.Trigger>
+                            <Drawer.Content>
+                                <Drawer.Container>
+                                    <div>asdhajjdas</div>
+                                </Drawer.Container>
+                            </Drawer.Content>
+                        </Drawer>
+                    </Drawer.Container>
+                </Drawer.Content>
+                {/* <DrawerContent>
+                    <DrawerHeader>Header</DrawerHeader>
+                    <DrawerDescription>Description</DrawerDescription>
+                    <div>asdasdsad</div>
+                </DrawerContent> */}
+            </Drawer>
         </div>
     )
 }

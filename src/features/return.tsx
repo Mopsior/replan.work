@@ -5,14 +5,26 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { FileRouteTypes } from '@/routeTree.gen'
 
-export const Return = ({ to, className }: { to: FileRouteTypes['to']; className?: string }) => {
+export const Return = ({
+    to,
+    className,
+    viewTransition = false,
+}: {
+    to: FileRouteTypes['to']
+    className?: string
+    viewTransition?: boolean
+}) => {
     const { t } = useTranslation()
 
     return (
         <div className={cn(['h-fit w-full', className])}>
-            <Link to={to} search={(prev) => prev}>
+            <Link
+                to={to}
+                search={(prev) => prev}
+                viewTransition={viewTransition ? { types: ['mobile-drawer-back'] } : undefined}
+            >
                 <Button variant='ghost' className='text-muted-foreground'>
-                    <Undo2 />
+                    <Undo2 className='-mt-1' />
                     {t('return')}
                 </Button>
             </Link>

@@ -18,6 +18,7 @@ import appCss from '../styles.css?url'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { formDevtoolsPlugin } from '@tanstack/react-form-devtools'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { Shadows } from '@/features/shadows'
 
 export const Route = createRootRoute({
     head: () => ({
@@ -77,6 +78,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <body>
                     <ThemeProvider>
                         <TooltipProvider>
+                            <Shadows />
                             {children}
                             <Footer />
                             <TanStackDevtools

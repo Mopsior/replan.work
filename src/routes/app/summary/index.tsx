@@ -10,7 +10,9 @@ import {
     TableRow,
 } from '@/components/ui/table'
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
+import Drawer from '@/features/drawer'
 import { ErrorScreen } from '@/features/error-screen'
+import { Return } from '@/features/return'
 import { RectangleSkeleton } from '@/features/skeletons/input'
 import { DisclaimerDrawer } from '@/features/summary/disclaimer-drawer'
 import { useDrawerData } from '@/hooks/use-drawer-data'
@@ -55,6 +57,10 @@ function RouteComponent() {
 
     return (
         <div className='flex w-full h-full gap-y-2 flex-col items-center'>
+            <Drawer.Header>
+                <Drawer.Title>{t('tabs.summary.label')}</Drawer.Title>
+                <Drawer.Description>{t('summary.description')}</Drawer.Description>
+            </Drawer.Header>
             <Table>
                 <TableHeader>
                     <TableRow className='*:text-center *:tabular-nums *:text-sm'>
@@ -131,7 +137,8 @@ function RouteComponent() {
                     </TableRow>
                 </TableFooter>
             </Table>
-            <div className='md:hidden w-full flex justify-end'>
+            <div className='md:hidden w-full flex justify-between items-center'>
+                <Return to='/app' viewTransition />
                 <DisclaimerDrawer />
             </div>
         </div>

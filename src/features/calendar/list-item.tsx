@@ -4,7 +4,7 @@ import { FieldLabel } from '@/components/ui/field'
 import { RadioGroupItem } from '@/components/ui/radio-group'
 import { cn } from '@/lib/utils'
 import { FormVariant } from '@/types/enums'
-import Drawer from '../drawer'
+import Drawer from '../drawer-legacy'
 import { CalendarForm } from './form'
 import { ListItemEditableProps, ListItemProps, ListItemRadioItemProps } from './types'
 

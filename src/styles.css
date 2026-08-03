@@ -9,6 +9,7 @@ body {
     @apply m-0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
 
 code {
@@ -48,6 +49,7 @@ code {
     --sidebar-ring: oklch(0.708 0 0);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
+    --view-transition-duration: 150ms;
 }
 
 .dark {
@@ -140,5 +142,89 @@ code {
     html {
         @apply font-sans;
         @apply font-sans;
+    }
+}
+
+.mobile-drawer-view-transition {
+    view-transition-name: mobile-drawer-content;
+}
+
+.mobile-drawer-size-view-transition {
+    view-transition-name: mobile-drawer;
+}
+
+::view-transition-group(mobile-drawer) {
+    animation-duration: var(--view-transition-duration);
+    animation-timing-function: ease-in-out;
+}
+
+::view-transition-old(mobile-drawer),
+::view-transition-new(mobile-drawer) {
+    mix-blend-mode: normal;
+}
+
+::view-transition-group(mobile-drawer-content) {
+    animation-duration: var(--view-transition-duration);
+    animation-timing-function: ease-in-out;
+    overflow: clip;
+}
+
+::view-transition-old(mobile-drawer-content) {
+    animation: var(--view-transition-duration) ease-in-out both mobile-drawer-slide-out-left;
+    mix-blend-mode: normal;
+}
+
+::view-transition-new(mobile-drawer-content) {
+    animation: var(--view-transition-duration) ease-in-out both mobile-drawer-slide-in-right;
+    mix-blend-mode: normal;
+}
+
+html:active-view-transition-type(mobile-drawer-forward)::view-transition-old(root),
+html:active-view-transition-type(mobile-drawer-forward)::view-transition-new(root),
+html:active-view-transition-type(mobile-drawer-back)::view-transition-old(root),
+html:active-view-transition-type(mobile-drawer-back)::view-transition-new(root) {
+    animation: none;
+}
+
+html:active-view-transition-type(mobile-drawer-back)::view-transition-old(mobile-drawer-content) {
+    animation-name: mobile-drawer-slide-out-right;
+}
+
+html:active-view-transition-type(mobile-drawer-back)::view-transition-new(mobile-drawer-content) {
+    animation-name: mobile-drawer-slide-in-left;
+}
+
+@keyframes mobile-drawer-slide-out-left {
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes mobile-drawer-slide-in-right {
+    from {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes mobile-drawer-slide-out-right {
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes mobile-drawer-slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(mobile-drawer),
+    ::view-transition-old(mobile-drawer),
+    ::view-transition-new(mobile-drawer),
+    ::view-transition-group(mobile-drawer-content),
+    ::view-transition-old(mobile-drawer-content),
+    ::view-transition-new(mobile-drawer-content) {
+        animation-duration: 0.01ms;
     }
 }

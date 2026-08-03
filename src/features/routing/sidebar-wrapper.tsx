@@ -31,9 +31,6 @@ export const SidebarWrapper = ({
         <>
             <div className='hidden xl:flex h-full w-full flex-col items-center gap-4 py-8 pr-8 relative'>
                 <Tabs />
-                {isDescriptionVisible && (
-                    <p className='text-xs text-muted-foreground text-center pt-2'>{description}</p>
-                )}
                 <Outlet />
                 <CreateEvent />
             </div>

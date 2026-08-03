@@ -7,7 +7,7 @@ import { FieldError } from '@/components/ui/field'
 import { cn } from '@/lib/utils'
 import { IS_DESKTOP } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
-import Drawer from '../drawer'
+import Drawer from '../drawer-legacy'
 import { DatePickerProps, I18N_TO_LOCALE } from './types'
 
 export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerProps) => {

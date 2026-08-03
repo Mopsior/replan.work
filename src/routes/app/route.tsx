@@ -9,6 +9,8 @@ import { MobileDrawer } from '@/features/routing/mobile-drawer'
 import { SidebarWrapper } from '@/features/routing/sidebar-wrapper'
 import { RouteTabs, selectedRouteTab } from '@/features/routing/types'
 import { authStateFn } from '@/functions/auth-state'
+import { IS_MOBILE } from '@/types/constants'
+import { useMediaQuery } from '@/utils/use-media-query'
 
 const searchParams = z.object({
     month: z.number().default(new Date().getMonth() + 1),
@@ -33,6 +35,7 @@ function RouteComponent() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(
         selectedRouteTab[location.pathname] !== RouteTabs.MAIN,
     )
+    const isMobile = useMediaQuery(IS_MOBILE)
 
     return (
         <DrawerDataContext.Provider
@@ -57,20 +60,15 @@ function RouteComponent() {
             */}
             <div className='h-full w-full xl:grid xl:grid-cols-[auto_400px]'>
                 <Calendar />
-                <SidebarWrapper
-                    title={drawerTitle}
-                    description={drawerDescription}
-                    isDescriptionVisible={isDescriptionVisible}
-                />
+                {!isMobile && (
+                    <SidebarWrapper
+                        title={drawerTitle}
+                        description={drawerDescription}
+                        isDescriptionVisible={isDescriptionVisible}
+                    />
+                )}
             </div>
-            <MobileDrawer
-                title={drawerTitle}
-                description={drawerDescription}
-                isTitleVisible={isTitleVisible}
-                isDescriptionVisible={isDescriptionVisible}
-                isDrawerOpen={isDrawerOpen}
-                setIsDrawerOpen={setIsDrawerOpen}
-            />
+            {isMobile && <MobileDrawer />}
         </DrawerDataContext.Provider>
     )
 }

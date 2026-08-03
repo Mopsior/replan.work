@@ -44,6 +44,14 @@
             }
         }
     },
+    "overrides": [
+        {
+            "includes": ["src/routes/test/*"],
+            "linter": {
+                "enabled": false
+            }
+        }
+    ],
     "javascript": {
         "formatter": {
             "jsxQuoteStyle": "single",

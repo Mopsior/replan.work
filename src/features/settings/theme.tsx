@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/lib/theme-provider'
 import { Theme } from '@/types/enums'
-import Drawer from '../drawer'
+import Drawer from '../drawer-legacy'
 import { RadioGroup } from '../inputs/radio-group'
 import { getNextTheme, themeIcons, themeTranslations } from './get-next-theme'
 

@@ -6,4 +6,7 @@ export default defineConfig({
         input: 'src/**/*.{js,jsx,ts,tsx}',
         output: 'src/locales/{{language}}.json',
     },
+    lint: {
+        ignore: ['src/routes/test/**'],
+    },
 })

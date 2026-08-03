@@ -36,9 +36,18 @@
         }
     },
     "tabs": {
-        "summary": "Podsumowanie",
-        "share": "Udostępnianie",
-        "settings": "Ustawienia"
+        "summary": {
+            "label": "Podsumowanie",
+            "description": "Zobacz podsumowanie miesiąca"
+        },
+        "share": {
+            "label": "Udostępnianie",
+            "description": "Udostępnij swój kalendarz innym"
+        },
+        "settings": {
+            "label": "Ustawienia",
+            "description": "Przejdź do ustawień aplikacji"
+        }
     },
     "goto": "Przejdź do {{name}}",
     "gotoDestination": {

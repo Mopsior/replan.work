@@ -1,7 +1,6 @@
-import { Link, useLocation, useNavigate } from '@tanstack/react-router'
-import { ChartNoAxesColumn, Settings2, Share2 } from 'lucide-react'
+import { useLocation, useNavigate } from '@tanstack/react-router'
+import { ChartNoAxesColumn, Share2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
 import { Tabs as ShadTabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UserButton } from '../clerk/user-button'
 import { Return } from '../return'
@@ -16,30 +15,25 @@ export const Tabs = () => {
         return <Return to='/app/summary' className='not-md:hidden' />
 
     return (
-        <div className='flex w-full justify-center items-center gap-x-4'>
-            <ShadTabs value={selectedRouteTab[location.pathname]}>
+        <div className='flex w-full justify-center items-center gap-4 flex-col md:flex-row'>
+            <ShadTabs value={selectedRouteTab[location.pathname]} className='not-md:hidden'>
                 <TabsList>
                     <TabsTrigger
                         value={'summary'}
                         onClick={() => navigate({ to: '/app/summary', search: (prev) => prev })}
                     >
                         <ChartNoAxesColumn />
-                        <span className='block md:hidden lg:block'>{t('tabs.summary')}</span>
+                        <span className='block md:hidden lg:block'>{t('tabs.summary.label')}</span>
                     </TabsTrigger>
                     <TabsTrigger
                         value={'share'}
                         onClick={() => navigate({ to: '/app/share', search: (prev) => prev })}
                     >
                         <Share2 />
-                        <span className='block md:hidden lg:block'>{t('tabs.share')}</span>
+                        <span className='block md:hidden lg:block'>{t('tabs.share.label')}</span>
                     </TabsTrigger>
                 </TabsList>
             </ShadTabs>
-            <Link to='/app/settings' className='md:hidden'>
-                <Button variant='secondary'>
-                    <Settings2 />
-                </Button>
-            </Link>
             <div className='hidden h-fit w-fit xl:flex items-center justify-center'>
                 <UserButton />
             </div>

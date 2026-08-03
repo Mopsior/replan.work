@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { IS_MOBILE } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
-import Drawer from '../drawer'
+import Drawer from '../drawer-legacy'
 import { EventForm } from './form'
 
 export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?: boolean }) => {
