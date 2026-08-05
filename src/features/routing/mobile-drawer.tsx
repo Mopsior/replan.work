@@ -14,7 +14,7 @@ export const MobileDrawer = () => {
 
     if (!isMobile) return null
     return (
-        <div className='fixed bottom-4 left-0 w-full px-4 md:hidden grid grid-cols-[36px_auto_36px] gap-x-2'>
+        <div className='fixed bottom-safe-viewport left-0 w-full px-4 md:hidden grid grid-cols-[36px_auto_36px] gap-x-2'>
             <Button
                 className='w-full'
                 variant='secondary'

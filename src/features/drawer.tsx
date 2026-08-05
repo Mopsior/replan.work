@@ -29,7 +29,7 @@ const Trigger = (props: DrawerTriggerProps) => (
 const Content = DrawerPrimitiveContent
 
 const Container = ({ className, ...props }: DrawerContainerProps) => (
-    <div className={cn(['px-6 py-4', className])} {...props} />
+    <div className={cn(['px-6 pt-4 pb-safe-viewport', className])} {...props} />
 )
 
 const Footer = DrawerPrimitiveFooter

@@ -39,6 +39,7 @@
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --view-transition-duration: 300ms;
+    --safe-area-max-inset-bottom: env(safe-area-max-inset-bottom, 36px);
 }
 
 .dark {
@@ -116,6 +117,7 @@
     --radius-3xl: calc(var(--radius) + 12px);
     --radius-4xl: calc(var(--radius) + 16px);
     --ease-drawer: cubic-bezier(0.22, 1, 0.36, 1);
+    --spacing-safe-viewport: calc(8px + max(12px, env(safe-area-inset-bottom, 0px)));
 }
 
 @layer base {
@@ -269,3 +271,7 @@
         }
     }
 }
+
+/* @utility bottom-safe-viewport {
+    padding-bottom: var(--safe-area-max-inset-bottom);
+} */

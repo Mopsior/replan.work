@@ -18,7 +18,6 @@ import appCss from '../styles.css?url'
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools'
 import { formDevtoolsPlugin } from '@tanstack/react-form-devtools'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { Shadows } from '@/features/shadows'
 
 export const Route = createRootRoute({
     head: () => ({
@@ -28,7 +27,7 @@ export const Route = createRootRoute({
             },
             {
                 name: 'viewport',
-                content: 'width=device-width, initial-scale=1',
+                content: 'width=device-width, initial-scale=1, viewport-fit=cover',
             },
             {
                 title: 'replan (that) work',
@@ -78,7 +77,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
                 <body>
                     <ThemeProvider>
                         <TooltipProvider>
-                            <Shadows />
                             {children}
                             <Footer />
                             <TanStackDevtools
