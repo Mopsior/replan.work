@@ -158,7 +158,7 @@ function DrawerContent({
             <div
               aria-hidden="true"
               data-slot="drawer-content-top-shadow"
-              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-4 bg-linear-to-b from-background via-background/90 to-transparent md:hidden"
+              className="pointer-events-none absolute inset-x-0 top-0 z-10 h-6 bg-linear-to-b from-background via-background/90 to-transparent md:hidden"
             />
           </DrawerPrimitive.Content>
         </DrawerPrimitive.Popup>
