@@ -61,7 +61,7 @@ interface BaseListItemProps {
     itemColor: string
 }
 
-export interface ListItemProps extends BaseListItemProps, HTMLAttributes<HTMLDivElement> {
+export interface ListItemProps extends BaseListItemProps, HTMLAttributes<HTMLButtonElement> {
     addon?: ReactNode
 }
 

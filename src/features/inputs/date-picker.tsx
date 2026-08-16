@@ -25,7 +25,7 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
     }
 
     return (
-        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+        <Drawer.Adaptive open={isOpen} onOpenChange={setIsOpen}>
             <Drawer.Trigger
                 render={
                     <Button
@@ -38,9 +38,12 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
                 {date ? format(date) : <span>{t('input.datePicker.placeholder')}</span>}
             </Drawer.Trigger>
             <Drawer.Content>
-                <Drawer.Container>
+                <Drawer.Container
+                    visibleOnDesktop
+                    bottomChildren={<Drawer.Close>{t('select')}</Drawer.Close>}
+                >
                     <Drawer.Header>
-                        <Drawer.Title>{t('input.datePicker.label')}</Drawer.Title>
+                        <Drawer.Title visibleOnDesktop>{t('input.datePicker.label')}</Drawer.Title>
                         <Drawer.Description>
                             {date
                                 ? t('input.datePicker.description', { date: format(date) })
@@ -60,6 +63,6 @@ export const DatePicker = ({ date, setDate, id, isInvalid, errors }: DatePickerP
                     {isInvalid && <FieldError className='text-center' errors={errors} />}
                 </Drawer.Container>
             </Drawer.Content>
-        </Drawer>
+        </Drawer.Adaptive>
     )
 }

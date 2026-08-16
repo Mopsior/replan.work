@@ -70,7 +70,7 @@ const ExpandableCalendarList = ({
     const selectedCalendar = calendars.find((calendar) => calendar.id === value) ?? calendars[0]
 
     return (
-        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+        <Drawer.Adaptive open={isOpen} onOpenChange={setIsOpen}>
             <Drawer.Trigger
                 render={
                     <ListItem
@@ -87,9 +87,12 @@ const ExpandableCalendarList = ({
                 }
             />
             <Drawer.Content>
-                <Drawer.Container>
+                <Drawer.Container
+                    visibleOnDesktop
+                    bottomChildren={<Drawer.Close>{t('select')}</Drawer.Close>}
+                >
                     <Drawer.Header>
-                        <Drawer.Title>
+                        <Drawer.Title visibleOnDesktop>
                             {t('calendar.event.create.form.calendar.choose')}
                         </Drawer.Title>
                         <Drawer.Description>
@@ -104,6 +107,6 @@ const ExpandableCalendarList = ({
                     />
                 </Drawer.Container>
             </Drawer.Content>
-        </Drawer>
+        </Drawer.Adaptive>
     )
 }

@@ -2,6 +2,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import { Button } from '@/components/ui/button'
 import {
     Drawer as DrawerPrimitive,
+    DrawerClose as DrawerPrimitiveClose,
     DrawerContent as DrawerPrimitiveContent,
     DrawerDescription as DrawerPrimitiveDescription,
     DrawerFooter as DrawerPrimitiveFooter,
@@ -21,6 +22,7 @@ type DrawerTriggerProps = ComponentProps<typeof DrawerPrimitiveTrigger>
 type DrawerContainerProps = ComponentProps<'div'> & {
     withViewTransition?: boolean
     visibleOnDesktop?: boolean
+    bottomChildren?: ReactNode
 }
 type DrawerHeaderProps = Omit<ComponentProps<typeof DrawerPrimitiveHeader>, 'children'> & {
     children?: ReactNode
@@ -30,6 +32,9 @@ type DrawerFooterProps = Omit<ComponentProps<typeof DrawerPrimitiveFooter>, 'cla
 }
 type DrawerContentProps = Omit<ComponentProps<typeof DrawerPrimitiveContent>, 'className'> & {
     className?: string
+}
+type DrawerCloseProps = Omit<ComponentProps<typeof DrawerPrimitiveClose>, 'render'> & {
+    render?: ComponentProps<typeof DrawerPrimitiveClose>['render']
 }
 
 const Drawer = (props: DrawerProps) => <DrawerPrimitive showSwipeHandle {...props} />
@@ -61,21 +66,34 @@ const Container = ({
     className,
     withViewTransition,
     visibleOnDesktop,
+    bottomChildren,
     ...props
 }: DrawerContainerProps) => {
     const isMobile = useMediaQuery(IS_MOBILE)
-    if (!isMobile && !visibleOnDesktop) return props.children
+    if (!isMobile && !visibleOnDesktop)
+        return (
+            <>
+                {props.children}
+                {bottomChildren}
+            </>
+        )
 
-    return (
-        <div
-            className={cn(
-                'px-6 pt-4 pb-safe-viewport flex flex-col gap-y-2 group-data-[swipe-direction=right]/drawer-popup:pt-6 group-data-[swipe-direction=right]/drawer-popup:h-full',
-                withViewTransition && 'mobile-drawer-view-transition',
-                className,
-            )}
-            {...props}
-        />
+    const containerClassName = cn(
+        'px-6 pt-4 pb-safe-viewport flex flex-col gap-y-2 group-data-[swipe-direction=right]/drawer-popup:pt-6 group-data-[swipe-direction=right]/drawer-popup:h-full',
+        withViewTransition && 'mobile-drawer-view-transition',
+        bottomChildren && 'justify-between gap-y-4',
+        !bottomChildren && className,
     )
+
+    if (bottomChildren)
+        return (
+            <div className={containerClassName}>
+                <div className={cn('flex flex-col gap-y-2', className)} {...props} />
+                {bottomChildren}
+            </div>
+        )
+
+    return <div className={containerClassName} {...props} />
 }
 
 const Footer = ({ className, ...props }: DrawerFooterProps) => (
@@ -127,6 +145,10 @@ const Description = ({
     return <DrawerPrimitiveDescription className={className} children={children} />
 }
 
+const Close = ({ render, ...props }: DrawerCloseProps) => (
+    <DrawerPrimitiveClose render={render ?? <Button />} {...props} />
+)
+
 Drawer.Adaptive = AdaptiveDrawer
 Drawer.Trigger = Trigger
 Drawer.Content = Content
@@ -135,4 +157,5 @@ Drawer.Footer = Footer
 Drawer.Header = Header
 Drawer.Title = Title
 Drawer.Description = Description
+Drawer.Close = Close
 export default Drawer

@@ -9,7 +9,7 @@ import { CalendarForm } from './form'
 import { ListItemEditableProps, ListItemProps, ListItemRadioItemProps } from './types'
 
 const ListItem = ({ name, itemColor, className, addon, ...props }: ListItemProps) => (
-    <div
+    <button
         className={cn([
             'border-border hover:bg-secondary/20 flex w-full items-center gap-x-2 justify-between rounded-md border px-4 py-2 transition-colors cursor-pointer',
             className,
@@ -21,7 +21,7 @@ const ListItem = ({ name, itemColor, className, addon, ...props }: ListItemProps
             <span className='text-foreground'>{name}</span>
         </div>
         {addon}
-    </div>
+    </button>
 )
 const EditableListItem = ({ name, itemColor, salary, id }: ListItemEditableProps) => {
     const [isOpen, setIsOpen] = useState(false)
