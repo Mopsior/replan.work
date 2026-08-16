@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '@/lib/theme-provider'
 import { Theme } from '@/types/enums'
-import Drawer from '../drawer-legacy'
+import Drawer from '../drawer'
 import { RadioGroup } from '../inputs/radio-group'
 import { getNextTheme, themeIcons, themeTranslations } from './get-next-theme'
 
@@ -23,29 +23,30 @@ export const ThemeSettings = () => {
     return (
         <div className='flex h-fit w-full flex-col gap-y-2 xl:hidden'>
             <p className='text-muted-foreground text-sm'>{t('appSettings.themes.label')}</p>
-            <Drawer.DynamicNested
-                trigger={
-                    <Button variant={'secondary'}>
-                        {themeIcons[nextTheme]} {t('appSettings.themes.button')}
-                    </Button>
-                }
-            >
-                <div className='flex w-full flex-col gap-y-4 not-md:px-4 not-md:pb-8'>
-                    <Drawer.Title>{t('appSettings.themes.label')}</Drawer.Title>
-                    <Drawer.HiddenDescription>
-                        {t('appSettings.themes.ariaDescription')}
-                    </Drawer.HiddenDescription>
-                    <RadioGroup
-                        value={userTheme}
-                        onValueChange={(value) => setTheme(value as Theme)}
-                        items={[Theme.LIGHT, Theme.DARK, Theme.SYSTEM].map((theme) => ({
-                            value: theme,
-                            title: themeTranslations[theme],
-                            icon: themeIcons[theme],
-                        }))}
-                    />
-                </div>
-            </Drawer.DynamicNested>
+            <Drawer>
+                <Drawer.Trigger render={<Button variant='secondary' />}>
+                    {themeIcons[nextTheme]} {t('appSettings.themes.button')}
+                </Drawer.Trigger>
+                <Drawer.Content>
+                    <Drawer.Container className='gap-y-4'>
+                        <Drawer.Header>
+                            <Drawer.Title>{t('appSettings.themes.label')}</Drawer.Title>
+                            <Drawer.Description>
+                                {t('appSettings.themes.ariaDescription')}
+                            </Drawer.Description>
+                        </Drawer.Header>
+                        <RadioGroup
+                            value={userTheme}
+                            onValueChange={(value) => setTheme(value as Theme)}
+                            items={[Theme.LIGHT, Theme.DARK, Theme.SYSTEM].map((theme) => ({
+                                value: theme,
+                                title: themeTranslations[theme],
+                                icon: themeIcons[theme],
+                            }))}
+                        />
+                    </Drawer.Container>
+                </Drawer.Content>
+            </Drawer>
         </div>
     )
 }

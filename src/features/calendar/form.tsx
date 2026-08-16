@@ -96,9 +96,9 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
                 e.preventDefault()
                 form.handleSubmit()
             }}
-            className='flex flex-col w-full h-full justify-between'
+            className='flex flex-col w-full h-full justify-between mt-2'
         >
-            <FieldGroup className='gap-y-6'>
+            <FieldGroup className='gap-y-4'>
                 <form.Field
                     name='name'
                     children={(field) => {
@@ -140,7 +140,7 @@ export const CalendarForm = ({ setIsOpen, variant, defaultValues, id }: Calendar
                                     onValueChange={(newValue) =>
                                         field.handleChange(newValue as string)
                                     }
-                                    className='mb-2 flex justify-between'
+                                    className='mb-1 flex justify-between'
                                 >
                                     {COLOR_PALETTE.map((color) => (
                                         <Radio.Root

@@ -26,6 +26,7 @@ export const removeCalendarFn = createServerFn({ method: 'POST' })
         )
 
         if (error) {
+            console.error(error)
             throw new Error('Failed to remove calendar')
         }
 

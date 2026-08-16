@@ -36,6 +36,10 @@
         }
     },
     "tabs": {
+        "index": {
+            "label": "Menu",
+            "description": "Wybierz jedną z opcji menu klikając w nią"
+        },
         "summary": {
             "label": "Podsumowanie",
             "description": "Zobacz podsumowanie miesiąca"

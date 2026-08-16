@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { IS_MOBILE } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
-import Drawer from '../drawer-legacy'
+import Drawer from '../drawer'
 import { EventForm } from './form'
 
 export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?: boolean }) => {
@@ -14,22 +14,29 @@ export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?
     const isMobile = useMediaQuery(IS_MOBILE)
 
     return (
-        <Drawer.Dynamic
-            open={isOpen}
-            onOpenChange={setIsOpen}
-            trigger={
-                <Button
-                    className={cn([controlPositioning && 'md:absolute md:bottom-8 md:right-8'])}
-                    variant={isMobile ? 'secondary' : 'default'}
-                >
-                    <Plus size={16} />
-                    <span className='hidden md:block'>{t('calendar.event.create.button')}</span>
-                </Button>
-            }
-        >
-            <Drawer.Title withCenter>{t('calendar.event.create.label')}</Drawer.Title>
-            <Drawer.Description>{t('calendar.event.create.description')}</Drawer.Description>
-            <EventForm setIsOpen={setIsOpen} />
-        </Drawer.Dynamic>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <Drawer.Trigger
+                render={
+                    <Button
+                        className={cn([controlPositioning && 'md:absolute md:bottom-8 md:right-8'])}
+                        variant={isMobile ? 'secondary' : 'default'}
+                    />
+                }
+            >
+                <Plus size={16} />
+                <span className='hidden md:block'>{t('calendar.event.create.button')}</span>
+            </Drawer.Trigger>
+            <Drawer.Content>
+                <Drawer.Container>
+                    <Drawer.Header>
+                        <Drawer.Title>{t('calendar.event.create.label')}</Drawer.Title>
+                        <Drawer.Description>
+                            {t('calendar.event.create.description')}
+                        </Drawer.Description>
+                    </Drawer.Header>
+                    <EventForm setIsOpen={setIsOpen} />
+                </Drawer.Container>
+            </Drawer.Content>
+        </Drawer>
     )
 }

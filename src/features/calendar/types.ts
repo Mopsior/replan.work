@@ -1,5 +1,5 @@
 import { t } from 'i18next'
-import { HTMLAttributes, ReactNode } from 'react'
+import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from 'react'
 
 export interface ItemProps {
     day: string
@@ -118,4 +118,9 @@ export interface MobileWeekProps {
 
 export interface MobileFooterProps {
     month: number
+}
+
+export interface CalendarProps {
+    didInitialScroll: boolean
+    setDidInitialScroll: Dispatch<SetStateAction<boolean>>
 }

@@ -1,6 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useTranslation } from 'react-i18next'
 import Drawer from '@/features/drawer'
+import { Footer } from '@/features/footer'
+import { Return } from '@/features/return'
 import { AccountSettings } from '@/features/settings/account'
 import { CalendarSettings } from '@/features/settings/calendar'
 import { ThemeSettings } from '@/features/settings/theme'
@@ -17,9 +19,15 @@ function RouteComponent() {
             <Drawer.Header>
                 <Drawer.Title>{t('tabs.settings.label')}</Drawer.Title>
             </Drawer.Header>
-            <ThemeSettings />
-            <AccountSettings />
-            <CalendarSettings />
+            <div className='flex flex-col gap-y-4'>
+                <ThemeSettings />
+                <AccountSettings />
+                <CalendarSettings />
+                <Footer visibleOnMobile withoutFixed withoutBackground className='py-0' />
+            </div>
+            <Drawer.Footer>
+                <Return to='/app' viewTransition />
+            </Drawer.Footer>
         </Drawer.Container>
     )
 }

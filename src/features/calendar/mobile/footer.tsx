@@ -10,7 +10,7 @@ export const MobileFooter = ({ month }: MobileFooterProps) => {
     const navigate = useNavigate()
 
     return (
-        <div className='snap-center snap w-full flex flex-col items-center justify-center gap-4 h-fit py-8'>
+        <div className='snap-center snap w-full flex flex-col items-center justify-center gap-4 h-fit pt-8 pb-24'>
             <p className='text-sm text-muted-foreground mb-0'>
                 {t('goto', { name: t('gotoDestination.nextMonth') })}
             </p>

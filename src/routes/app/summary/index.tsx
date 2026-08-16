@@ -129,10 +129,10 @@ function RouteComponent() {
                     </TableRow>
                 </TableFooter>
             </Table>
-            <div className='md:hidden w-full flex justify-between items-center'>
+            <Drawer.Footer className='md:hidden'>
                 <Return to='/app' viewTransition />
                 <DisclaimerDrawer />
-            </div>
+            </Drawer.Footer>
         </Drawer.Container>
     )
 }

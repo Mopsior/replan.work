@@ -20,10 +20,10 @@ export const Footer = ({
     return (
         <div
             className={cn([
-                'text-muted-foreground bottom-4 rounded-md px-4 py-2 text-center text-sm',
+                'text-muted-foreground bottom-4 rounded-md py-2 text-center text-sm',
                 !withoutFixed && 'fixed left-1/2 -translate-x-1/2 transform',
                 !visibleOnMobile && 'not-md:hidden',
-                !withoutBackground && 'bg-background',
+                !withoutBackground && 'bg-background px-4',
                 className,
             ])}
         >

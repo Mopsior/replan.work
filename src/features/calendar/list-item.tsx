@@ -4,7 +4,7 @@ import { FieldLabel } from '@/components/ui/field'
 import { RadioGroupItem } from '@/components/ui/radio-group'
 import { cn } from '@/lib/utils'
 import { FormVariant } from '@/types/enums'
-import Drawer from '../drawer-legacy'
+import Drawer from '../drawer'
 import { CalendarForm } from './form'
 import { ListItemEditableProps, ListItemProps, ListItemRadioItemProps } from './types'
 
@@ -28,24 +28,31 @@ const EditableListItem = ({ name, itemColor, salary, id }: ListItemEditableProps
     const { t } = useTranslation()
 
     return (
-        <Drawer.DynamicNested
-            open={isOpen}
-            onOpenChange={setIsOpen}
-            trigger={<ListItem name={name} itemColor={itemColor} />}
-        >
-            <Drawer.Title withCenter>{t('appSettings.calendars.edit.label')}</Drawer.Title>
-            <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
-            <CalendarForm
-                setIsOpen={setIsOpen}
-                variant={FormVariant.EDIT}
-                defaultValues={{
-                    name,
-                    color: itemColor,
-                    salary,
-                }}
-                id={id}
-            />
-        </Drawer.DynamicNested>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <Drawer.Trigger
+                render={<ListItem name={name} itemColor={itemColor} />}
+            ></Drawer.Trigger>
+            <Drawer.Content>
+                <Drawer.Container>
+                    <Drawer.Header>
+                        <Drawer.Title>{t('appSettings.calendars.edit.label')}</Drawer.Title>
+                        <Drawer.Description>
+                            {t('appSettings.calendars.description')}
+                        </Drawer.Description>
+                    </Drawer.Header>
+                    <CalendarForm
+                        setIsOpen={setIsOpen}
+                        variant={FormVariant.EDIT}
+                        defaultValues={{
+                            name,
+                            color: itemColor,
+                            salary,
+                        }}
+                        id={id}
+                    />
+                </Drawer.Container>
+            </Drawer.Content>
+        </Drawer>
     )
 }
 

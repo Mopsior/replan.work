@@ -28,6 +28,7 @@ export const Route = createFileRoute('/app')({
 
 function RouteComponent() {
     const location = useLocation()
+    const [didInitialScroll, setDidInitialScroll] = useState<boolean>(false)
     const [drawerTitle, setDrawerTitle] = useState<ReactNode | null>(null)
     const [drawerDescription, setdrawerDescription] = useState<ReactNode | null>(null)
     const [isTitleVisible, setIsTitleVisible] = useState<boolean>(false)
@@ -59,7 +60,10 @@ function RouteComponent() {
                 xl: static sidebar 
             */}
             <div className='h-full w-full xl:grid xl:grid-cols-[auto_400px]'>
-                <Calendar />
+                <Calendar
+                    didInitialScroll={didInitialScroll}
+                    setDidInitialScroll={setDidInitialScroll}
+                />
                 {!isMobile && (
                     <SidebarWrapper
                         title={drawerTitle}
@@ -68,7 +72,7 @@ function RouteComponent() {
                     />
                 )}
             </div>
-            {isMobile && <MobileDrawer />}
+            {isMobile && <MobileDrawer onTodayClick={() => setDidInitialScroll(false)} />}
         </DrawerDataContext.Provider>
     )
 }

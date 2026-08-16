@@ -1,9 +1,8 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Button } from '@/components/ui/button'
 import { FormVariant } from '@/types/enums'
-import Drawer from '../drawer-legacy'
+import Drawer from '../drawer'
 import { CalendarForm } from './form'
 
 export const CreateCalendarDrawer = () => {
@@ -11,19 +10,22 @@ export const CreateCalendarDrawer = () => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <Drawer.DynamicNested
-            open={isOpen}
-            onOpenChange={setIsOpen}
-            trigger={
-                <Button>
-                    <Plus size={16} />
-                    {t('appSettings.calendars.add')}
-                </Button>
-            }
-        >
-            <Drawer.Title withCenter>{t('appSettings.calendars.create.label')}</Drawer.Title>
-            <Drawer.Description>{t('appSettings.calendars.description')}</Drawer.Description>
-            <CalendarForm setIsOpen={setIsOpen} variant={FormVariant.CREATE} />
-        </Drawer.DynamicNested>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <Drawer.Trigger>
+                <Plus size={16} />
+                {t('appSettings.calendars.add')}
+            </Drawer.Trigger>
+            <Drawer.Content>
+                <Drawer.Container>
+                    <Drawer.Header>
+                        <Drawer.Title>{t('appSettings.calendars.create.label')}</Drawer.Title>
+                        <Drawer.Description>
+                            {t('appSettings.calendars.description')}
+                        </Drawer.Description>
+                    </Drawer.Header>
+                    <CalendarForm setIsOpen={setIsOpen} variant={FormVariant.CREATE} />
+                </Drawer.Container>
+            </Drawer.Content>
+        </Drawer>
     )
 }

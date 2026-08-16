@@ -89,7 +89,7 @@ export const EventForm = ({ setIsOpen }: { setIsOpen: (open: boolean) => void })
                 e.preventDefault()
                 form.handleSubmit()
             }}
-            className='flex flex-col w-full h-full justify-between space-y-4'
+            className='flex flex-col w-full h-full justify-between space-y-4 mt-2'
         >
             <FieldGroup className='gap-y-6'>
                 <DateField form={form} />

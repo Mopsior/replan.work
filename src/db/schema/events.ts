@@ -11,7 +11,7 @@ export const events = pgTable('events', {
     id: uuid('id').primaryKey().defaultRandom().notNull(),
     userId: text('user_id').notNull(),
     calendarId: uuid('calendar_id')
-        .references(() => calendars.id)
+        .references(() => calendars.id, { onDelete: 'cascade' })
         .notNull(),
     title: text('title'),
     eventType: eventTypeEnum('event_type').notNull(),

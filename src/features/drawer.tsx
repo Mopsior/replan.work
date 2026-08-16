@@ -35,7 +35,7 @@ const Container = ({ className, withViewTransition, ...props }: DrawerContainerP
     return (
         <div
             className={cn(
-                'px-6 pt-4 pb-safe-viewport space-y-2',
+                'px-6 pt-4 pb-safe-viewport flex flex-col gap-y-2',
                 withViewTransition && 'mobile-drawer-view-transition',
                 className,
             )}

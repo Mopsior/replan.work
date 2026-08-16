@@ -5,7 +5,6 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import {
     Item,
-    ItemActions,
     ItemContent,
     ItemDescription,
     ItemFooter,
@@ -31,7 +30,7 @@ export const AccountSettings = () => {
                         </AvatarFallback>
                     </Avatar>
                 </ItemMedia>
-                <ItemContent>
+                <ItemContent className='gap-y-0.5'>
                     <ItemTitle>
                         {user?.username
                             ? user?.username
@@ -41,10 +40,7 @@ export const AccountSettings = () => {
                     </ItemTitle>
                     <ItemDescription>{t('appSettings.account.item.description')}</ItemDescription>
                 </ItemContent>
-                <ItemActions className='md:hidden'>
-                    <AccountButton />
-                </ItemActions>
-                <ItemFooter className='hidden md:inline'>
+                <ItemFooter>
                     <AccountButton />
                 </ItemFooter>
             </Item>
@@ -67,7 +63,7 @@ const AccountButton = () => {
             size='sm'
             variant='secondary'
             onClick={handleOpenUserProfile}
-            className='md:w-full md:flex md:gap-x-2'
+            className='w-full flex gap-x-2'
         >
             {t('go')}
             <ArrowRight className='md:order-first' />

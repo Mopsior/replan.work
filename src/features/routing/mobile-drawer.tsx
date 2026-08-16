@@ -6,8 +6,9 @@ import { IS_MOBILE } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
 import Drawer from '../drawer'
 import { CreateEvent } from '../event/create'
+import { MobileDrawerProps } from './types'
 
-export const MobileDrawer = () => {
+export const MobileDrawer = ({ onTodayClick }: MobileDrawerProps) => {
     const { t } = useTranslation()
     const navigate = useNavigate()
     const isMobile = useMediaQuery(IS_MOBILE)
@@ -18,9 +19,9 @@ export const MobileDrawer = () => {
             <Button
                 className='w-full'
                 variant='secondary'
-                onClick={() => {
+                onClick={async () => {
                     const today = new Date()
-                    navigate({
+                    await navigate({
                         to: '.',
                         search: (prev) => ({
                             ...prev,
@@ -28,6 +29,7 @@ export const MobileDrawer = () => {
                             year: today.getFullYear(),
                         }),
                     })
+                    onTodayClick()
                 }}
             >
                 <Calendar1 />

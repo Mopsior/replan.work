@@ -26,3 +26,7 @@ export interface SidebarWrapperPropsp {
     description: ReactNode
     isDescriptionVisible: boolean
 }
+
+export interface MobileDrawerProps {
+    onTodayClick: () => void
+}

@@ -24,8 +24,12 @@ function RouteComponent() {
     return (
         <Drawer.Container
             withViewTransition
-            className='md:hidden flex flex-col gap-y-4 justify-center items-center'
+            className='md:hidden flex flex-col gap-y-4 justify-center items-center space-y-0'
         >
+            <Drawer.Header>
+                <Drawer.Title>{t('tabs.index.label')}</Drawer.Title>
+                <Drawer.Description>{t('tabs.index.description')}</Drawer.Description>
+            </Drawer.Header>
             <NavigationItem
                 to='/app/summary'
                 Icon={<ChartNoAxesColumn />}
