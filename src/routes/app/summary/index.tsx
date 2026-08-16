@@ -48,7 +48,7 @@ function RouteComponent() {
     }
 
     return (
-        <>
+        <Drawer.Container withViewTransition>
             <Drawer.Header>
                 <Drawer.Title>{t('tabs.summary.label')}</Drawer.Title>
                 <Drawer.Description>{t('summary.description')}</Drawer.Description>
@@ -133,6 +133,6 @@ function RouteComponent() {
                 <Return to='/app' viewTransition />
                 <DisclaimerDrawer />
             </div>
-        </>
+        </Drawer.Container>
     )
 }

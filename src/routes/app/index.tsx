@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { ChartNoAxesColumn, Settings2, Share2 } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
+import Drawer from '@/features/drawer'
 import { NavigationItem } from '@/features/routing/navigation-item'
 import { IS_DESKTOP } from '@/types/constants'
 import { useMediaQuery } from '@/utils/use-media-query'
@@ -21,7 +22,10 @@ function RouteComponent() {
         })
 
     return (
-        <div className='md:hidden flex flex-col gap-y-4 justify-center items-center'>
+        <Drawer.Container
+            withViewTransition
+            className='md:hidden flex flex-col gap-y-4 justify-center items-center'
+        >
             <NavigationItem
                 to='/app/summary'
                 Icon={<ChartNoAxesColumn />}
@@ -40,6 +44,6 @@ function RouteComponent() {
                 title={t('tabs.settings.label')}
                 description={t('tabs.settings.description')}
             />
-        </div>
+        </Drawer.Container>
     )
 }

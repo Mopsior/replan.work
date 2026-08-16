@@ -13,13 +13,13 @@ function RouteComponent() {
     const { t } = useTranslation()
 
     return (
-        <>
+        <Drawer.Container withViewTransition>
             <Drawer.Header>
                 <Drawer.Title>{t('tabs.settings.label')}</Drawer.Title>
             </Drawer.Header>
             <ThemeSettings />
             <AccountSettings />
             <CalendarSettings />
-        </>
+        </Drawer.Container>
     )
 }

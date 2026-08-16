@@ -15,7 +15,7 @@ import { useMediaQuery } from '@/utils/use-media-query'
 
 type DrawerProps = ComponentProps<typeof DrawerPrimitive>
 type DrawerTriggerProps = ComponentProps<typeof DrawerPrimitiveTrigger>
-type DrawerContainerProps = ComponentProps<'div'>
+type DrawerContainerProps = ComponentProps<'div'> & { withViewTransition?: boolean }
 type DrawerHeaderProps = Omit<ComponentProps<typeof DrawerPrimitiveHeader>, 'children'> & {
     children?: ReactNode
 }
@@ -28,9 +28,21 @@ const Trigger = (props: DrawerTriggerProps) => (
 
 const Content = DrawerPrimitiveContent
 
-const Container = ({ className, ...props }: DrawerContainerProps) => (
-    <div className={cn(['px-6 pt-4 pb-safe-viewport space-y-2', className])} {...props} />
-)
+const Container = ({ className, withViewTransition, ...props }: DrawerContainerProps) => {
+    const isMobile = useMediaQuery(IS_MOBILE)
+    if (!isMobile) return <div className={cn(className)} {...props} />
+
+    return (
+        <div
+            className={cn(
+                'px-6 pt-4 pb-safe-viewport space-y-2',
+                withViewTransition && 'mobile-drawer-view-transition',
+                className,
+            )}
+            {...props}
+        />
+    )
+}
 
 const Footer = DrawerPrimitiveFooter
 

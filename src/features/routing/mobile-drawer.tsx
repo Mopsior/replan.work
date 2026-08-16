@@ -38,9 +38,7 @@ export const MobileDrawer = () => {
                     {t('menu')}
                 </Drawer.Trigger>
                 <Drawer.Content className='mobile-drawer-size-view-transition'>
-                    <Drawer.Container className='mobile-drawer-view-transition'>
-                        <Outlet />
-                    </Drawer.Container>
+                    <Outlet />
                 </Drawer.Content>
             </Drawer>
             <CreateEvent />
