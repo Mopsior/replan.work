@@ -29,7 +29,7 @@ const Trigger = (props: DrawerTriggerProps) => (
 const Content = DrawerPrimitiveContent
 
 const Container = ({ className, ...props }: DrawerContainerProps) => (
-    <div className={cn(['px-6 pt-4 pb-safe-viewport', className])} {...props} />
+    <div className={cn(['px-6 pt-4 pb-safe-viewport space-y-2', className])} {...props} />
 )
 
 const Footer = DrawerPrimitiveFooter
@@ -68,7 +68,7 @@ const Description = ({
     if (!isMobile)
         return (
             <p
-                className={cn(['text-xs text-muted-foreground text-center py-2', className])}
+                className={cn(['text-xs text-muted-foreground text-center pt-2', className])}
                 children={children}
             />
         )

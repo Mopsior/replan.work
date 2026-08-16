@@ -15,7 +15,6 @@ import { ErrorScreen } from '@/features/error-screen'
 import { Return } from '@/features/return'
 import { RectangleSkeleton } from '@/features/skeletons/input'
 import { DisclaimerDrawer } from '@/features/summary/disclaimer-drawer'
-import { useDrawerData } from '@/hooks/use-drawer-data'
 import { useSummary } from '@/hooks/use-summary'
 import { cn } from '@/lib/utils'
 import { Route as SearchRoute } from '@/routes/app/route'
@@ -28,13 +27,6 @@ export const Route = createFileRoute('/app/summary/')({
 function RouteComponent() {
     const { t } = useTranslation()
     const { userId } = SearchRoute.useLoaderData()
-
-    useDrawerData({
-        title: t('summaryDrawer'),
-        isTitleVisible: false,
-        description: t('summary.description'),
-        isDescriptionVisible: true,
-    })
 
     const { month, year } = useSearch({
         from: SearchRoute.fullPath,
@@ -56,7 +48,7 @@ function RouteComponent() {
     }
 
     return (
-        <div className='flex w-full h-full gap-y-2 flex-col items-center'>
+        <>
             <Drawer.Header>
                 <Drawer.Title>{t('tabs.summary.label')}</Drawer.Title>
                 <Drawer.Description>{t('summary.description')}</Drawer.Description>
@@ -141,6 +133,6 @@ function RouteComponent() {
                 <Return to='/app' viewTransition />
                 <DisclaimerDrawer />
             </div>
-        </div>
+        </>
     )
 }

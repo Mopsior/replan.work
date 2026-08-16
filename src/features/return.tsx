@@ -17,17 +17,15 @@ export const Return = ({
     const { t } = useTranslation()
 
     return (
-        <div className={cn(['h-fit w-full', className])}>
-            <Link
-                to={to}
-                search={(prev) => prev}
-                viewTransition={viewTransition ? { types: ['mobile-drawer-back'] } : undefined}
-            >
-                <Button variant='ghost' className='text-muted-foreground'>
-                    <Undo2 className='-mt-1' />
-                    {t('return')}
-                </Button>
-            </Link>
-        </div>
+        <Link
+            to={to}
+            search={(prev) => prev}
+            viewTransition={viewTransition ? { types: ['mobile-drawer-back'] } : undefined}
+        >
+            <Button variant='ghost' className={cn('text-muted-foreground', className)}>
+                <Undo2 className='-mt-1' />
+                {t('return')}
+            </Button>
+        </Link>
     )
 }
