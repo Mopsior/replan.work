@@ -19,6 +19,9 @@ type DrawerContainerProps = ComponentProps<'div'> & { withViewTransition?: boole
 type DrawerHeaderProps = Omit<ComponentProps<typeof DrawerPrimitiveHeader>, 'children'> & {
     children?: ReactNode
 }
+type DrawerFooterProps = Omit<ComponentProps<typeof DrawerPrimitiveFooter>, 'className'> & {
+    className?: string
+}
 
 const Drawer = (props: DrawerProps) => <DrawerPrimitive showSwipeHandle {...props} />
 
@@ -30,7 +33,7 @@ const Content = DrawerPrimitiveContent
 
 const Container = ({ className, withViewTransition, ...props }: DrawerContainerProps) => {
     const isMobile = useMediaQuery(IS_MOBILE)
-    if (!isMobile) return <div className={cn(className)} {...props} />
+    if (!isMobile) return props.children
 
     return (
         <div
@@ -44,7 +47,9 @@ const Container = ({ className, withViewTransition, ...props }: DrawerContainerP
     )
 }
 
-const Footer = DrawerPrimitiveFooter
+const Footer = ({ className, ...props }: DrawerFooterProps) => (
+    <DrawerPrimitiveFooter className={cn('md:hidden', className)} {...props} />
+)
 
 const Header = ({ children, ...props }: DrawerHeaderProps) => {
     const isMobile = useMediaQuery(IS_MOBILE)

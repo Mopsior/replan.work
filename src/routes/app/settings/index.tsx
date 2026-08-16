@@ -19,13 +19,13 @@ function RouteComponent() {
             <Drawer.Header>
                 <Drawer.Title>{t('tabs.settings.label')}</Drawer.Title>
             </Drawer.Header>
-            <div className='flex flex-col gap-y-4'>
+            <div className='flex flex-col gap-y-4 w-full xl:mt-2'>
                 <ThemeSettings />
                 <AccountSettings />
                 <CalendarSettings />
-                <Footer visibleOnMobile withoutFixed withoutBackground className='py-0' />
+                <Footer visibleOnMobile withoutFixed withoutBackground className='py-0 md:hidden' />
             </div>
-            <Drawer.Footer>
+            <Drawer.Footer className='md:hidden'>
                 <Return to='/app' viewTransition />
             </Drawer.Footer>
         </Drawer.Container>

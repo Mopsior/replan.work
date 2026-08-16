@@ -12,7 +12,11 @@ export const Tabs = () => {
     const location = useLocation()
 
     if (!selectedRouteTab[location.pathname])
-        return <Return to='/app/summary' className='not-md:hidden' />
+        return (
+            <div className='w-full'>
+                <Return to='/app/summary' className='not-md:hidden -ml-3' />
+            </div>
+        )
 
     return (
         <div className='flex w-full justify-center items-center gap-4 flex-col md:flex-row'>
