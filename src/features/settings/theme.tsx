@@ -28,7 +28,14 @@ export const ThemeSettings = () => {
                     {themeIcons[nextTheme]} {t('appSettings.themes.button')}
                 </Drawer.Trigger>
                 <Drawer.Content>
-                    <Drawer.Container className='gap-y-4'>
+                    <Drawer.Container
+                        className='gap-y-4'
+                        bottomChildren={
+                            <Drawer.Close render={<Button variant='outline' />}>
+                                {t('select')}
+                            </Drawer.Close>
+                        }
+                    >
                         <Drawer.Header>
                             <Drawer.Title>{t('appSettings.themes.label')}</Drawer.Title>
                             <Drawer.Description>
