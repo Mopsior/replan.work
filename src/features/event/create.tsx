@@ -14,7 +14,7 @@ export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?
     const isMobile = useMediaQuery(IS_MOBILE)
 
     return (
-        <Drawer open={isOpen} onOpenChange={setIsOpen}>
+        <Drawer.Adaptive open={isOpen} onOpenChange={setIsOpen}>
             <Drawer.Trigger
                 render={
                     <Button
@@ -27,9 +27,11 @@ export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?
                 <span className='hidden md:block'>{t('calendar.event.create.button')}</span>
             </Drawer.Trigger>
             <Drawer.Content>
-                <Drawer.Container>
+                <Drawer.Container visibleOnDesktop>
                     <Drawer.Header>
-                        <Drawer.Title>{t('calendar.event.create.label')}</Drawer.Title>
+                        <Drawer.Title visibleOnDesktop>
+                            {t('calendar.event.create.label')}
+                        </Drawer.Title>
                         <Drawer.Description>
                             {t('calendar.event.create.description')}
                         </Drawer.Description>
@@ -37,6 +39,6 @@ export const CreateEvent = ({ controlPositioning = true }: { controlPositioning?
                     <EventForm setIsOpen={setIsOpen} />
                 </Drawer.Container>
             </Drawer.Content>
-        </Drawer>
+        </Drawer.Adaptive>
     )
 }
